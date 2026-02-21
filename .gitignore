@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Configuration and Secrets
+.env
+.python-version
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# uv
+uv.lock
