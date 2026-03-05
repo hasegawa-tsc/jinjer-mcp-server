@@ -1,0 +1,8 @@
+Content-Type: 
+  $ref: headerContent-Type.yaml
+X-Content-Type-Options: 
+  $ref: headerX-Content-Type-Options.yaml
+X-Frame-Options: 
+  $ref: headerX-Frame-Options.yaml
+X-XSS-Protection: 
+  $ref: headerX-XSS-Protection.yaml

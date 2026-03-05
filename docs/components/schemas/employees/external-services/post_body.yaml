@@ -1,0 +1,81 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  login_classification:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: number
+        minLength: 1
+        maxLength: 1
+        example: 1
+        description: "外部サービス連携時のログイン方法<br>企業ID・社員番号もしくはメールアドレス・パスワードによるログインを<br>1:許可する<br>2:許可しない"
+  google_workspace:
+    type: object
+    properties:
+      account:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: jinjer_customer@jinjer.co.jp
+        description: "サービス1またはGoogle Workspaceアカウント<br>外部サービス連携＞SSO認証のサービス1にGoogle Workspaceアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+      sends_notification:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "サービス1またはGoogle Workspaceアカウント通知メール送信<br>true の場合、登録されたアカウントに通知メールを送信します。"
+  azure_active_directory:
+    type: object
+    properties:
+      account:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: jinjer_customer@jinjer.co.jp
+        description: "サービス2またはMicrosoft Entra IDアカウント<br>外部サービス連携＞SSO認証のサービス2にMicrosoft Entra IDアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+      sends_notification:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "サービス2またはMicrosoft Entra IDアカウント通知メール送信<br>true の場合、登録されたアカウントに通知メールを送信します。"
+  hennge_one:
+    type: object
+    properties:
+      account:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: jinjer_customer@jinjer.co.jp
+        description: "サービス3またはHENNGE Oneアカウント<br>外部サービス連携＞SSO認証のサービス3にHENNGE Oneアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+      sends_notification:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "サービス3またはHENNGE Oneアカウント通知メール送信<br>true の場合、登録されたアカウントに通知メールを送信します。"
+  docomo:
+    type: object
+    properties:
+      account:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: jinjer_customer@jinjer.co.jp
+        description: "ビジネスdアカウント"
+      sends_notification:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "ビジネスdアカウント通知メール送信<br>true の場合、登録されたアカウントに通知メールを送信します。"

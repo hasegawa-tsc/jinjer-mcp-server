@@ -1,0 +1,41 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "続柄ID<br>マスタにて任意に登録されるIDです。"
+  name:
+    type: string
+    example: "妻"
+    description: "続柄名"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  is_default:
+    type: boolean
+    example: true
+    description: "既定値フラグ<br>true の場合、ID を変更できません。"
+  relationship_classification:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "続柄区分ID<br>3:親<br>4:子<br>1:配偶者<br>2:その他"
+      name:
+        type: string
+        example: "配偶者"
+        description: "続柄区分名"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

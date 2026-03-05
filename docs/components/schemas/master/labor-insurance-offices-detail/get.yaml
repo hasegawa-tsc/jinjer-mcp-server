@@ -1,0 +1,188 @@
+type: object
+properties:
+  id:
+    description: "労働保険事業所コード<br>企業が任意に登録できるIDです。"
+    type: string
+    example: "1"
+  histories:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          description: "労働保険事業所名"
+          type: string
+          example: "○○労保事業所"
+        activate_date:
+          description: "適用開始日"
+          type: string
+          example: "2020-03-01"
+          format: datetime
+          pattern: "yyyy-MM-dd"
+        active:
+          description: "有効ステータス"
+          type: boolean
+          example: TRUE
+        employment_insurance_office_number:
+          description: "雇用保険事業所番号"
+          type: string
+          example: "1234-567890-1"
+        employment_security_office:
+          type: object
+          properties:
+            id:
+              description: "管轄公共職業安定所ID"
+              type: string
+              example: "173"
+            name:
+              description: "管轄公共職業安定所"
+              type: string
+              example: "新宿公共職業安定所"
+        employment_industry:
+          type: object
+          properties:
+            id:
+              description: "雇保業種ID<br>1:一般事業<br>2:農林水産・清酒製造業<br>3:建設事業"
+              type: string
+              example: "1"
+            name:
+              description: "雇保業種"
+              type: string
+              example: "一般事業"
+        labor_insurance_number:
+          description: "労働保険番号"
+          type: string
+          example: "13-1-01-111111-000"
+        labor_standards_inspection_office:
+          type: object
+          properties:
+            id:
+              description: "管轄労働基準監督署ID"
+              type: string
+              example: 2209
+            name:
+              description: "管轄労働基準監督署"
+              type: string
+              example: "東京労働局,新宿労働基準監督署"
+        labor_accident_industry:
+          type: object
+          properties:
+            id:
+              description: "労災業種ID"
+              type: string
+              example: 17
+            name:
+              description: "労災業種"
+              type: string
+              example: "食料品製造業"
+        information_for_electronic_application:
+          type: object
+          properties:
+            office_name:
+              description: "電子申請用情報 事業所名称"
+              type: string
+              example: "◯◯社会保険事業所"
+            business_owner_name:
+              description: "電子申請用情報 事業主氏名"
+              type: string
+              example: "神社二郎"
+            phone_number:
+              description: "電子申請用情報 電話番号"
+              type: string
+              example: "03-5908-8291"
+            zip_code:
+              description: "電子申請用情報 郵便番号"
+              type: string
+              example: "060-0001"
+            national_local_government_code:
+              description: "電子申請用情報 都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+              type: string
+              example: "011011"
+            prefecture:
+              type: object
+              properties:
+                id:
+                  description: "電子申請用情報 都道府県ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "電子申請用情報 都道府県"
+                  type: string
+                  example: "北海道"
+            municipality:
+              type: object
+              properties:
+                id:
+                  description: "電子申請用情報 市区町村ID"
+                  type: string
+                  example: "101"
+                name:
+                  description: "電子申請用情報 市区町村"
+                  type: string
+                  example: "札幌市中央区"
+            street_and_building:
+              description: "電子申請用情報 丁目・番地・建物名・ 部屋番号"
+              type: string
+              example: "北１条西２丁目"
+        employment_insurance_overall:
+          type: object
+          properties:
+            rate:
+              description: "雇用保険料率 全体"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "雇用保険料率 全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+                  type: string
+                  example: 0
+                name:
+                  description: "雇用保険料率 全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        employment_insurance_individual:
+          type: object
+          properties:
+            rate:
+              description: "雇用保険料率 個人"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "雇用保険料率 個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+                  type: string
+                  example: 1
+                name:
+                  description: "雇用保険料率 個人 端数処理"
+                  type: string
+                  example: "五捨六入"
+        work_accident_insurance_overall:
+          type: object
+          properties:
+            rate:
+              description: "労災保険料率 全体"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "労災保険料率 全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+                  type: string
+                  example: 2
+                name:
+                  description: "労災保険料率 全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        created_at:
+          description: "作成日時"
+          type: string
+          example: "2018–10–26 21:32:52"
+        updated_at:
+          description: "更新日時"
+          type: string
+          example: "2018–10–26 21:32:52"

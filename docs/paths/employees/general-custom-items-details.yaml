@@ -1,0 +1,43 @@
+get:
+  tags:
+    - 従業員 カスタム項目（項目羅列）
+  summary: /v1/employees/general-custom-items/{id}
+  description: "従業員に紐づくカスタム項目（項目羅列）詳細を取得する。"
+  operationId: generalCustomItemsDetailsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: string
+        example: "JIN0001"
+        description: "社員番号を指定します。"
+      required: true
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/customize-menu-id
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/general-custom-items-details/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

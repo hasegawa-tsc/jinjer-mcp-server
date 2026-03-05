@@ -1,0 +1,106 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  experiences:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "職歴ID"
+      joined_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "入社年月"
+      retired_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "退職年月"
+      company_name:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "Jinjer株式会社"
+        description: "会社名"
+      postcode:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "郵便番号"
+      address:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "北海道札幌市中央区北１条西２丁目"
+        description: "住所"
+      retirement_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "退職区分ID<br>人事設定＞基本情報＞退職区分にて登録されているマスタのIDが設定可能です。"
+      retirement_reason_details:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という理由です。"
+        description: "退職理由詳細"
+      industry:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "業種ID<br>人事設定＞職歴＞業種にて登録されているマスタのIDが設定可能です。"
+      domestic:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "国内外区分ID<br>1:国内<br>2:国外"
+      dept_name:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "第一営業部"
+        description: "所属部門"
+      job_category:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "企画職"
+        description: "職種"
+      position:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "部長"
+        description: "役職"

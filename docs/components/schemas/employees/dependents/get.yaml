@@ -1,0 +1,304 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  dependents:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+          description: "扶養家族ID"
+        last_name:
+          type: string
+          example: "神社"
+          description: "氏"
+        first_name:
+          type: string
+          example: "一郎"
+          description: "名"
+        last_name_phonetic:
+          type: string
+          example: "ジンジャ"
+          description: "氏（フリガナ）"
+        first_name_phonetic:
+          type: string
+          example: "イチロウ"
+          description: "名（フリガナ）"
+        relationship:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "続柄ID<br>人事設定＞家族＞続柄にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "本人"
+              description: "続柄"
+        gender:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "性別ID<br>0:未選択<br>1:男<br>2:女"
+            name:
+              type: string
+              example: "男"
+              description: "性別"
+        date_of_birth:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "生年月日"
+        occupation:
+          type: string
+          example: "会社員"
+          description: "職業"
+        zip_code:
+          type: string
+          example: "060-0001"
+          description: "郵便番号"
+        address_phonetic:
+          type: string
+          example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+          description: "住所（フリガナ）"
+        national_local_government_code:
+          type: string
+          example: "011011"
+          description: "全国地方公共団体コード"
+        prefecture:
+          type: string
+          example: "北海道"
+          description: "都道府県名"
+        municipality:
+          type: string
+          example: "札幌市中央区"
+          description: "市区町村名"
+        street:
+          type: string
+          example: "北１条西２丁目"
+          description: "丁目・番地"
+        building:
+          type: string
+          example: "札幌ビル"
+          description: "建物名・部屋番号"
+        phone_number_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "電話番号区分ID<br>1:自宅<br>2:携帯<br>3:勤務先<br>4:その他"
+            name:
+              type: string
+              example: "自宅"
+              description: "電話番号区分"
+        tel:
+          type: string
+          example: "03-5908-8291"
+          description: "電話番号"
+        company_dependent_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "社保扶養区分ID<br>0:未選択<br>1:扶養対象<br>2:扶養対象外"
+            name:
+              type: string
+              example: "扶養対象"
+              description: "社保扶養区分"
+        health_insurance_dependent_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "健保扶養区分ID<br>0:未選択<br>1:加入<br>2:未加入"
+            name:
+              type: string
+              example: "加入"
+              description: "健保扶養区分"
+        health_insurance_dependent:
+          type: object
+          properties:
+            acquired_on:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "健保扶養加入日"
+            disacquired_on:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "健保扶養資格喪失日"
+        cohabitation_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "同居区分ID<br>1:同居<br>2:別居"
+            name:
+              type: string
+              example: "同居"
+              description: "同居区分"
+        resident_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "居住者区分ID<br>1:居住者<br>2:非居住者"
+            name:
+              type: string
+              example: "居住者"
+              description: "居住者区分"
+        overseas_student_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "留学生区分ID<br>0:対象外<br>1:対象"
+            name:
+              type: string
+              example: "対象"
+              description: "留学生区分"
+        remittance_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "38万円以上の送金対象区分ID<br>0:対象外<br>1:対象"
+            name:
+              type: string
+              example: "対象"
+              description: "38万円以上の送金対象区分"
+        disability_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "障害者区分ID<br>1:対象外<br>2:一般障害者<br>3:特別障害者"
+            name:
+              type: string
+              example: "対象外"
+              description: "障害者区分"
+        disability_identification:
+          type: object
+          properties:
+            classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "障害者手帳区分ID<br>0:未選択<br>1:身体障害者手帳<br>2:療育手帳<br>3:精神障害者保健福祉手帳<br>4:戦傷病者手帳"
+                name:
+                  type: string
+                  example: "身体障害者手帳"
+                  description: "障害者手帳区分"
+            date_of_disability_certification:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "障害者手帳交付年月日"
+        dependent_start:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "税扶養開始日"
+        dependent_end:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "税扶養終了日"
+        date_of_decease:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "死亡年月日"
+        source_deduction_object:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "源泉控除対象配偶者ID<br>0:対象外<br>1:対象"
+            name:
+              type: string
+              example: "対象"
+              description: "源泉控除対象配偶者かどうか"
+        spousal_pension_number_first:
+          type: string
+          example: "1234"
+          description: "配偶者基礎年金番号（前4桁）"
+        spousal_pension_number_last:
+          type: string
+          example: "567890"
+          description: "配偶者基礎年金番号（後6桁）"
+        income:
+          type: number
+          example: 1234567
+          description: "収入(年収)"
+        expected_income:
+          type: string
+          example: "1234567"
+          description: "所得見込額"
+        remarks:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考"
+  employees:
+    type: object
+    properties:
+      head_household:
+        type: object
+        properties:
+          last_name:
+            type: string
+            example: "神社"
+            description: "世帯主氏名(氏)"
+          first_name:
+            type: string
+            example: "一郎"
+            description: "世帯主氏名(名)"
+      relationship:
+        type: object
+        properties:
+          id:
+            type: number
+            example: 1
+            description: "続柄ID<br>人事設定＞家族＞続柄にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "本人"
+            description: "続柄"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,60 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "36協定設定ID"
+  name:
+    type: string
+    example: "正社員用"
+    description: "36協定設定名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  maximum_time_of_extension_by_article_36_per_month:
+    type: string
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "36協定による延長可能時間数 単月"
+  maximum_time_of_extension_by_article_36_per_year:
+    type: string
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "36協定による延長可能時間数 1年間"
+  maximum_time_of_extension_by_special_provision_per_month:
+    type: string
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "特別条項による延長可能時間数 単月"
+  maximum_time_of_extension_by_special_provision_per_year:
+    type: string
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "特別条項による延長可能時間数 1年間"
+  maximum_average_time_of_extension_during_2_6_month_period:
+    type: string
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "2~6か月の平均残業可能時間数"
+  number_of_overtime_excess:
+    type: string
+    example: "2"
+    description: "残業超過回数"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

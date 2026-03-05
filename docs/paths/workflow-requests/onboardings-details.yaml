@@ -1,0 +1,29 @@
+get:
+  tags:
+    - ワークフロー 申請書 入社申請
+  summary: /v1/workflow-requests/onboardings/{id}
+  description: "申請書 入社申請を取得する。"
+  operationId: get_id-onboardings
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/path/workflow-request-id
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/workflow-requests/onboardings-details/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

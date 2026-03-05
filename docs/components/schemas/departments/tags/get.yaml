@@ -1,0 +1,81 @@
+type: object
+properties:
+  department_id:
+    description: "所属グループID"
+    type: string
+    example: "JIN0001"
+  jinji_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "人事タグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが出力されます。"
+          type: string
+          example: "2"
+        name:
+          description: "人事タグに貼付けされた組織タグの名称"
+          type: string
+          example: "リーダー候補"
+        created_at:
+          description: "人事タグに貼付けされた組織タグの作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 0:00:00"
+        updated_at:
+          description: "人事タグに貼付けされた組織タグの更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 0:00:00"
+  manager_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "マネージャータグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが出力されます。"
+          type: string
+          example: "2"
+        name:
+          description: "マネージャータグに貼付けされた組織タグの名称"
+          type: string
+          example: "リーダー候補"
+        created_at:
+          description: "マネージャータグに貼付けされた組織タグの作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 0:00:00"
+        updated_at:
+          description: "マネージャータグに貼付けされた組織タグの更新日時"
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          type: string
+          example: "2021-10-01 0:00:00"
+  business_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "経営タグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが出力されます。"
+          type: string
+          example: "2"
+        name:
+          description: "経営タグに貼付けされた組織タグの名称"
+          type: string
+          example: "リーダー候補"
+        created_at:
+          description: "経営タグに貼付けされた組織タグの作成日時"
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          type: string
+          example: "2021-10-01 0:00:00"
+        updated_at:
+          description: "経営タグに貼付けされた組織タグの更新日時"
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          type: string
+          example: "2021-10-01 0:00:00"

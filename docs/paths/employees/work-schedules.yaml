@@ -1,0 +1,50 @@
+get:
+  tags:
+    - 従業員 シフトデータ
+  summary: /v1/employees/work-schedules
+  description: "従業員に紐づくシフトデータを取得する。"
+  operationId: get-employees-work-schedules-v2
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: employee-id
+      in: query
+      schema:
+        type: string
+        example: JIN0001
+        description: "指定された社員番号の社員のシフトデータを返却します。<br>社員番号が指定されていない場合、エラーを返却します。"
+      required: true
+    - name: month
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        example: 2023-04
+        description: "取得するシフトデータの年月を指定します。<br>年月は月度（締めの単位）ではなく暦月で指定します。<br>年月が指定されていない場合、エラーを返却します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/work-schedules/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

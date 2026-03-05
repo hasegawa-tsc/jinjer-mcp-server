@@ -1,0 +1,98 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  salaries:
+    type: object
+    required:
+      - revised_on
+    properties:
+      revised_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "改定年月日"
+      payroll:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 10
+            example: 1
+            description: "グレードID<br>グレードのマスタは人事設定＞給与計算＞グレードで設定することができます。<br>グレードは `GET /v1/master/employee-grades` で得られる `id` の値（グレードID）で指定します。<br>※給与計算に利用するグレードについてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/900000852706 "
+      salary_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "給与区分ID<br>0:未選択<br>1:完全月給<br>2:日給月給<br>3:日給<br>4:時給"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"
+      salary_units:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              minLength: 0
+              maxLength: 10
+              example: 1
+              description: "給与支給単価ID<br>人事設定＞給与計算＞給与支給単価にて登録されているマスタのIDで指定します。"
+            value:
+              type: number
+              minLength: 0
+              maxLength: 8
+              example: 123456
+              description: "給与支給単価<br>従業員管理＞給与単価＞給与支給単価に登録される値です。"
+      deduction_units:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              minLength: 0
+              maxLength: 10
+              example: 1
+              description: "給与控除単価ID<br>人事設定＞給与計算＞給与控除単価にて登録されているマスタのIDで指定します。"
+            value:
+              type: number
+              minLength: 0
+              maxLength: 8
+              example: 123456
+              description: "給与控除単価<br>従業員管理＞給与単価＞給与控除単価に登録される値です。"
+      time_units:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              minLength: 0
+              maxLength: 10
+              example: 1
+              description: "給与勤怠単価ID<br>人事設定＞給与計算＞給与勤怠単価にて登録されているマスタのIDで指定します。<br><br>給与勤怠単価ID:1-7 は自動計算項目のため登録/更新できません。"
+            value:
+              type: number
+              minLength: 0
+              maxLength: 8
+              example: 123456
+              description: "給与勤怠単価<br>従業員管理＞給与単価＞給与勤怠単価に登録される値です。"

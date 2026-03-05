@@ -1,0 +1,1236 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  monthly_work_data:
+    type: array
+    items:
+      type: object
+      properties:
+        month:
+          description: "締め日の年月"
+          type: string
+          format: date
+          pattern: "yyyy-MM"
+          example: "2024-04"
+        group:
+          type: object
+          properties:
+            id:
+              description: "所属グループID"
+              type: string
+              example: "1"
+            name:
+              description: "所属グループ名"
+              type: string
+              example: "第一営業部"
+        store:
+          type: object
+          properties:
+            id:
+              description: "打刻グループID"
+              type: string
+              example: "1"
+            name:
+              description: "打刻グループ名"
+              type: string
+              example: "第一営業部グループ"
+        month_output:
+          description: "出力月度"
+          type: string
+          example: "4月"
+        payroll_form:
+          description: "給与形態"
+          type: string
+          example: "完全月給"
+        number_of_attendances:
+          description: "出勤回数"
+          type: string
+          example: "20"
+        days_of_compensatory_leave_remaining:
+          description: "代休残日数"
+          type: string
+          example: "20"
+        days_of_compensatory_leave_taken:
+          description: "代休消化日数"
+          type: string
+          example: "20"
+        days_of_compensatory_leave_expired:
+          description: "代休消滅日数"
+          type: string
+          example: "20"
+        days_of_compensatory_leave_remaining_at_month_end:
+          description: "月末代休残日数"
+          type: string
+          example: "20"
+        days_of_holidays:
+          description: "休日日数"
+          type: string
+          example: "20"
+        days_of_leave_of_absence:
+          description: "休職日数"
+          type: string
+          example: "20"
+        days_of_absence:
+          description: "欠勤回数"
+          type: string
+          example: "20"
+        hours_of_paid_leave_taken_in_total:
+          description: "有休消化時間数（合計）"
+          type: string
+          example: "160"
+        days_of_paid_leave_expired:
+          description: "有休消滅日数"
+          type: string
+          example: "20"
+        hours_of_paid_leave_taken_by_hours:
+          description: "有休消化時間数（時間休）"
+          type: string
+          example: "160"
+        days_of_substitute_leave_remaining:
+          description: "振休残日数"
+          type: string
+          example: "20"
+        days_of_substitute_leave_taken:
+          description: "振休消化日数"
+          type: string
+          example: "20"
+        days_of_substitute_leave_expired:
+          description: "振休消滅日数"
+          type: string
+          example: "20"
+        days_of_substitute_leave_remaining_at_month_end:
+          description: "月末振休残日数"
+          type: string
+          example: "20"
+        tags:
+          type: object
+          properties:
+            1:
+              description: "管理タグ"
+              type: string
+              example: "日勤"
+            2:
+              description: "管理タグ"
+              type: string
+              example: "通常"
+        transport_fee:
+          description: "交通費"
+          type: string
+          example: "1234"
+        day_off:
+          type: object
+          properties:
+            remain:
+              description: "有休残日数"
+              type: string
+              example: "20"
+            remain_in_month:
+              description: "月末有休残日数"
+              type: string
+              example: "20"
+            used:
+              description: "有休消化日数"
+              type: string
+              example: "20"
+        flex:
+          type: object
+          properties:
+            with_carry_over:
+              description: "フレックスもちこし"
+              type: string
+              example: "20"
+            without_carry_over:
+              description: "フレックス控除"
+              type: string
+              example: "20"
+        meal_1:
+          type: object
+          properties:
+            break:
+              description: "食事1（回数）"
+              type: string
+              example: "20"
+            price:
+              description: "食事1（金額）"
+              type: string
+              example: "1234"
+        meal_2:
+          type: object
+          properties:
+            break:
+              description: "食事2（回数）"
+              type: string
+              example: "20"
+            price:
+              description: "食事2（金額）"
+              type: string
+              example: "1234"
+        night_hour:
+          type: object
+          properties:
+            holiday:
+              description: "休日深夜労働時間"
+              type: string
+              example: "160"
+            minus_minute:
+              description: "深夜労働時間（みなし適用後）"
+              type: string
+              example: "160"
+            normal:
+              description: "平日深夜労働時間"
+              type: string
+              example: "160"
+        number_expired:
+          type: object
+          properties:
+            company_compensation_dayoff:
+              description: "代休消滅日数（所休）"
+              type: string
+              example: "20"
+            company_conversion_dayoff:
+              description: "振休消滅日数（所休）"
+              type: string
+              example: "20"
+            law_compensation_dayoff:
+              description: "代休消滅日数（法休）"
+              type: string
+              example: "20"
+            law_conversion_dayoff:
+              description: "振休消滅日数（法休）"
+              type: string
+              example: "20"
+        number_hour:
+          type: object
+          properties:
+            early:
+              description: "早退時間"
+              type: string
+              example: "160"
+            late_early:
+              description: "遅早時間"
+              type: string
+              example: "160"
+            later:
+              description: "遅刻時間"
+              type: string
+              example: "160"
+            outgoing:
+              description: "外出時間"
+              type: string
+              example: "160"
+            relax:
+              description: "休憩時間"
+              type: string
+              example: "160"
+            training:
+              description: "研修時間"
+              type: string
+              example: "160"
+        out_rule_special_work:
+          type: object
+          properties:
+            1:
+              description: "特定法定外残業時間（その1）"
+              type: string
+              example: "160"
+            2:
+              description: "特定法定外残業時間（その2）"
+              type: string
+              example: "160"
+            3:
+              description: "特定法定外残業時間（その3）"
+              type: string
+              example: "160"
+            4:
+              description: "特定法定外残業時間（その4）"
+              type: string
+              example: "160"
+            5:
+              description: "特定法定外残業時間（その5）"
+              type: string
+              example: "160"
+            6:
+              description: "特定法定外残業時間（その6）"
+              type: string
+              example: "160"
+            7:
+              description: "特定法定外残業時間（その7）"
+              type: string
+              example: "160"
+            8:
+              description: "特定法定外残業時間（その8）"
+              type: string
+              example: "160"
+            9:
+              description: "特定法定外残業時間（その9）"
+              type: string
+              example: "160"
+            10:
+              description: "特定法定外残業時間（その10）"
+              type: string
+              example: "160"
+            11:
+              description: "特定法定外残業時間（その11）"
+              type: string
+              example: "160"
+            12:
+              description: "特定法定外残業時間（その12）"
+              type: string
+              example: "160"
+            13:
+              description: "特定法定外残業時間（その13）"
+              type: string
+              example: "160"
+            14:
+              description: "特定法定外残業時間（その14）"
+              type: string
+              example: "160"
+            15:
+              description: "特定法定外残業時間（その15）"
+              type: string
+              example: "160"
+            16:
+              description: "特定法定外残業時間（その16）"
+              type: string
+              example: "160"
+            17:
+              description: "特定法定外残業時間（その17）"
+              type: string
+              example: "160"
+            18:
+              description: "特定法定外残業時間（その18）"
+              type: string
+              example: "160"
+            19:
+              description: "特定法定外残業時間（その19）"
+              type: string
+              example: "160"
+            20:
+              description: "特定法定外残業時間（その20）"
+              type: string
+              example: "160"
+            21:
+              description: "特定法定外残業時間（その21）"
+              type: string
+              example: "160"
+            22:
+              description: "特定法定外残業時間（その22）"
+              type: string
+              example: "160"
+            23:
+              description: "特定法定外残業時間（その23）"
+              type: string
+              example: "160"
+            24:
+              description: "特定法定外残業時間（その24）"
+              type: string
+              example: "160"
+            25:
+              description: "特定法定外残業時間（その25）"
+              type: string
+              example: "160"
+            26:
+              description: "特定法定外残業時間（その26）"
+              type: string
+              example: "160"
+            27:
+              description: "特定法定外残業時間（その27）"
+              type: string
+              example: "160"
+            28:
+              description: "特定法定外残業時間（その28）"
+              type: string
+              example: "160"
+            29:
+              description: "特定法定外残業時間（その29）"
+              type: string
+              example: "160"
+            30:
+              description: "特定法定外残業時間（その30）"
+              type: string
+              example: "160"
+        over_time:
+          type: object
+          properties:
+            approved_night:
+              description: "申請承認済深夜労働時間"
+              type: string
+              example: "160"
+            approved_ot_in_rule:
+              description: "申請承認済法定内残業時間"
+              type: string
+              example: "160"
+            approved_ot_out_rule:
+              description: "申請承認済法定外残業時間"
+              type: string
+              example: "160"
+            approved_ot_total:
+              description: "申請承認済総残業時間"
+              type: string
+              example: "160"
+            constant_over_time:
+              description: "総残業時間（みなし適用後）"
+              type: string
+              example: "160"
+            number_hours_ot_out_rule_normal:
+              description: "普通法定外残業時間"
+              type: string
+              example: "160"
+            number_hours_pre_ot_approved_after_default:
+              description: "申請承認済残業時間（みなし適用後）"
+              type: string
+              example: "160"
+            number_hours_pre_ot_pending:
+              description: "残業乖離時間（申請済残業時間-申請承認済残業時間）"
+              type: string
+              example: "160"
+            number_hours_pre_ot_request_approved:
+              description: "申請承認済残業時間"
+              type: string
+              example: "160"
+            number_hours_pre_ot_requested:
+              description: "申請済残業時間"
+              type: string
+              example: "160"
+            number_hours_pre_ot_requested_after_default:
+              description: "申請済残業時間（みなし適用後）"
+              type: string
+              example: "160"
+            ot_hour_out_rule_minus_pre_ot_appoved:
+              description: "残業乖離時間（総法定外残業時間-申請承認済残業時間）"
+              type: string
+              example: "160"
+            ot_in_rule:
+              description: "法定内残業時間（スケジュール軸）"
+              type: string
+              example: "160"
+            ot_in_rule_based_on_tc_daycol:
+              description: "法定内残業時間（労働時間軸）"
+              type: string
+              example: "160"
+            ot_in_rule_hour_minute_value:
+              description: "法定内残業時間（みなし適用後）"
+              type: string
+              example: "160"
+            ot_out_rule_hour_minute_value_over_60h:
+              description: "法定外残業時間（60時間超）（みなし適用後）"
+              type: string
+              example: "160"
+            ot_out_rule_hour_minute_value_under_45h:
+              description: "法定外残業時間（45時間以内）（みなし適用後）"
+              type: string
+              example: "160"
+            ot_out_rule_hour_minute_value_under_60h:
+              description: "法定外残業時間（45-60時間以内）（みなし適用後）"
+              type: string
+              example: "160"
+            out_rule_by_day:
+              description: "日超法定外残業時間"
+              type: string
+              example: "160"
+            out_rule_by_week:
+              description: "週超法定外残業時間"
+              type: string
+              example: "160"
+            out_rule_over_60h:
+              description: "法定外残業時間（60時間超）"
+              type: string
+              example: "160"
+            out_rule_under_45h:
+              description: "法定外残業時間（45時間以内）"
+              type: string
+              example: "160"
+            out_rule_under_60h:
+              description: "法定外残業時間（45-60時間以内）"
+              type: string
+              example: "160"
+            total_hour_ot_minus_pre_ot_approved:
+              description: "残業乖離時間（総残業時間-申請承認済残業時間）"
+              type: string
+              example: "160"
+            total_hours_ot_out_rule:
+              description: "総法定外残業時間"
+              type: string
+              example: "160"
+            total_hours_ot_out_rule_after_default:
+              description: "総法定外残業時間（みなし適用後）"
+              type: string
+              example: "160"
+            total_hours_ot_out_rule_night:
+              description: "深夜法定外残業時間"
+              type: string
+              example: "160"
+            total_ot:
+              description: "総残業時間"
+              type: string
+              example: "160"
+        special_off:
+          type: object
+          properties:
+            remain_special_holiday_in_month:
+              description: "月末特別休残日数"
+              type: string
+              example: "20"
+            hour_by_time:
+              description: "特別休暇消化時間数（時間休）"
+              type: string
+              example: "160"
+            hour_total:
+              description: "特別休暇消化時間数（合計）"
+              type: string
+              example: "160"
+            remain_master_special:
+              type: array
+              items:
+                type: object
+                properties:
+                  number_of_days:
+                    description: "特別休暇残日数"
+                    type: string
+                    example: "20"
+                  name:
+                    description: "特別休暇名"
+                    type: string
+                    example: "特別休暇1"
+            used_master_special:
+              type: array
+              items:
+                type: object
+                properties:
+                  number_of_days:
+                    description: "特別休暇消化日数"
+                    type: string
+                    example: "20"
+                  name:
+                    description: "特別休暇名"
+                    type: string
+                    example: "特別休暇2"
+            used_special_holiday:
+              description: "特別休暇消化日数（合計値）"
+              type: string
+              example: "20"
+        special_work_hour:
+          type: object
+          properties:
+            1:
+              description: "特定労働時間（その1）"
+              type: string
+              example: "160"
+            2:
+              description: "特定労働時間（その2）"
+              type: string
+              example: "160"
+            3:
+              description: "特定労働時間（その3）"
+              type: string
+              example: "160"
+            4:
+              description: "特定労働時間（その4）"
+              type: string
+              example: "160"
+            5:
+              description: "特定労働時間（その5）"
+              type: string
+              example: "160"
+            6:
+              description: "特定労働時間（その6）"
+              type: string
+              example: "160"
+            7:
+              description: "特定労働時間（その7）"
+              type: string
+              example: "160"
+            8:
+              description: "特定労働時間（その8）"
+              type: string
+              example: "160"
+            9:
+              description: "特定労働時間（その9）"
+              type: string
+              example: "160"
+            10:
+              description: "特定労働時間（その10）"
+              type: string
+              example: "160"
+            11:
+              description: "特定労働時間（その11）"
+              type: string
+              example: "160"
+            12:
+              description: "特定労働時間（その12）"
+              type: string
+              example: "160"
+            13:
+              description: "特定労働時間（その13）"
+              type: string
+              example: "160"
+            14:
+              description: "特定労働時間（その14）"
+              type: string
+              example: "160"
+            15:
+              description: "特定労働時間（その15）"
+              type: string
+              example: "160"
+            16:
+              description: "特定労働時間（その16）"
+              type: string
+              example: "160"
+            17:
+              description: "特定労働時間（その17）"
+              type: string
+              example: "160"
+            18:
+              description: "特定労働時間（その18）"
+              type: string
+              example: "160"
+            19:
+              description: "特定労働時間（その19）"
+              type: string
+              example: "160"
+            20:
+              description: "特定労働時間（その20）"
+              type: string
+              example: "160"
+            21:
+              description: "特定労働時間（その21）"
+              type: string
+              example: "160"
+            22:
+              description: "特定労働時間（その22）"
+              type: string
+              example: "160"
+            23:
+              description: "特定労働時間（その23）"
+              type: string
+              example: "160"
+            24:
+              description: "特定労働時間（その24）"
+              type: string
+              example: "160"
+            25:
+              description: "特定労働時間（その25）"
+              type: string
+              example: "160"
+            26:
+              description: "特定労働時間（その26）"
+              type: string
+              example: "160"
+            27:
+              description: "特定労働時間（その27）"
+              type: string
+              example: "160"
+            28:
+              description: "特定労働時間（その28）"
+              type: string
+              example: "160"
+            29:
+              description: "特定労働時間（その29）"
+              type: string
+              example: "160"
+            30:
+              description: "特定労働時間（その30）"
+              type: string
+              example: "160"
+        stamp_classification_day:
+          type: object
+          properties:
+            1:
+              description: "{打刻区分}1回数"
+              type: string
+              example: "2"
+            2:
+              description: "{打刻区分}2回数"
+              type: string
+              example: "2"
+            3:
+              description: "{打刻区分}3回数"
+              type: string
+              example: "2"
+            4:
+              description: "{打刻区分}4回数"
+              type: string
+              example: "2"
+            5:
+              description: "{打刻区分}5回数"
+              type: string
+              example: "2"
+            6:
+              description: "{打刻区分}6回数"
+              type: string
+              example: "2"
+            7:
+              description: "{打刻区分}7回数"
+              type: string
+              example: "2"
+            8:
+              description: "{打刻区分}8回数"
+              type: string
+              example: "2"
+            9:
+              description: "{打刻区分}9回数"
+              type: string
+              example: "2"
+            10:
+              description: "{打刻区分}10回数"
+              type: string
+              example: "2"
+            11:
+              description: "{打刻区分}11回数"
+              type: string
+              example: "2"
+            12:
+              description: "{打刻区分}12回数"
+              type: string
+              example: "2"
+            13:
+              description: "{打刻区分}13回数"
+              type: string
+              example: "2"
+            14:
+              description: "{打刻区分}14回数"
+              type: string
+              example: "2"
+            15:
+              description: "{打刻区分}15回数"
+              type: string
+              example: "2"
+            16:
+              description: "{打刻区分}16回数"
+              type: string
+              example: "2"
+            17:
+              description: "{打刻区分}17回数"
+              type: string
+              example: "2"
+            18:
+              description: "{打刻区分}18回数"
+              type: string
+              example: "2"
+            19:
+              description: "{打刻区分}19回数"
+              type: string
+              example: "2"
+            20:
+              description: "{打刻区分}20回数"
+              type: string
+              example: "2"
+            21:
+              description: "{打刻区分}21回数"
+              type: string
+              example: "2"
+            22:
+              description: "{打刻区分}22回数"
+              type: string
+              example: "2"
+            23:
+              description: "{打刻区分}23回数"
+              type: string
+              example: "2"
+            24:
+              description: "{打刻区分}24回数"
+              type: string
+              example: "2"
+            25:
+              description: "{打刻区分}25回数"
+              type: string
+              example: "2"
+            26:
+              description: "{打刻区分}26回数"
+              type: string
+              example: "2"
+            27:
+              description: "{打刻区分}27回数"
+              type: string
+              example: "2"
+            28:
+              description: "{打刻区分}28回数"
+              type: string
+              example: "2"
+            29:
+              description: "{打刻区分}29回数"
+              type: string
+              example: "2"
+            30:
+              description: "{打刻区分}30回数"
+              type: string
+              example: "2"
+            31:
+              description: "{打刻区分}31回数"
+              type: string
+              example: "2"
+            32:
+              description: "{打刻区分}32回数"
+              type: string
+              example: "2"
+            33:
+              description: "{打刻区分}33回数"
+              type: string
+              example: "2"
+            34:
+              description: "{打刻区分}34回数"
+              type: string
+              example: "2"
+            35:
+              description: "{打刻区分}35回数"
+              type: string
+              example: "2"
+            36:
+              description: "{打刻区分}36回数"
+              type: string
+              example: "2"
+            37:
+              description: "{打刻区分}37回数"
+              type: string
+              example: "2"
+            38:
+              description: "{打刻区分}38回数"
+              type: string
+              example: "2"
+            39:
+              description: "{打刻区分}39回数"
+              type: string
+              example: "2"
+            40:
+              description: "{打刻区分}40回数"
+              type: string
+              example: "2"
+            41:
+              description: "{打刻区分}41回数"
+              type: string
+              example: "2"
+            42:
+              description: "{打刻区分}42回数"
+              type: string
+              example: "2"
+            43:
+              description: "{打刻区分}43回数"
+              type: string
+              example: "2"
+            44:
+              description: "{打刻区分}44回数"
+              type: string
+              example: "2"
+            45:
+              description: "{打刻区分}45回数"
+              type: string
+              example: "2"
+            46:
+              description: "{打刻区分}46回数"
+              type: string
+              example: "2"
+            47:
+              description: "{打刻区分}47回数"
+              type: string
+              example: "2"
+            48:
+              description: "{打刻区分}48回数"
+              type: string
+              example: "2"
+            49:
+              description: "{打刻区分}49回数"
+              type: string
+              example: "2"
+            50:
+              description: "{打刻区分}50回数"
+              type: string
+              example: "2"
+        stamp_classification_hour:
+          type: object
+          properties:
+            1:
+              description: "{打刻区分}1時間"
+              type: string
+              example: "160"
+            2:
+              description: "{打刻区分}2時間"
+              type: string
+              example: "160"
+            3:
+              description: "{打刻区分}3時間"
+              type: string
+              example: "160"
+            4:
+              description: "{打刻区分}4時間"
+              type: string
+              example: "160"
+            5:
+              description: "{打刻区分}5時間"
+              type: string
+              example: "160"
+            6:
+              description: "{打刻区分}6時間"
+              type: string
+              example: "160"
+            7:
+              description: "{打刻区分}7時間"
+              type: string
+              example: "160"
+            8:
+              description: "{打刻区分}8時間"
+              type: string
+              example: "160"
+            9:
+              description: "{打刻区分}9時間"
+              type: string
+              example: "160"
+            10:
+              description: "{打刻区分}10時間"
+              type: string
+              example: "160"
+            11:
+              description: "{打刻区分}11時間"
+              type: string
+              example: "160"
+            12:
+              description: "{打刻区分}12時間"
+              type: string
+              example: "160"
+            13:
+              description: "{打刻区分}13時間"
+              type: string
+              example: "160"
+            14:
+              description: "{打刻区分}14時間"
+              type: string
+              example: "160"
+            15:
+              description: "{打刻区分}15時間"
+              type: string
+              example: "160"
+            16:
+              description: "{打刻区分}16時間"
+              type: string
+              example: "160"
+            17:
+              description: "{打刻区分}17時間"
+              type: string
+              example: "160"
+            18:
+              description: "{打刻区分}18時間"
+              type: string
+              example: "160"
+            19:
+              description: "{打刻区分}19時間"
+              type: string
+              example: "160"
+            20:
+              description: "{打刻区分}20時間"
+              type: string
+              example: "160"
+            21:
+              description: "{打刻区分}21時間"
+              type: string
+              example: "160"
+            22:
+              description: "{打刻区分}22時間"
+              type: string
+              example: "160"
+            23:
+              description: "{打刻区分}23時間"
+              type: string
+              example: "160"
+            24:
+              description: "{打刻区分}24時間"
+              type: string
+              example: "160"
+            25:
+              description: "{打刻区分}25時間"
+              type: string
+              example: "160"
+            26:
+              description: "{打刻区分}26時間"
+              type: string
+              example: "160"
+            27:
+              description: "{打刻区分}27時間"
+              type: string
+              example: "160"
+            28:
+              description: "{打刻区分}28時間"
+              type: string
+              example: "160"
+            29:
+              description: "{打刻区分}29時間"
+              type: string
+              example: "160"
+            30:
+              description: "{打刻区分}30時間"
+              type: string
+              example: "160"
+            31:
+              description: "{打刻区分}31時間"
+              type: string
+              example: "160"
+            32:
+              description: "{打刻区分}32時間"
+              type: string
+              example: "160"
+            33:
+              description: "{打刻区分}33時間"
+              type: string
+              example: "160"
+            34:
+              description: "{打刻区分}34時間"
+              type: string
+              example: "160"
+            35:
+              description: "{打刻区分}35時間"
+              type: string
+              example: "160"
+            36:
+              description: "{打刻区分}36時間"
+              type: string
+              example: "160"
+            37:
+              description: "{打刻区分}37時間"
+              type: string
+              example: "160"
+            38:
+              description: "{打刻区分}38時間"
+              type: string
+              example: "160"
+            39:
+              description: "{打刻区分}39時間"
+              type: string
+              example: "160"
+            40:
+              description: "{打刻区分}40時間"
+              type: string
+              example: "160"
+            41:
+              description: "{打刻区分}41時間"
+              type: string
+              example: "160"
+            42:
+              description: "{打刻区分}42時間"
+              type: string
+              example: "160"
+            43:
+              description: "{打刻区分}43時間"
+              type: string
+              example: "160"
+            44:
+              description: "{打刻区分}44時間"
+              type: string
+              example: "160"
+            45:
+              description: "{打刻区分}45時間"
+              type: string
+              example: "160"
+            46:
+              description: "{打刻区分}46時間"
+              type: string
+              example: "160"
+            47:
+              description: "{打刻区分}47時間"
+              type: string
+              example: "160"
+            48:
+              description: "{打刻区分}48時間"
+              type: string
+              example: "160"
+            49:
+              description: "{打刻区分}49時間"
+              type: string
+              example: "160"
+            50:
+              description: "{打刻区分}50時間"
+              type: string
+              example: "160"
+        working_day:
+          type: object
+          properties:
+            work_holiday_in_law_hour_minute_value:
+              description: "法定休日労働時間（みなし適用後）"
+              type: string
+              example: "160"
+            work_holiday_in_rule_hour_minute_value:
+              description: "所定休日労働時間（みなし適用後）"
+              type: string
+              example: "160"
+            day_work_on_holiday:
+              description: "所定休日労働日数"
+              type: string
+              example: "20"
+            day_work_on_law:
+              description: "法定休日労働日数"
+              type: string
+              example: "20"
+            number_day_working:
+              description: "出勤日数"
+              type: string
+              example: "20"
+            number_day_working_holiday:
+              description: "休日出勤日数"
+              type: string
+              example: "20"
+            number_day_working_night:
+              description: "深夜労働回数"
+              type: string
+              example: "20"
+            number_day_working_normal:
+              description: "平日出勤日数"
+              type: string
+              example: "20"
+            number_day_working_plan_in_rule:
+              description: "所定労働日数"
+              type: string
+              example: "20"
+            number_early_time:
+              description: "早退回数"
+              type: string
+              example: "20"
+            number_later_time:
+              description: "遅刻回数"
+              type: string
+              example: "20"
+            violated_interval_times:
+              description: "勤務間インターバル不足回数"
+              type: string
+              example: "20"
+        working_hours:
+          type: object
+          properties:
+            actual:
+              description: "総労働時間"
+              type: string
+              example: "160"
+            approved_special_1:
+              description: "申請承認済特定労働時間（その1）"
+              type: string
+              example: "160"
+            approved_special_2:
+              description: "申請承認済特定労働時間（その2）"
+              type: string
+              example: "160"
+            lack:
+              description: "不足労働時間数（労働時間軸）"
+              type: string
+              example: "160"
+            lack_plan:
+              description: "不足労働時間数（スケジュール軸）"
+              type: string
+              example: "160"
+            legal:
+              description: "法定内労働時間"
+              type: string
+              example: "160"
+            normal:
+              description: "平日労働時間"
+              type: string
+              example: "160"
+            on_holiday:
+              description: "所定休日労働時間"
+              type: string
+              example: "160"
+            on_law:
+              description: "法定休日労働時間"
+              type: string
+              example: "160"
+            original:
+              description: "実労働時間"
+              type: string
+              example: "160"
+            plan_in_rule:
+              description: "所定労働時間"
+              type: string
+              example: "160"
+            total_night:
+              description: "深夜労働時間"
+              type: string
+              example: "160"
+            working_holiday:
+              description: "休日労働時間"
+              type: string
+              example: "160"
+            sunday:
+              description: "曜日毎労働時間（日）"
+              type: string
+              example: "2"
+            monday:
+              description: "曜日毎労働時間（月）"
+              type: string
+              example: "2"
+            tuesday:
+              description: "曜日毎労働時間（火）"
+              type: string
+              example: "2"
+            wednesday:
+              description: "曜日毎労働時間（水）"
+              type: string
+              example: "2"
+            thursday:
+              description: "曜日毎労働時間（木）"
+              type: string
+              example: "2"
+            friday:
+              description: "曜日毎労働時間（金）"
+              type: string
+              example: "2"
+            saturday:
+              description: "曜日毎労働時間（土）"
+              type: string
+              example: "2"
+            national_holiday:
+              description: "曜日毎労働時間（祝日）"
+              type: string
+              example: "2"
+        custom:
+          type: object
+          properties:
+            1:
+              description: "カスタム項目1<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            2:
+              description: "カスタム項目2<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            3:
+              description: "カスタム項目3<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            4:
+              description: "カスタム項目4<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            5:
+              description: "カスタム項目5<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            6:
+              description: "カスタム項目6<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            7:
+              description: "カスタム項目7<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            8:
+              description: "カスタム項目8<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            9:
+              description: "カスタム項目9<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            10:
+              description: "カスタム項目10<br>※将来実装予定の集計項目用のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"

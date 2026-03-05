@@ -1,0 +1,107 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  commuting:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 10
+        example: "1"
+        description: "通勤ID"
+      type:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "利用交通機関ID<br>0:未選択<br>1:公共交通機関<br>2:車<br>3:その他"
+      departure:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "東京"
+        description: "出発"
+      arrival:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "新宿"
+        description: "到着"
+      transit_1:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "四ツ谷"
+        description: "経由1"
+      transit_2:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "御茶ノ水"
+        description: "経由2"
+      one_way_distance:
+        type: string
+        minLength: 0
+        maxLength: 13
+        example: "10.55"
+        description: "片道距離（km）"
+      payment:
+        type: object
+        properties:
+          start_date:
+            type: string
+            minLength: 7
+            maxLength: 7
+            format: date
+            pattern: yyyy-MM
+            example: "2024-04"
+            description: "支給開始年月"
+          interval:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 0
+                maxLength: 1
+                example: "1"
+                description: "支給間隔ID<br>0:未選択<br>1:毎月<br>2:3ヶ月<br>3:6ヶ月<br>4:毎日"
+          method:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 0
+                maxLength: 1
+                example: "1"
+                description: "支給方法ID<br>0:未選択<br>1:一括<br>2:月割"
+          total:
+            type: string
+            minLength: 0
+            maxLength: 8
+            example: "123456"
+            description: "支給金額<br>APIでは非課税通勤費と課税通勤費に自動で按分されません。<br>非課税通勤費と課税通勤費を登録/更新する場合は、それぞれにあらかじめ按分された金額の値を指定するか、またはUI（従業員管理＞通勤）から実施してください。"
+          tax_exemption_amount:
+            type: string
+            minLength: 0
+            maxLength: 8
+            example: "123456"
+            description: "非課税通勤費<br>APIでは支給金額から自動で按分されません。"
+          taxable_amount:
+            type: string
+            minLength: 0
+            maxLength: 8
+            example: "1234"
+            description: "課税通勤費<br>APIでは支給金額から自動で按分されません。"

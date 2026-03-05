@@ -1,0 +1,58 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  bonuses:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "賞与単価ID<br>従業員管理＞給与計算＞賞与単価で表示されるNo.（連番）です。"
+        revised_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "改定年月日"
+        remarks:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考"
+        bonus_deductions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 1
+                description: "賞与控除単価ID<br>人事設定＞給与計算＞賞与控除単価にて登録されているマスタのIDが出力されます。"
+              label:
+                type: string
+                example: "単価1"
+                description: "賞与控除単価の項目名<br>人事設定＞給与計算＞賞与控除単価で項目名を変更することが可能です。"
+              value:
+                type: number
+                example: 123456
+                description: "賞与控除単価<br>従業員管理＞賞与単価＞賞与控除単価に登録されている値です。"
+        total_deductible_unit:
+          type: number
+          example: 123456
+          description: "賞与控除単価合計<br>従業員管理＞賞与単価＞賞与控除単価の合計金額の値です。"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

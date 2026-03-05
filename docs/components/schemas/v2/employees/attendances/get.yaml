@@ -1,0 +1,153 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  attendances:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "打刻日付"
+        store:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "打刻グループID"
+            name:
+              type: string
+              example: "第一営業部グループ"
+              description: "打刻グループ名"
+        attended_at:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "出勤時刻"
+        left_at:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "退勤時刻"
+        is_absent:
+          type: boolean
+          example: true
+          description: "欠勤<br>欠勤の場合 true を返します。"
+        confirmation_status:
+          type: string
+          example: "1"
+          description: "残業管理確認状況<br>0:未対応または対象外<br>1:承認<br>2:否認"
+        automatic_stamp_status:
+          type: string
+          example: "1"
+          description: "自動打刻申請状況<br>0:未対応または対象外<br>1:承認<br>2:否認<br>3:その他"
+        stamps:
+          type: array
+          items:
+            type: object
+            properties:
+              stamp_type:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "打刻タイプID<br>1:出勤<br>2:直行<br>3:退勤<br>4:直帰<br>5:休憩開始<br>6:休憩終了<br>7:外出開始<br>8:外出終了<br>9:欠勤"
+                  name:
+                    type: string
+                    example: "出勤"
+                    description: "打刻タイプ"
+              stamped_at:
+                type: string
+                format: date
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "打刻時刻"
+              break_type:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "休憩種別ID<br>0:通常休憩または休憩以外<br>1:食事1<br>2:食事2<br>3:通常休憩終了<br>4:食事1終了<br>5:食事2終了"
+                  name:
+                    type: string
+                    example: "食事1"
+                    description: "休憩種別"
+              break_meal:
+                type: object
+                properties:
+                  classification:
+                    type: string
+                    example: "1"
+                    description: "食費種別<br>-1:対象外<br>0:控除<br>1:支給"
+                  fee:
+                    type: string
+                    example: "1234567"
+                    description: "食費単価"
+              latitude:
+                type: number
+                example: 35.69497633
+                description: "打刻緯度"
+              longitude:
+                type: number
+                example: 139.6898476
+                description: "打刻経度"
+              smile_point:
+                type: number
+                example: 2
+                description: "笑顔判定点数"
+              comment:
+                type: string
+                example: "◯◯という理由です。"
+                description: "打刻時コメント"
+              stamp_method:
+                type: string
+                example: "PC"
+                description: "打刻方法"
+              created_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "作成日時"
+              updated_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "更新日時"
+        stamp_classifications:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "打刻区分ID"
+              name:
+                type: string
+                example: "テレワーク"
+                description: "打刻区分"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

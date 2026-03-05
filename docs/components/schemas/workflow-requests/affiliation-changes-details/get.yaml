@@ -1,0 +1,216 @@
+type: object
+properties:
+  request_form:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "2"
+        description: "申請フォームID"
+      name:
+        type: string
+        example: "異動申請（主務）"
+        description: "申請フォーム名"
+  affiliation_change:
+    type: object
+    properties:
+      employee:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "JIN0001"
+            description: "異動申請（主務） > 社員番号"
+          last_name:
+            type: string
+            example: "神社"
+            description: "異動申請（主務） > 職場氏名（氏）"
+          first_name:
+            type: string
+            example: "一郎"
+            description: "異動申請（主務） > 職場氏名（名）"
+      date_of_issue:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "異動申請（主務） > 発令年月日"
+      department:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 所属グループID"
+          name:
+            type: string
+            example: "第一営業部"
+            description: "異動申請（主務） > 所属グループ"
+      change_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 異動区分ID"
+          name:
+            type: string
+            example: "昇格"
+            description: "異動申請（主務） > 異動区分"
+      employee_post:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 役職ID"
+          name:
+            type: string
+            example: "部長"
+            description: "異動申請（主務） > 役職"
+      work_location:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 勤務地ID"
+          name:
+            type: string
+            example: "本社"
+            description: "異動申請（主務） > 勤務地"
+      job_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 職種ID"
+          name:
+            type: string
+            example: "企画職"
+            description: "異動申請（主務） > 職種"
+      duty_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > 職務ID"
+          name:
+            type: string
+            example: "商品企画"
+            description: "異動申請（主務） > 職務"
+      employee_grade:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > グレードID<br>グレード1とグレード2の組み合わせに対して企業ごとに発番されるID（連番）です。<br>グレードIDを含むグレードの詳細は `GET /v1/master/employee-grades` で確認できます。"
+          grade_id:
+            type: number
+            example: 1
+            description: "異動申請（主務） > グレード1 ID<br>システム上で自動で発番される一意のIDです。"
+          grade_name:
+            type: string
+            example: "G1"
+            description: "異動申請（主務） > グレード1"
+          level_id:
+            type: number
+            example: 1
+            description: "異動申請（主務） > グレード2 ID<br>システム上で自動で発番される一意のIDです。"
+          level_name:
+            type: string
+            example: "等級1"
+            description: "異動申請（主務） > グレード2"
+      boss:
+        type: object
+        properties:
+          employee_id:
+            type: string
+            example: "JIN0002"
+            description: "異動申請（主務） > 上司 > 社員番号"
+          last_name:
+            type: string
+            example: "神社"
+            description: "異動申請（主務） > 上司 > 職場氏名（氏）"
+          first_name:
+            type: string
+            example: "二郎"
+            description: "異動申請（主務） > 上司 > 職場氏名（名）"
+      optional_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            number:
+              type: number
+              example: 1
+              description: "異動申請（主務） > 任意項目番号<br>任意項目の1-3に対応します。"
+            label:
+              type: string
+              example: "任意項目"
+              description: "異動申請（主務） > 任意項目名称"
+            id:
+              type: string
+              example: "1"
+              description: "異動申請（主務） > 任意項目ID"
+            value:
+              type: string
+              example: "選択肢1"
+              description: "異動申請（主務） > 任意項目の選択肢"
+      attendance_group:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "異動申請（主務） > メイン打刻グループID"
+          name:
+            type: string
+            example: "第一営業部グループ"
+            description: "異動申請（主務） > メイン打刻グループ"
+      sub_attendance_groups:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "異動申請（主務） > サブ打刻グループID"
+            name:
+              type: string
+              example: "第一営業部グループ"
+              description: "異動申請（主務） > サブ打刻グループ"
+      email:
+        type: string
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "異動申請（主務） > E-Mail（社用）"
+      last_approval_setting:
+        type: object
+        properties:
+          email:
+            type: string
+            example: "jinjer_customer@jinjer.co.jp"
+            description: "異動申請（主務） > 承認者記入欄 > E-Mail（社用）"
+          roles:
+            type: array
+            items:
+              type: object
+              properties:
+                application_name:
+                  type: string
+                  example: "人事"
+                  description: "異動申請（主務） > 承認者記入欄 > アプリケーション名"
+                id:
+                  type: string
+                  example: "1"
+                  description: "異動申請（主務） > 承認者記入欄 > ロールID"
+                name:
+                  type: string
+                  example: "管理者権限"
+                  description: "異動申請（主務） > 承認者記入欄 > ロール"
+      custom_details:
+        $ref: "../custom_details.yaml"

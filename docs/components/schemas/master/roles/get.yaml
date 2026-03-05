@@ -1,0 +1,39 @@
+type: object
+properties:
+  application_id:
+    type: string
+    example: "1"
+    description: "アプリケーションID"
+  application_name:
+    type: string
+    example: "人事労務"
+    description: "アプリケーション名"
+  application_roles:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "権限ID<br>画面上に表示されるIDです。"
+        name:
+          type: string
+          example: "管理者権限"
+          description: "付与された権限名称"
+        is_default:
+          type: boolean
+          example: true
+          description: "変更・削除可否"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

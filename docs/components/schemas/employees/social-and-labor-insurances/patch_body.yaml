@@ -1,0 +1,274 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  labor_insurance:
+    type: object
+    properties:
+      activation_permit:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "資格外活動許可ID<br>0:未選択<br>1:あり<br>2:なし"
+      compensation_insurance_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "労災保険区分ID<br>0:未選択<br>1:計算する<br>2:計算しない<br>3:計算する（役員）"
+      employment_insurance:
+        type: object
+        properties:
+          number:
+            type: string
+            minLength: 0
+            maxLength: 13
+            example: "4800-010566-2"
+            description: "雇用保険被保険者番号"
+          qualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "雇用保険資格取得年月日"
+          disqualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "雇用保険資格喪失年月日"
+      employment_insurance_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "雇用保険区分ID<br>0:未選択<br>1:計算する<br>2:計算しない<br>3:計算する（役員）"
+      high_age_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "高年齢区分ID<br>0:未選択<br>1:対象外<br>2:対象"
+      residence_period:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "在留期限"
+      residence_status_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 10
+            example: 1
+            description: "在留資格ID<br>人事設定＞社保・労保＞在留資格にて登録されているマスタのIDが設定可能です。"
+      work_outside:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "派遣等事業所外就労ID<br>0:未選択<br>1:該当あり<br>2:該当なし"
+  social_insurance:
+    type: object
+    properties:
+      basic_pension_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "1234-567890"
+        description: "基礎年金番号"
+      care_insurance_calculation_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "介護保険計算区分ID<br>0:対象外<br>1:第1号被保険者<br>2:第2号被保険者<br>3:特定被保険者（徴収）"
+      employees_pension:
+        type: object
+        properties:
+          number:
+            type: string
+            minLength: 0
+            maxLength: 7
+            example: "1234567"
+            description: "被保険者整理番号"
+          qualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "厚生年金資格取得年月日"
+          disqualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "厚生年金資格喪失年月日"
+          disqualified_cause:
+            type: object
+            properties:
+              id:
+                type: number
+                minLength: 0
+                maxLength: 1
+                example: 1
+                description: "厚生年金喪失理由ID<br>0:未選択<br>1:その他<br>2:死亡<br>3:70歳到達"
+          calculation_classification:
+            type: object
+            properties:
+              id:
+                type: number
+                minLength: 0
+                maxLength: 1
+                example: 1
+                description: "厚生年金計算区分ID<br>0:被保険者（対象）<br>1:70歳以上（対象外）<br>2:対象外"
+      employees_pension_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "厚生年金種別ID<br>0:未選択<br>1:男子<br>2:女子<br>3:坑内夫<br>4:男子（基金）<br>5:女子（基金）<br>6:坑内夫（基金）<br>7:男子（基金予備）<br>8:女子（基金予備）<br>9:坑内夫（基金予備）"
+      employees_pension_fund:
+        type: object
+        properties:
+          number:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1234567"
+            description: "厚生年金基金加入員番号"
+          qualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "厚生年金基金資格取得年月日"
+          disqualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "厚生年金基金資格喪失年月日"
+          disqualified_cause:
+            type: object
+            properties:
+              id:
+                type: number
+                minLength: 0
+                maxLength: 1
+                example: 1
+                description: "厚生年金基金資格喪失原因ID<br>0:未選択<br>1:対象外<br>2:その他<br>3:死亡<br>4:70歳"
+      health_insurance:
+        type: object
+        properties:
+          number:
+            type: string
+            minLength: 0
+            maxLength: 19
+            example: "1234567"
+            description: "健康保険証番号"
+          qualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "健保資格取得年月日"
+          disqualified_on:
+            type: string
+            minLength: 0
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "健保資格喪失年月日"
+          disqualified_cause:
+            type: object
+            properties:
+              id:
+                type: number
+                minLength: 0
+                maxLength: 1
+                example: 1
+                description: "健康保険喪失理由ID<br>0:未選択<br>1:その他<br>2:死亡<br>3:75歳到達<br>4:障害認定"
+      health_insurance_calculation_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "健康保険計算区分<br>0:被保険者（対象）<br>1:75歳以上（対象外）<br>2:対象外"
+      parental_leave_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "育児休業区分<br>0:対象外<br>1:対象"
+      part_time_job_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "パート区分ID<br>0:未選択<br>1:対象外<br>2:対象（パート）<br>3:対象（短時間）"
+      social_insurance_classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "社保加入区分ID<br>0:未選択<br>1:加入<br>2:未加入"

@@ -1,0 +1,91 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: 社員番号
+    example: "JIN0001"
+  work_schedules:
+    type: array
+    items:
+      type: object
+      properties:
+        store:
+          type: object
+          properties:
+            id:
+              description: "打刻グループID"
+              type: string
+              example: "1"
+            name:
+              description: "打刻グループ名"
+              type: string
+              example: "第一営業部グループ"
+        date:
+          description: "対象日付"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2024-04-13"
+        work_schedule:
+          type: object
+          properties:
+            start:
+              description: "出勤予定時刻"
+              type: string
+              format: time
+              pattern: "hh:mm:ss"
+              example: "12:34:56"
+            end:
+              description: "退勤予定時刻"
+              type: string
+              format: time
+              pattern: "hh:mm:ss"
+              example: "12:34:56"
+        break_schedules:
+          type: array
+          items:
+            type: object
+            properties:
+              number:
+                description: "休憩No.<br>休憩の1-5に対応します。"
+                type: number
+                example: 2
+              start:
+                description: "休憩予定時刻"
+                type: string
+                format: time
+                pattern: "hh:mm:ss"
+                example: "12:34:56"
+              end:
+                description: "復帰予定時刻"
+                type: string
+                format: time
+                pattern: "hh:mm:ss"
+                example: "12:34:56"
+        overtime_break_schedule:
+          type: object
+          properties:
+            start:
+              description: "スケジュール外休憩予定時刻"
+              type: string
+              format: time
+              pattern: "hh:mm:ss"
+              example: "12:34:56"
+            end:
+              description: "スケジュール外復帰予定時刻"
+              type: string
+              format: time
+              pattern: "hh:mm:ss"
+              example: "12:34:56"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"

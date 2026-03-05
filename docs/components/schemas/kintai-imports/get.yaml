@@ -1,0 +1,55 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "インポートID<br>システム上で自動で発番される一意のIDです。<br><br>`POST /v1/kintai-imports` で受け付けたインポート処理が、何らかの理由で失敗した等の理由により本エンドポイントでレスポンスされない場合があります。<br>登録処理の状況は、実行者に送信される通知メールにてご確認ください。"
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "インポート 実行者 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "インポート 実行者 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "インポート 実行者 職場氏名（名）"
+  type:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "5"
+        description: "インポート種別ID<br>5:汎用データCSVアップロード（新規登録・編集）<br>9:汎用データCSVアップロード（削除）"
+  status:
+    type: string
+    example: "1"
+    description: "インポートステータス<br>0:予約<br>1:成功<br>2:失敗"
+  retry_count:
+    type: number
+    example: 2
+    description: "リトライ回数"
+  input_file:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "仕訳データ_800080_20240924.csv"
+        description: "インポートファイル名"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

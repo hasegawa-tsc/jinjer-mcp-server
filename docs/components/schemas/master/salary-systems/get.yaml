@@ -1,0 +1,239 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "基本情報 給与体系ID<br>マスタにて任意に登録されるIDです。"
+  name:
+    type: string
+    example: "通常給与体系"
+    description: "基本情報 給与体系名"
+  active:
+    type: boolean
+    example: true
+    description: "基本情報 有効ステータス"
+  supply_month:
+    type: string
+    example: "4"
+    description: "基本情報 支給月<br>0:翌月<br>1:当月"
+  closing_date:
+    type: string
+    example: "13"
+    description: "基本情報 締め日<br>0:末日<br>1~30:選択された日付"
+  payment_date:
+    type: string
+    example: "13"
+    description: "基本情報 支給日<br>0:末日<br>1~30:選択された日付"
+  health_insurance_collection_classification:
+    type: string
+    example: "1"
+    description: "基本情報 健保厚年徴収区分<br>0:当月徴収<br>1:翌月徴収"
+  resident_tax_collection_classification:
+    type: string
+    example: "1"
+    description: "基本情報 住民税徴収区分<br>0:当月徴収<br>1:翌月徴収<br>2:前月徴収"
+  retiree_display_classification:
+    type: string
+    example: "1"
+    description: "基本情報 退職者表示期間<br>1:締め日より前１か月<br>2:締め日より前２か月"
+  web_payroll_slip:
+    type: object
+    properties:
+      publishing_date:
+        type: string
+        example: "13"
+        description: "基本情報 給与明細の自動公開日<br>0:末日<br>1~30:選択された日付<br>未選択の場合、空文字を返却します。"
+      publishing_time:
+        type: string
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "基本情報 給与明細の自動公開時間"
+      holiday_publishing_classification:
+        type: string
+        example: "1"
+        description: "基本情報 休日公開設定<br>0:未選択<br>1:前日<br>2:当日<br>3:翌日"
+      notification_classification:
+        type: string
+        example: "1"
+        description: "基本情報 自動公開設定時のメール配信<br>0:配信なし<br>1:E-mail(社用)に配信<br>2:E-mail(個人)に配信"
+  yearly_details:
+    type: array
+    items:
+      type: object
+      properties:
+        year:
+          type: string
+          format: date
+          pattern: yyyy
+          example: "2024"
+          description: "基本情報 対象年"
+        monthly_details:
+          type: array
+          items:
+            type: object
+            properties:
+              month:
+                type: string
+                format: date
+                pattern: m
+                example: "4"
+                description: "基本情報 対象月"
+              working_days:
+                type: string
+                example: "20"
+                description: "基本情報 就業日数"
+              working_hours:
+                type: string
+                example: "160"
+                description: "基本情報 就業時間"
+  salary_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "給与支給項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "給与支給項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "給与支給項目 有効ステータス"
+  salary_deduction_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "給与控除項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "給与控除項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "給与控除項目 有効ステータス"
+  salary_attendance_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "給与勤怠項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "給与勤怠項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "給与勤怠項目 有効ステータス"
+  bonus_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "賞与支給項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "賞与支給項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "賞与支給項目 有効ステータス"
+  bonus_deduction_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "賞与控除項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "賞与控除項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "賞与控除項目 有効ステータス"
+  severance_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "退職金支給項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "退職金支給項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "退職金支給項目 有効ステータス"
+        is_not_included_in_payment_total:
+          type: boolean
+          example: true
+          description: "退職金支給項目 総支給額に含まない<br>true:総支給額に含まない<br>false:総支給額に含まれる"
+        taxation_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "退職金支給項目 課税区分ID<br>0:対象外<br>1:課税<br>2:非課税"
+            name:
+              type: string
+              example: "対象外"
+              description: "退職金支給項目 課税区分"
+  severance_deduction_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "退職金控除項目 ID"
+        name:
+          type: string
+          example: "単価1"
+          description: "退職金控除項目 項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "退職金控除項目 有効ステータス"
+        is_not_included_in_deduction_total:
+          type: boolean
+          example: true
+          description: "退職金支給項目 控除項目合計に含まない<br>true:控除項目合計に含まない<br>false:控除項目合計に含まれる"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

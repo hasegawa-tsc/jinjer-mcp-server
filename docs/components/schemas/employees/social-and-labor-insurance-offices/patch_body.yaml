@@ -1,0 +1,21 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  master_office:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "事業所マスタID<br>人事設定＞社保・労保＞事業所マスタにて登録されているマスタのIDが設定可能です。"

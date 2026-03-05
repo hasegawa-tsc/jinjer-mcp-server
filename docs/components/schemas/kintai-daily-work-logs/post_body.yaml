@@ -1,0 +1,57 @@
+type: object
+required:
+  - date
+properties:
+  date:
+    type: string
+    minLength: 10
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "対象日付<br>所属グループの情報は、対象日付時点の従業員管理＞所属＞主務の情報が登録されます。"
+  work_logs:
+    type: array
+    items:
+      type: object
+      required:
+        - employee_id
+      properties:
+        employee_id:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: "JIN0001"
+          description: "社員番号<br>一回のリクエストで最大100人分までの入退館・PCログを登録できます。<br>対象日付時点の従業員管理＞所属＞主務の情報に所属グループ及び打刻グループが設定されていない場合、エラーを返却します。"
+        time_of_entry:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "入館時刻"
+        time_of_exit:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "退館時刻"
+        time_of_pc_boot:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "PC起動時刻"
+        time_of_pc_shutdown:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "PC停止時刻"

@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "納付元会社ID<br>マスタで表示されるNo.（連番）です。"
+  name:
+    type: string
+    example: "Jinjer株式会社"
+    description: "納付元会社名"
+  name_phonetic:
+    type: string
+    example: "ジンジャーカブシキガイシャ"
+    description: "納付元会社名（フリガナ）"
+  address_phonetic:
+    type: string
+    example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+    description: "納付元会社住所（フリガナ）"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  is_default:
+    type: boolean
+    example: true
+    description: "既定値フラグ<br>true の場合、会社名及び住所を変更できません。"
+  created_at:
+    type: string
+    format: date
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: date
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

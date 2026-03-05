@@ -1,0 +1,60 @@
+get:
+  tags:
+    - 給与テーブル
+  summary: /v1/master/salary-tables
+  description: "給与テーブルを取得する。"
+  operationId: salary-tablesGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: linked-unit-classification-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: "0"
+        description: "指定された連携先単価種別IDに属するデータを返却します。<br>連携先単価種別IDが指定されていない場合、エラーを返却します。<br>連携先単価種別IDは以下のいずれかの値で指定します。<br>0:給与支給単価<br>1:給与控除単価"
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/status
+    - name: revised-on-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-01"
+        description: "指定された年月日以降に改訂されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: revised-on-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-31"
+        description: "指定された年月日以前に改訂されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/master/salary-tables/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

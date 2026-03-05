@@ -1,0 +1,123 @@
+type: object
+properties:
+  id:
+    description: "企業ID"
+    type: string
+    example: "1"
+  corporate_number:
+    description: "法人番号"
+    type: string
+    example: "1234567"
+  name:
+    description: "会社名"
+    type: string
+    example: "Jinjer株式会社"
+  phonetic:
+    description: "会社名（フリガナ）"
+    type: string
+    example: "ジンジャーカブシキガイシャ"
+  business_segment:
+    type: object
+    properties:
+      id:
+        description: "業種ID"
+        type: string
+        example: "1"
+      name:
+        description: "業種名"
+        type: string
+        example: "林業"
+  representative:
+    type: object
+    properties:
+      name:
+        description: "代表者氏名"
+        type: string
+        example: "神社二郎"
+      phonetic:
+        description: "代表者氏名（フリガナ）"
+        type: string
+        example: "ジンジャジロウ"
+      title:
+        description: "代表者役職名"
+        type: string
+        example: "部長"
+  phone_number:
+    description: "電話番号"
+    type: string
+    example: "03-5908-8291"
+  fax_number:
+    description: "FAX番号"
+    type: string
+    example: "050-3537-7813"
+  address:
+    type: object
+    properties:
+      zip_code:
+        description: "郵便番号"
+        type: string
+        example: "060-0001"
+      national_local_government_code:
+        description: "都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+        type: string
+        example: "011011"
+      prefecture:
+        type: object
+        properties:
+          id:
+            description: "都道府県ID"
+            type: string
+            example: "1"
+          name:
+            description: "都道府県"
+            type: string
+            example: "北海道"
+      municipality:
+        type: object
+        properties:
+          id:
+            description: "市区町村ID"
+            type: string
+            example: "101"
+          name:
+            description: "市区町村"
+            type: string
+            example: "札幌市中央区"
+      street:
+        description: "丁目・番地・建物名・部屋番号"
+        type: string
+        example: "北１条西２丁目"
+      phonetic:
+        description: "住所（フリガナ）"
+        type: string
+        example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+  date_of_fiscal_year_start:
+    description: "年度開始日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+  date_of_usage_start:
+    description: "利用開始日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+  date_of_usage_end:
+    description: "利用終了日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2024-04-13 12:34:56"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2024-04-13 12:34:56"

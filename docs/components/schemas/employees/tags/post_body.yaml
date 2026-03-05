@@ -1,0 +1,43 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  jinji_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "人事タグに貼付けされた従業員タグのID<br>人事設定＞タグ＞従業員タグにて登録されているマスタのIDが設定可能です。"
+  manager_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "マネージャータグに貼付けされた従業員タグのID<br>人事設定＞タグ＞従業員タグにて登録されているマスタのIDが設定可能です。"
+  business_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "経営タグに貼付けされた従業員タグのID<br>人事設定＞タグ＞従業員タグにて登録されているマスタのIDが設定可能です。"

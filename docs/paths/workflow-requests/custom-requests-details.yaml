@@ -1,0 +1,43 @@
+get:
+  tags:
+    - ワークフロー 申請書 カスタム申請
+  summary: /v1/workflow-requests/custom-requests/{id}
+  description: '申請書 カスタム申請を取得する。'
+  operationId: v1WorkflowRequestsCustomRequestsDetailsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/path/workflow-request-id
+    - name: request-category-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: '1'
+        description: '指定された申請区分IDに属するデータを返却します。<br>申請区分IDは `GET /v1/master/request-categories/request-forms` で得られる `request_categories.id` の値で指定します。<br>申請区分IDが指定されていない場合、エラーを返却します。<br><br>なお、以下の申請区分は本エンドポイントでは取り扱いません。<br>1:人事<br>2:勤怠<br>2x:勤怠2<br>3:経費'
+    - name: request-form-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: '1'
+        description: '指定された申請フォームIDに属するデータを返却します。<br>申請フォームIDは `GET /v1/master/request-categories/request-forms` で得られる `request_categories.request_forms.id` の値で指定します。<br>申請フォームIDが指定されていない場合、エラーを返却します。<br><br>なお、以下の申請区分に属する申請フォームは本エンドポイントでは取り扱いません。<br>1:人事<br>2:勤怠<br>2x:勤怠2<br>3:経費'
+  responses:
+    '200':
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/workflow-requests/custom-requests-details/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

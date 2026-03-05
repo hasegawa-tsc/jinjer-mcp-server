@@ -1,0 +1,48 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "給与支給単価ID<br>マスタにて表示されるNo.（連番）です。"
+  name:
+    type: string
+    example: "単価1"
+    description: "給与支給単価名"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  payment_method:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "通貨/現物区分ID<br>0:通貨<br>1:現物"
+      name:
+        type: string
+        example: "現物"
+        description: "通貨/現物区分"
+  unit_price_fluctuation:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "単価変動区分ID<br>0:単価変動区分対象外<br>1:単価変動区分対象"
+      name:
+        type: string
+        example: "単価変動区分対象"
+        description: "単価変動区分"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,278 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "基本情報（会社）社員番号"
+  company:
+    type: object
+    properties:
+      last_name:
+        type: string
+        minLength: 1
+        maxLength: 50
+        example: "神社"
+        description: "基本情報（会社）職場氏名（氏）"
+      first_name:
+        type: string
+        minLength: 1
+        maxLength: 50
+        example: "一郎"
+        description: "基本情報（会社）職場氏名（名）"
+      last_name_phonetic:
+        type: string
+        minLength: 1
+        maxLength: 50
+        example: "ジンジャ"
+        description: "基本情報（会社）職場氏名（氏）（フリガナ）"
+      first_name_phonetic:
+        type: string
+        minLength: 1
+        maxLength: 50
+        example: "イチロウ"
+        description: "基本情報（会社）職場氏名（名）（フリガナ）"
+      joined_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "基本情報（会社）入社年月日"
+      mobile_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "090-0000-0000"
+        description: "基本情報（会社）携帯電話番号（社用）"
+      email:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "基本情報（会社）E-Mail（社用）"
+      fax_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "03-5908-8291"
+        description: "基本情報（会社）FAX番号（社用）"
+      ext_number:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1001"
+        description: "基本情報（会社）内線番号"
+      enrollment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 1
+            maxLength: 1
+            example: "1"
+            description: "基本情報（会社）在籍区分<br>2024年9月の在籍区分の仕様変更以降、在籍区分を直接登録/更新することはできなくなりました。<br>在籍区分を変更したい場合は、退職年月日を更新するか、または `/v1/employees/absences` で休職期間を登録/更新してください。"
+      employment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）雇用区分<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      permission_to_transfer:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）転勤可否<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      solo_transfer_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）単身赴任区分<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      retirement_date:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "基本情報（会社）退職年月日<br>APIで退職年月日を登録/更新する場合、以下の各項目と連動しません。これらの項目に日付を反映させたい場合は、UI（従業員管理＞基本情報）から退職年月日を登録/更新するか、もしくはUI（社保・労保）または `PATCH /v1/employees/social-and-labor-insurances` で直接更新してください。<br>- 健保資格取得年月日<br>- 健保資格喪失年月日<br>- 厚生年金資格取得年月日<br>- 厚生年金資格喪失年月日<br>- 厚生年金基金資格喪失年月日<br>- 雇用保険資格取得年月日<br>- 雇用保険資格喪失年月日"
+      retirement_payment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）退職支給区分"
+      retirement_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）退職区分<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      retirement_reason:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（会社）退職理由<br>人事設定にて登録されているマスタのIDが設定可能です。"
+          details:
+            type: string
+            minLength: 0
+            maxLength: 255
+            example: "◯◯という理由です。"
+            description: "基本情報（会社）退職理由詳細"
+      retirement_date_of_retirement_age:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "基本情報（会社）定年退職予定年月日"
+      display_order:
+        type: number
+        minLength: 0
+        maxLength: 9
+        example: 2
+        description: "基本情報（会社）表示順"
+  personal:
+    type: object
+    properties:
+      date_of_birth:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "基本情報（個人）生年月日"
+      last_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "神社"
+        description: "基本情報（個人）戸籍氏名（氏）"
+      first_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "一郎"
+        description: "基本情報（個人）戸籍氏名（名）"
+      last_name_phonetic:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "ジンジャ"
+        description: "基本情報（個人）戸籍氏名（氏）（フリガナ）"
+      first_name_phonetic:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "イチロウ"
+        description: "基本情報（個人）戸籍氏名（名）（フリガナ）"
+      last_name_alphabet:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "Jinjer"
+        description: "基本情報（個人）戸籍氏名英字（氏）"
+      first_name_alphabet:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "Ichiro"
+        description: "基本情報（個人）戸籍氏名英字（名）"
+      gender:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基本情報（個人）性別<br>0:未選択<br>1:男<br>2:女"
+      blood_type:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基本情報（個人）血液型<br>0:未選択<br>1:A型<br>2:B型<br>3:O型<br>4:AB型<br>5:不明"
+      nationality:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 3
+            example: "JPN"
+            description: '基本情報（個人）国名コード<br>ISO で定義された半角英字3桁で指定してください。<br>日本国籍の場合は "JPN" と指定します。<br>ISO 3166-1 alpha-3 の定義は以下をご参照ください。<br>https://www.iso.org/iso-3166-country-codes.html'
+      phone_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "03-5908-8291"
+        description: "基本情報（個人）電話番号（個人）"
+      mobile_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "090-0000-0000"
+        description: "基本情報（個人）携帯電話（個人）"
+      email:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "基本情報（個人）E-Mail（個人）"
+      marital_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基本情報（個人）婚姻区分<br>0:未選択<br>1:未婚<br>2:既婚<br>3:離婚<br>4:再婚"
+      marital_date:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "基本情報（個人）婚姻年月日"
+      place_of_birth:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "基本情報（個人）出身地<br>人事設定にて登録されているマスタのIDが設定可能です。"

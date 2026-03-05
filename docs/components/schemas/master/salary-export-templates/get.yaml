@@ -1,0 +1,49 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "出力テンプレートID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "ジンジャー会計フォーマット"
+    description: "出力テンプレート名"
+  template_type:
+    type: string
+    example: "1"
+    description: "テンプレート種別<br>1:カスタムテンプレート<br>2:集計レポート"
+  menu_type:
+    type: string
+    example: "1"
+    description: "メニュー種別<br>1:給与計算<br>2:賞与計算<br>3:退職金計算<br>4:賃金台帳"
+  public_classification:
+    type: string
+    example: "1"
+    description: "公開区分<br>1:公開<br>2:自分のみ"
+  aggregate_setting:
+    type: object
+    properties:
+      shows_item_name:
+        type: boolean
+        example: true
+        description: "集計レポート 行ヘッダー 項目名称<br>true:出力する<br>false:出力しない"
+      shows_code:
+        type: boolean
+        example: true
+        description: "集計レポート 行ヘッダー コード<br>true:出力する<br>false:出力しない"
+      shows_aggregation:
+        type: boolean
+        example: true
+        description: "集計レポート 総計データ<br>true:出力する<br>false:出力しない"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

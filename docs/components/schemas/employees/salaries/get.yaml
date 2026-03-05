@@ -1,0 +1,148 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  salaries:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "給与単価ID<br>従業員管理＞給与計算＞給与単価で表示されるNo.（連番）です。"
+        revised_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "改定年月日"
+        payroll:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "グレードID<br>グレード1とグレード2の組み合わせに対して企業ごとに発番されるID（連番）です。<br>グレードIDを含むグレードの詳細は `GET /v1/master/employee-grades` で確認できます。"
+            grade:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: 1
+                  description: "グレード1のID<br>従業員管理＞給与計算＞給与単価で登録することができます。<br>グレード1のマスタは人事設定＞給与計算＞グレードで設定することができます。<br>設定項目「グレード」は主務情報と給与単価情報の両方にありますが、どちらを利用いただいても問題ありません。<br>給与支給単価をご設定いただく場合は給与単価情報のグレードをご利用いただき、管理の観点でグレードをご利用いただく場合は主務情報のグレードをご利用ください。"
+                name:
+                  type: string
+                  example: "G1"
+                  description: "グレード1"
+            level:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: 1
+                  description: "グレード2のID<br>従業員管理＞給与計算＞給与単価で登録することができます。<br>グレード2のマスタは人事設定＞給与計算＞グレードで設定することができます。<br>設定項目「グレード」は主務情報と給与単価情報の両方にありますが、どちらを利用いただいても問題ありません。<br>給与支給単価をご設定いただく場合は給与単価情報のグレードをご利用いただき、管理の観点でグレードをご利用いただく場合は主務情報のグレードをご利用ください。"
+                name:
+                  type: string
+                  example: "等級1"
+                  description: "グレード2"
+        salary_classification:
+          type: object
+          properties:
+            id:
+              type: number
+              example: 1
+              description: "給与区分ID<br>0:未選択<br>1:完全月給<br>2:日給月給<br>3:日給<br>4:時給"
+            name:
+              type: string
+              example: "完全月給"
+              description: "給与区分"
+        remarks:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考"
+        salary_units:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 1
+                description: "給与支給単価ID<br>人事設定＞給与計算＞給与支給単価にて登録されているマスタのIDが出力されます。"
+              label:
+                type: string
+                example: "単価1"
+                description: "給与支給単価の項目名<br>人事設定＞給与計算＞給与支給単価で項目名を変更することが可能です。"
+              value:
+                type: number
+                example: 123456
+                description: "給与支給単価<br>従業員管理＞給与単価＞給与支給単価に登録されている値です。"
+        total_unit_price_paid:
+          type: number
+          example: 123456
+          description: "給与支給単価合計<br>従業員管理＞給与単価＞給与支給単価の合計金額の値です。"
+        total_payment_in_currency:
+          type: number
+          example: 123456
+          description: "通貨合計<br>従業員管理＞給与単価＞給与支給単価のうち、人事設定＞給与計算＞給与支給単価＞通貨/現物で「通貨」が選択されている給与支給単価の合計金額の値です。"
+        total_payment_in_kind:
+          type: number
+          example: 123456
+          description: "現物合計<br>従業員管理＞給与単価＞給与支給単価のうち、人事設定＞給与計算＞給与支給単価＞通貨/現物で「現物」が選択されている給与支給単価の合計金額の値です。"
+        total_unit_price_fluctuation:
+          type: number
+          example: 123456
+          description: "単価変動対象合計<br>従業員管理＞給与単価＞給与支給単価のうち、人事設定＞給与計算＞給与支給単価＞単価変動区分で「対象」が選択されている給与支給単価の合計金額の値です。"
+        deduction_units:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 1
+                description: "給与控除単価ID<br>人事設定＞給与計算＞給与控除単価にて登録されているマスタのIDが出力されます。"
+              label:
+                type: string
+                example: "単価1"
+                description: "給与控除単価名<br>人事設定＞給与計算＞給与控除単価で項目名を変更することが可能です。"
+              value:
+                type: number
+                example: 123456
+                description: "給与控除単価<br>従業員管理＞給与単価＞給与控除単価に登録されている値です。"
+        total_deductible_unit:
+          type: number
+          example: 123456
+          description: "給与控除単価合計<br>従業員管理＞給与単価＞給与控除単価の合計金額の値です。"
+        time_units:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 1
+                description: "給与勤怠単価ID<br>人事設定＞給与計算＞給与勤怠単価にて登録されているマスタのIDが出力されます。"
+              label:
+                type: string
+                example: "単価1"
+                description: "給与勤怠単価名<br>人事設定＞給与計算＞給与勤怠単価で項目名を変更することが可能です。"
+              value:
+                type: number
+                example: 123456
+                description: "給与勤怠単価<br>従業員管理＞給与単価＞給与勤怠単価に登録されている値です。"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

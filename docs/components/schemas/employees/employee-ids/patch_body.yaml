@@ -1,0 +1,17 @@
+type: object
+required:
+  - employee_id
+  - new_employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号 変更前<br>対象の従業員の現在の社員番号を指定します。"
+  new_employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0002"
+    description: "社員番号 変更後<br>対象の従業員の新しい社員番号を指定します。"

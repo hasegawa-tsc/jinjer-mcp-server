@@ -1,0 +1,21 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  monthly_remunerations:
+    type: object
+    properties:
+      year:
+        type: string
+        format: date
+        pattern: yyyy
+        example: "2024"
+        description: "基準年"
+      month:
+        type: string
+        format: date
+        pattern: MM
+        example: "01"
+        description: "基準月"

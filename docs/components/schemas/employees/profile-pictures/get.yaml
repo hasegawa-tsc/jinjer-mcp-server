@@ -1,0 +1,33 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  profile_picture:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "file.jpg"
+        description: "プロフィール写真<br>ファイル名<br>UI（従業員管理＞プロフィール写真変更）からアップロードされたプロフィール写真の場合、アップロード時のファイル名とは異なる値が返却される場合があります。"
+      extension:
+        type: string
+        example: "jpg"
+        description: "プロフィール写真<br>ファイル拡張子"
+      temporary_url:
+        type: string
+        example: "https://example.com/file.jpg"
+        description: "プロフィール写真<br>ファイルURL"
+      created_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "作成日時"
+      updated_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "更新日時"

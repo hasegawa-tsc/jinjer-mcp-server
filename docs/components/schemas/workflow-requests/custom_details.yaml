@@ -1,0 +1,60 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "1"
+      description: "カスタム申請項目 > ID<br>マイナンバーに関する既存項目は返却されません。"
+    display_order:
+      type: string
+      example: "1"
+      description: "カスタム申請項目 > 表示順"
+    original_item_name:
+      type: string
+      example: "プルダウン項目"
+      description: "カスタム申請項目 > 項目名<br>管理者のための名称"
+    displayed_item_name:
+      type: string
+      example: "プルダウン項目"
+      description: "カスタム申請項目 > 表示名<br>申請/承認時に表示される名称"
+    value:
+      type: array or string
+      example: "10"
+      description: "カスタム申請項目 > 入力値"
+    type:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "カスタム申請項目 > 入力形式ID<br>1:カレンダー（年月）<br>2:カレンダー（年月日）<br>3:カレンダー（日時指定）<br>4:従業員を選択<br>5:所属グループを選択<br>6:ファイル<br>7:プルダウン<br>8:チェックボックス<br>9:ラジオボタン<br>10:テキストフォーム<br>11:ロングテキストエリア<br>12:数値<br>13:英数字<br>14:郵便番号<br>15:電話番号<br>16:変更不可<br>17:金額<br>18:URL<br>20:計上部門を選択<br>21:見出し<br>22:時刻<br>23:計算式"
+        name:
+          type: string
+          example: "テキストフォーム"
+          description: "カスタム申請項目 > 入力形式"
+    unit:
+      type: string
+      example: "km"
+      description: "カスタム申請項目 > 単位<br>入力形式がテキストフォーム、ロングテキストエリア、数字、英数字、金額の場合のみ出力されます。"
+    label:
+      type: array or string
+      example: 選択肢1
+      description: "カスタム申請項目 > 選択肢<br>入力形式がプルダウン、ラジオボタン、チェックボックスなど選択型の場合のみ出力されます。"
+    files:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "file.jpg"
+            description: "カスタム申請項目 > ファイル名<br>入力形式がファイルの場合のみ出力されます。"
+          extension:
+            type: string
+            example: "jpg"
+            description: "カスタム申請項目 > ファイル拡張子<br>入力形式がファイルの場合のみ出力されます。"
+          temporary_url:
+            type: string
+            example: "https://example.com/file.jpg"
+            description: "カスタム申請項目 > ファイルURL<br>入力形式がファイルの場合のみ出力されます。"

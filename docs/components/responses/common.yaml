@@ -1,0 +1,42 @@
+components:
+  responses:
+    commonResponse400:
+      description: Bad Request
+      headers:
+        $ref: ../responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: fail.yaml
+    commonResponse401:
+      description: Unauthorized
+      headers:
+        $ref: ../responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: fail.yaml
+    commonResponse403:
+      description: Forbidden
+      headers:
+        $ref: ../responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: fail.yaml
+    commonResponse404:
+      description: Not Found
+      headers:
+        $ref: ../responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: fail.yaml
+    commonResponse405:
+      description: Method Not Allowd
+      headers:
+        $ref: ../responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: fail.yaml

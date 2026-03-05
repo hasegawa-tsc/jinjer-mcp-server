@@ -1,0 +1,108 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  sub_affiliations:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 10
+        example: "1"
+        description: "兼務 兼務ID"
+      date_of_issue:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "兼務 発令年月日"
+      change_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "兼務 異動区分ID<br>人事設定＞所属＞異動区分にて登録されているマスタのIDが設定可能です。"
+      department:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 50
+            example: "1"
+            description: "兼務 所属グループID"
+      employee_post:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "兼務 役職ID<br>人事設定＞所属＞役職にて登録されているマスタのIDが設定可能です。"
+      work_location:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "兼務 勤務地ID<br>人事設定＞所属＞勤務地にて登録されているマスタのIDが設定可能です。"
+      job_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "兼務 職種ID<br>人事設定＞所属＞職種にて登録されているマスタのIDが設定可能です。"
+      duty_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "兼務 職務ID<br>人事設定＞所属＞職務にて登録されているマスタのIDが設定可能です。"
+      optional_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            number:
+              type: number
+              minLength: 0
+              maxLength: 1
+              example: 1
+              description: "兼務 任意項目番号<br>任意項目の1-3に対応します。"
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "兼務 任意項目ID<br>人事設定＞所属＞任意項目1~3にて登録されているマスタのIDが設定可能です。"
+      end_date_of_issue:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "兼務 兼務終了年月日"

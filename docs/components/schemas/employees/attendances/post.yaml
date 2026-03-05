@@ -1,0 +1,32 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  attendances:
+    type: object
+    properties:
+      date:
+        description: "打刻日付"
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+      store:
+        type: object
+        properties:
+          id:
+            description: "打刻グループID"
+            type: string
+            example: "1"
+      stamps:
+        type: object
+        properties:
+          stamp_type:
+            type: object
+            properties:
+              id:
+                description: "打刻タイプID"
+                type: string
+                example: "1"

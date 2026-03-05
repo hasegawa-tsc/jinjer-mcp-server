@@ -1,0 +1,72 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  qualifications:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "資格・免許ID"
+      classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "資格免許区分ID<br>人事設定＞資格・免許＞免許資格区分にて登録されているマスタのIDが設定可能です。"
+      qualified_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "取得年月日"
+      expiration_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "有効期限"
+      renewal_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "更新年月日"
+      title:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "普通自動車第一種免許"
+        description: "資格免許名称"
+      certification_number:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "1234567"
+        description: "認定番号"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"

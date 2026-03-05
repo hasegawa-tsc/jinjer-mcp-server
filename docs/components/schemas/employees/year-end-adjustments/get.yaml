@@ -1,0 +1,604 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: 社員番号
+    example: "JIN0001"
+  year_end_adjustments:
+    type: array
+    items:
+      type: object
+      properties:
+        year:
+          description: "計算対象年"
+          type: string
+          pattern: "yyyy"
+          format: year
+          example: "2023"
+        employee:
+          type: object
+          properties:
+            last_name:
+              description: "職場氏名（氏）"
+              type: string
+              example: "神社"
+            first_name:
+              description: "職場氏名（名）"
+              type: string
+              example: "一郎"
+            enrollment_classification:
+              type: object
+              properties:
+                id:
+                  description: "在籍区分ID<br>0: 在籍<br>1: 退職<br>2: 休職"
+                  type: string
+                  example: "1"
+                name:
+                  description: "在籍区分"
+                  type: string
+                  example: "退職"
+            employee_post:
+              description: "役職名"
+              type: string
+              example: "部長"
+            officer_classification:
+              type: object
+              properties:
+                id:
+                  description: "役員区分ID<br>0:役員<br>1:役員以外"
+                  type: string
+                  example: "1"
+                name:
+                  description: "役員区分名"
+                  type: string
+                  example: "役員以外"
+        process_status:
+          type: object
+          properties:
+            id:
+              description: "年末調整ステータスID<br>1:データ未作成<br>2:データ作成済<br>3:年調計算済<br>4:年調再計算対象<br>5:締め処理済<br>6:対象外"
+              type: string
+              example: "1"
+            name:
+              description: "年末調整ステータス"
+              type: string
+              example: "データ未作成"
+        withholding_slip_issued:
+          description: "源泉徴収票ステータス<br>true:発行済<br>false:未発行"
+          type: boolean
+          example: true
+        basic_info:
+          type: object
+          properties:
+            address:
+              description: "住所"
+              type: string
+              example: "北海道札幌市中央区北１条西２丁目"
+            year_end_adjustment_classification:
+              type: object
+              properties:
+                id:
+                  description: "年末調整計算対象ID<br>0:対象外<br>1:対象"
+                  type: string
+                  example: "1"
+                name:
+                  description: "年末調整計算対象"
+                  type: string
+                  example: "対象"
+            taxation_classification:
+              type: object
+              properties:
+                id:
+                  description: "課税区分ID<br>0:未選択<br>1:甲欄<br>2:乙欄<br>3:指定税率<br>4:課税不要"
+                  type: string
+                  example: "1"
+                name:
+                  description: "課税区分"
+                  type: string
+                  example: "甲欄"
+            minor_classification:
+              type: object
+              properties:
+                id:
+                  description: "未成年者区分ID<br>0:対象外<br>1:未成年者"
+                  type: string
+                  example: "1"
+                name:
+                  description: "未成年者区分"
+                  type: string
+                  example: "未成年者"
+            widow_classification:
+              type: object
+              properties:
+                id:
+                  description: "寡婦区分ID<br>0:対象外<Br>1:対象外<br>2:寡婦<br>3:ひとり親"
+                  type: string
+                  example: "1"
+                name:
+                  description: "寡婦区分"
+                  type: string
+                  example: "対象外"
+            working_student_classification:
+              type: object
+              properties:
+                id:
+                  description: "勤労学生区分ID<br>0:対象外<br>1:勤労学生"
+                  type: string
+                  example: "1"
+                name:
+                  description: "勤労学生区分"
+                  type: string
+                  example: "勤労学生"
+            foreign_nationality_classification:
+              type: object
+              properties:
+                id:
+                  description: "外国人区分ID<br>0:対象外<br>1:外国人"
+                  type: string
+                  example: "1"
+                name:
+                  description: "外国人区分"
+                  type: string
+                  example: "外国人"
+            disability_classification:
+              type: object
+              properties:
+                id:
+                  description: "障害者区分ID<br>0:対象外<br>1:対象外<br>2:一般障害者<br>3:特別障害者"
+                  type: string
+                  example: "1"
+                name:
+                  description: "障害者区分"
+                  type: string
+                  example: "対象外"
+            death_in_service_classification:
+              type: object
+              properties:
+                id:
+                  description: "死亡退職ID<br>0:対象外<br>1:対象"
+                  type: string
+                  example: "1"
+                name:
+                  description: "死亡退職"
+                  type: string
+                  example: "対象"
+            disaster_relief_classification:
+              type: object
+              properties:
+                id:
+                  description: "災害者区分ID<br>0:対象外<br>1:対象"
+                  type: string
+                  example: "1"
+                name:
+                  description: "災害者区分"
+                  type: string
+                  example: "対象"
+            executive_classification:
+              type: object
+              properties:
+                id:
+                  description: "役員・役員経験者ID<br>0:対象外<br>1:対象"
+                  type: string
+                  example: "1"
+                name:
+                  description: "役員・役員経験者"
+                  type: string
+                  example: "対象"
+            income_tax_law_204_classification:
+              type: object
+              properties:
+                id:
+                  description: "所得税法204条ID<br>0:対象外<br>1:対象"
+                  type: string
+                  example: "1"
+                name:
+                  description: "所得税法204条"
+                  type: string
+                  example: "対象"
+            taxable_amount:
+              type: object
+              properties:
+                salary:
+                  description: "課税対象額 給与"
+                  type: string
+                  example: "0.123"
+                bonus:
+                  description: "課税対象額 賞与"
+                  type: string
+                  example: "0.123"
+                total:
+                  description: "課税対象額 合計"
+                  type: string
+                  example: "0.123"
+                adjustment:
+                  description: "課税対象額 調整額"
+                  type: number
+                  example: 123456
+                adjusted_total:
+                  description: "課税対象額 調整後合計"
+                  type: string
+                  example: "0.123"
+            social_insurance_premium:
+              type: object
+              properties:
+                salary:
+                  description: "社会保険料 給与"
+                  type: number
+                  example: 1234567
+                bonus:
+                  description: "社会保険料 賞与"
+                  type: number
+                  example: 1234567
+                total:
+                  description: "社会保険料 合計"
+                  type: number
+                  example: 1234567
+                adjustment:
+                  description: "社会保険料 調整額"
+                  type: number
+                  example: 123456
+                adjusted_total:
+                  description: "社会保険料 調整後合計"
+                  type: number
+                  example: 123456
+                defined_contribution:
+                  description: "社会保険料 うち確定拠出掛金"
+                  type: number
+                  example: 123456
+                small_business_mutual_aid_premium:
+                  description: "社会保険料 うち小規模企業共済掛金"
+                  type: number
+                  example: 123456
+            income_tax:
+              type: object
+              properties:
+                salary:
+                  description: "所得税 給与"
+                  type: number
+                  example: 1234567
+                bonus:
+                  description: "所得税 賞与"
+                  type: number
+                  example: 1234567
+                total:
+                  description: "所得税 合計"
+                  type: number
+                  example: 1234567
+                adjustment:
+                  description: "所得税 調整額"
+                  type: number
+                  example: 123456
+                adjusted_total:
+                  description: "所得税 調整後合計"
+                  type: number
+                  example: 123456
+            non_salary_income:
+              description: "給与以外所得"
+              type: number
+              example: 123456
+            prior_job_payment:
+              description: "前職支払金額"
+              type: number
+              example: 123456
+            prior_job_tax:
+              description: "前職徴収税額"
+              type: number
+              example: 123456
+            prior_job_social_insurance:
+              description: "前職社会保険料"
+              type: number
+              example: 123456
+        dependent_info:
+          type: object
+          properties:
+            spouse_classification:
+              description: "配偶者 配偶者区分<Br>控除対象 or 控除対象外 or -"
+              type: string
+              example: "控除対象"
+            elderly_spouse_classification:
+              description: "配偶者 配偶者老人区分<Br>対象 or 対象外 or -"
+              type: string
+              example: "対象"
+            disabled_spouse_classification:
+              description: "配偶者 配偶者障害区分<Br>一般障害者 or 同居特別障害者 or 非同居特別障害者 or 対象外 or 空白"
+              type: string
+              example: "一般障害者"
+            headcount_of_elderly_dependents:
+              description: "扶養親族 老人扶養親族人数"
+              type: string
+              example: "2"
+            headcount_of_general_dependents:
+              description: "扶養親族 一般扶養親族人数"
+              type: string
+              example: "2"
+            headcount_of_specified_dependents:
+              description: "扶養親族 特定扶養親族人数"
+              type: string
+              example: "2"
+            headcount_of_dependents_with_general_disabilities:
+              description: "扶養親族 一般障害者人数"
+              type: string
+              example: "2"
+            headcount_of_dependents_with_special_disabilities:
+              description: "扶養親族 特別障害者人数"
+              type: string
+              example: "2"
+            headcount_of_people_with_special_disabilities_living_together:
+              description: "扶養親族 同居特別障害者人数"
+              type: string
+              example: "2"
+            headcount_of_elderly_parents_living_together:
+              description: "扶養親族 同居老親等人数"
+              type: string
+              example: "2"
+            headcount_of_minor_dependents:
+              description: "扶養親族 年少扶養者人数"
+              type: string
+              example: "2"
+        declaration_info:
+          type: object
+          properties:
+            life_insurance_premium_new:
+              description: "申告書情報 生命保険料（新）"
+              type: number
+              example: 123456
+            life_insurance_premium_old:
+              description: "申告書情報 生命保険料（旧）"
+              type: number
+              example: 123456
+            care_insurance_premium:
+              description: "申告書情報 介護保険料"
+              type: number
+              example: 123456
+            personal_pension_premium_new:
+              description: "申告書情報 個人年金保険料（新）"
+              type: number
+              example: 123456
+            personal_pension_premium_old:
+              description: "申告書情報 個人年金保険料（旧）"
+              type: number
+              example: 123456
+            earthquake_insurance_premium_new:
+              description: "申告書情報 地震保険料"
+              type: number
+              example: 123456
+            earthquake_insurance_premium_old:
+              description: "申告書情報 旧長期損害保険料"
+              type: number
+              example: 123456
+            national_pension_premium:
+              description: "申告書情報 国民年金保険料"
+              type: number
+              example: 123456
+            personal_social_insurance_premium_1:
+              description: "申告書情報 他個人社会保険料1"
+              type: number
+              example: 123456
+            personal_social_insurance_premium_2:
+              description: "申告書情報 他個人社会保険料2"
+              type: number
+              example: 123456
+            small_business_mutual_aid_premium:
+              description: "申告書情報 中小企業共済掛金"
+              type: number
+              example: 123456
+            individual_or_corporate_type_pension_premium:
+              description: "申告書情報 個人型・企業型年金掛金"
+              type: number
+              example: 123456
+            disabled_dependent_mutual_aid_premium:
+              description: "申告書情報 心身障害者扶養共済掛金"
+              type: number
+              example: 123456
+            total_spouse_income:
+              description: "申告書情報 配偶者の合計所得"
+              type: number
+              example: 123456
+            number_of_housing_acquisition_special_deduction_applied:
+              description: "申告書情報 住宅取得特別控除適用数"
+              type: number
+              example: 2
+            housing_acquisition_special_deduction_amount:
+              description: "申告書情報 住宅取得特別控除額"
+              type: number
+              example: 123456
+            residence_start_date_1:
+              description: "申告書情報 居住開始年月日（1回目）"
+              type: string
+              format: date
+              pattern: "yyyy-MM-dd"
+              example: "2024-04-13"
+            residence_start_date_2:
+              description: "申告書情報 居住開始年月日（2回目）"
+              type: string
+              format: date
+              pattern: "yyyy-MM-dd"
+              example: "2024-04-13"
+            year_end_balance_1:
+              description: "申告書情報 年末残高（1回目）"
+              type: number
+              example: 123456
+            year_end_balance_2:
+              description: "申告書情報 年末残高（2回目）"
+              type: number
+              example: 123456
+            special_deduction_category_1:
+              type: object
+              properties:
+                id:
+                  description: "申告書情報 特別控除区分 1回目 ID<br><br>0: 未選択<br>1: 一般の住宅借入金等特別控除の場合（増改築を含む）<br>2: 認定住宅の新築等に係る住宅借入金等特別控除の場合<br>3: 特定増改築等住宅借入金等特別控除の場合<br>4: 震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>5: 【特定取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>6: 【特定取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>7: 【特定取得】特定増改築等住宅借入金等特別控除の場合<br>8: 【特定取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>9 : 【特別特定取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>10: 【特別特定取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>11: 【特別特定取得】特定増改築等住宅借入金等特別控除の場合<br>12: 【特別特定取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>13: 【特例特別特例取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>14: 【特例特別特例取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>15: 【特例特別特例取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合"
+                  type: string
+                  example: "1"
+                name:
+                  description: "申告書情報 特別控除区分 1回目 名称"
+                  type: string
+                  example: "一般の住宅借入金等特別控除の場合（増改築を含む）"
+            special_deduction_category_2:
+              type: object
+              properties:
+                id:
+                  description: "申告書情報 特別控除区分 2回目 ID<br><br>0: 未選択<br>1: 一般の住宅借入金等特別控除の場合（増改築を含む）<br>2: 認定住宅の新築等に係る住宅借入金等特別控除の場合<br>3: 特定増改築等住宅借入金等特別控除の場合<br>4: 震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>5: 【特定取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>6: 【特定取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>7: 【特定取得】特定増改築等住宅借入金等特別控除の場合<br>8: 【特定取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>9 : 【特別特定取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>10: 【特別特定取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>11: 【特別特定取得】特定増改築等住宅借入金等特別控除の場合<br>12: 【特別特定取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合<br>13: 【特例特別特例取得】一般の住宅借入金等特別控除の場合（増改築を含む）<br>14: 【特例特別特例取得】認定住宅の新築等に係る住宅借入金等特別控除の場合<br>15: 【特例特別特例取得】震災特例法第 13 条の 2 第 1 項の規定の適用を選択した場合"
+                  type: string
+                  example: "1"
+                name:
+                  description: "申告書情報 特別控除区分 2回目 名称"
+                  type: string
+                  example: "一般の住宅借入金等特別控除の場合（増改築を含む）"
+            declaration_summary:
+              description: "申告書情報 摘要"
+              type: string
+              example: "〇〇という備考です。"
+        calculation_info:
+          type: object
+          properties:
+            total_payment:
+              description: "計算情報 支給金額合計"
+              type: number
+              example: 1234567
+            total_income_tax:
+              description: "計算情報 所得税額合計"
+              type: number
+              example: 123456
+            income_adjustment_deduction:
+              description: "計算情報 所得金額調整控除額"
+              type: number
+              example: 123456
+            deducted_payment:
+              description: "計算情報 給与所得控除後給与等の金額（調整控除後）"
+              type: number
+              example: 123456
+            social_insurance_deduction_for_salary:
+              description: "計算情報 社会保険料控除（給与等）"
+              type: number
+              example: 123456
+            social_insurance_deduction_for_national_pension_premium:
+              description: "計算情報 社会保険料控除（国民年金保険料）"
+              type: number
+              example: 123456
+            social_insurance_deduction_by_declaration:
+              description: "計算情報 社会保険料控除（申告）"
+              type: number
+              example: 123456
+            life_insurance_deduction:
+              description: "計算情報 生命保険料控除額"
+              type: number
+              example: 123456
+            earthquake_insurance_deduction:
+              description: "計算情報 地震保険料控除額"
+              type: number
+              example: 123456
+            small_business_mutual_aid_deduction:
+              description: "計算情報 小規模企業共済掛金控除（申告）"
+              type: number
+              example: 123456
+            basic_deduction:
+              description: "計算情報 基礎控除額"
+              type: number
+              example: 123456
+            spouse_special_deduction:
+              description: "計算情報 配偶者特別控除額"
+              type: number
+              example: 123456
+            spouse_deduction:
+              description: "計算情報 配偶者控除額"
+              type: number
+              example: 123456
+            dedendent_deduction:
+              description: "計算情報 扶養控除額"
+              type: number
+              example: 123456
+            disability_and_widow_deduction:
+              description: "計算情報 障害・寡婦・勤労学生控除額"
+              type: number
+              example: 123456
+            specific_family_deduction:
+              description: "計算情報 特定親族特別控除額"
+              type: number
+              example: 123456
+            is_specific_family_deducted:
+              description: "計算情報 特定親族特別控除フラグ<br>true:特定親族特別控除適用済<br>false:特定親族特別控除未適用"
+              type: boolean
+              example: true
+            income_deduction:
+              description: "計算情報 所得控除計"
+              type: number
+              example: 123456
+            deductible_taxable_salary_income:
+              description: "計算情報 差引課税給与所得金額"
+              type: number
+              example: 123456
+            calculated_income_tax:
+              description: "計算情報 算出所得税額"
+              type: number
+              example: 123456
+            housing_loan_special_deduction:
+              description: "計算情報 住宅借入金等特別控除額"
+              type: number
+              example: 123456
+            adjusted_income_tax:
+              description: "計算情報 年調所得税額"
+              type: number
+              example: 123456
+            adjusted_annual_tax:
+              description: "計算情報 年調年税額"
+              type: number
+              example: 123456
+            excess_deduction:
+              description: "計算情報 差引超過額"
+              type: number
+              example: 123456
+            salary_and_allowance_payment:
+              description: "計算情報 給与、手当等金額"
+              type: number
+              example: 123456
+            salary_and_allowance_tax:
+              description: "計算情報 給与、手当等税額"
+              type: number
+              example: 123456
+            bonus_payment:
+              description: "計算情報 賞与等金額"
+              type: number
+              example: 123456
+            bonus_tax:
+              description: "計算情報 賞与等税額"
+              type: number
+              example: 123456
+            prior_job_and_adjustment_payment:
+              description: "計算情報 中途、調整収入金額"
+              type: number
+              example: 123456
+            prior_job_and_adjustment_tax:
+              description: "計算情報 中途、調整収入税額"
+              type: number
+              example: 123456
+            calculation_summary:
+              description: "計算情報 摘要"
+              type: string
+              example: "〇〇という備考です。"
+            inapplicable_reason_classification:
+              description: "計算情報 対象外理由<br>0:なし<br>1:退職<br>2:乙欄<br>3:給与支給なし<br>4:紙提出<br>5:年収要件<br>6:災害減免法適用"
+              type: string
+              example: "1"
+        salary_system:
+          type: object
+          properties:
+            id:
+              description: "給与体系ID"
+              type: string
+              example: "1"
+            name:
+              description: "給与体系"
+              type: string
+              example: "通常給与体系"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"

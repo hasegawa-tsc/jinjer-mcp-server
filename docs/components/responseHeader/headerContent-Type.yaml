@@ -1,0 +1,4 @@
+schema: 
+  type: string
+  const : application/json
+  # description: When there is a response body, this parameter is set.

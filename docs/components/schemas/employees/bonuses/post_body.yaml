@@ -1,0 +1,46 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  bonuses:
+    type: object
+    required:
+      - revised_on
+    properties:
+      revised_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "改定年月日"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"
+      bonus_deductions:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              minLength: 1
+              maxLength: 10
+              example: 1
+              description: "賞与控除単価ID<br>人事設定＞給与計算＞賞与控除単価にて登録されているマスタのIDが設定可能です。"
+            value:
+              type: number
+              minLength: 1
+              maxLength: 8
+              example: 123456
+              description: "賞与控除単価<br>従業員管理＞賞与単価＞賞与控除単価に登録される値です。"

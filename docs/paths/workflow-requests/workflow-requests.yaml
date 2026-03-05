@@ -1,0 +1,108 @@
+get:
+  tags:
+    - ワークフロー 申請書
+  summary: /v1/workflow-requests
+  description: "申請書を取得する。"
+  operationId: workflowRequestsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: request-category-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 1
+        description: "指定された申請区分IDに属するデータを返却します。<br>申請区分IDが指定されていない場合、エラーを返却します。<br>申請区分IDは `GET /v1/master/request-categories/request-forms` で得られる `request_categories.id` の値で指定します。<br><br>なお、以下の申請区分は本エンドポイントでは取り扱いません。<br>2:勤怠<br>2x:勤怠2<br>3:経費"
+    - name: request-form-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 1
+        description: "指定された申請フォームIDに属するデータを返却します。<br>申請フォームIDが指定されていない場合、エラーを返却します。<br>申請フォームIDは `GET /v1/master/request-categories/request-forms` で得られる `request_categories.request_forms.id` の値で指定します。<br><br>なお、以下の申請区分に属する申請フォームは本エンドポイントでは取り扱いません。<br>2:勤怠<br>2x:勤怠2<br>3:経費"
+    - name: status
+      in: query
+      schema:
+        type: string
+        example: 1
+        description: "指定されたステータスのデータを返却します。<br>ステータスが指定されていない場合、全データを返却します。<br>ステータスを指定する場合、以下の左のコードで指定してください。
+                    <br><br>1:承認完了<br>2:進行中<br>3:否認<br>4:取下げ<br>7:差し戻し"
+    - name: requester-employee-id
+      in: query
+      schema:
+        type: string
+        example: 1234
+        description: "指定された社員番号の社員が申請者であるデータを返却します。<br>社員番号が指定されていない場合、全データを返却します。"
+    - name: approver-employee-id
+      in: query
+      schema:
+        type: string
+        example: 5678
+        description: "指定された社員番号の社員が最終承認者であるデータを返却します。<br>社員番号が指定されていない場合、全データを返却します。"
+    - name: requested-at-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-01"
+        description: "指定された年月日以降に申請されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: requested-at-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-31"
+        description: "指定された年月日以前に申請されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: last-approved-at-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-08-01"
+        description: "指定された年月日以降に最終承認（差し戻しを含む）または否認されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: last-approved-at-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-08-31"
+        description: "指定された年月日以前に最終承認（差し戻しを含む）または否認されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: title
+      in: query
+      schema:
+        type: string
+        example: "〇〇申請"
+        description: "件名に指定された文字列を含むデータを返却します。<br>件名が指定されていない場合、全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/workflow-requests/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

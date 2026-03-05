@@ -1,0 +1,12 @@
+type: object
+properties:
+  results:
+    type: string
+    example: success
+  data:
+    type: object
+    properties:
+      access_token:
+        type: string
+        example: "ApplicationJWT"
+        description: "アクセストークン"

@@ -1,0 +1,68 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  addresses:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "住所ID<br>従業員管理＞基本情報＞住所で表示されるNo.（連番）です。"
+      date_of_moving:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "住所 転居年月日"
+      residential_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "住所 住居区分<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      zip_code:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "住所 郵便番号"
+      phonetic:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+        description: "住所 住所（フリガナ）"
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "住所 都道府県/市区町村<br>全国地方公共団体コードを指定可能です。<br>全国地方公共団体コードは `/v1/master/municipalities` で得られる `national_local_government_code` の値で指定します。"
+      street:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "北１条西２丁目"
+        description: "住所 丁目･番地"
+      building:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "札幌ビル"
+        description: "住所 建物名"

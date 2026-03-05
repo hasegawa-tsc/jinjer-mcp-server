@@ -1,0 +1,142 @@
+components:
+  parameters:
+    contentType:
+      name: Content-Type
+      in: header
+      schema:
+        type: string
+        const: application/json
+        description: Request Header After Auth Content-Type
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        example: 1
+        description: "クエリパラメータが無い場合、100件返却します。<br>101-200件目を取得したい場合、`page=2` を指定してください。"
+    status:
+      name: status
+      in: query
+      schema:
+        type: string
+        example: active
+        description: "status に `active` を指定した場合、有効ステータスが有効であるもののみを返却します。"
+    employee-posts-status:
+      name: status
+      in: query
+      schema:
+        type: string
+        example: active
+        description: "リクエスト時点で役職の `job_titles.start_date` 以降であり、かつ `job_titles.deprecated_date` が指定されていない又は指定されていてもリクエスト時点以前のものを `active` として返却します。"
+    executed-on:
+      name: executed-on
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM"
+        example: "2024-01"
+        description: "指定された処理月のデータを返却します。<br>処理月が指定されていない場合、エラーを返却します。"
+    has-since-changed-at:
+      name: has-since-changed-at
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "指定された年月日以降に新規登録または更新されたデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    # TODO has-since-changed-at表記揺れ（最終的にはこちらへ統一予定）
+    has-since-changed-at-new:
+      name: has-since-changed-at
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "指定された年月日以降に新規登録または更新されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    employee-ids:
+      name: employee-ids
+      in: query
+      schema:
+        type: string
+        example: 1,2,3...,100
+        description: "複数の社員番号をカンマ区切りで指定できます。<br>100件以上含まれる場合は、100件までを返します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    customize-menu-id:
+      name: customize-menu-id
+      in: query
+      schema:
+        type: integer
+        example: 1
+        description: "カスタム項目IDを指定します。<br>カスタム項目IDは `GET /v1/master/custom-menus` で得られる `id` の値で指定します。"
+    prefecture-id:
+      name: prefecture-id
+      in: query
+      schema:
+        type: integer
+        example: 13
+        description: "指定された都道府県に属するデータを返却します。<br>都道府県は `/v1/master/prefectures` で得られる `id` の値（都道府県ID）で指定します。都道府県IDが指定されていない場合、全データを返却します。"
+    municipality-name:
+      name: municipality-name
+      in: query
+      schema:
+        type: string
+        example: 府中
+        description: "指定された語句を市区町村名に含むデータを返却します。<br>都道府県名を含まない市区町村名を部分一致で検索します。語句が指定されていない場合、全データを返却します。"
+    year:
+      name: year
+      in: query
+      schema:
+        type: string
+        example: 2013
+        description: "指定した年のデータを返却します。<br>年が指定されていない場合、全データを返却します。"
+    department-ids:
+      name: department-ids
+      in: query
+      schema:
+        type: string
+        example: 1,2,3...,100
+        description: "複数の所属グループIDをカンマ区切りで指定できます。<br>100件以上含まれる場合は、100件までを返します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    date-from:
+      name: date-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "基準日項目の値が指定された年月日以降のデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    date-to:
+      name: date-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "基準日項目の値が指定された年月日以前のデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    path:
+      employee-id:
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: "JIN0001"
+          description: "社員番号を指定します。"
+      workflow-request-id:
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: 'JN0000000001AA'
+          description: '申請書No.<br>申請者の従業員が削除されている場合、エラーを返却します。'
+    type-id:
+      name: type-id
+      in: query
+      schema:
+        type: string
+        example: "D"
+        description: "指定された労務提出先種別のデータを返却します。<br>労務提出先種別が指定されていない場合、全データを返却します。<br>労務提出先種別は以下の左のコードで指定してください。<br><br>D:公共職業安定所<br>E:事務センター<br>F:年金事務所<br>G:船保年金事務所<br>H:労働基準監督署又は公共職業安定所<br>I:労働基準監督署<br>J:労働局又は労働基準監督署<br>K:労働局"

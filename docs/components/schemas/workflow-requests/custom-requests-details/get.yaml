@@ -1,0 +1,319 @@
+type: object
+properties:
+  results:
+    type: string
+    example: "success"
+  data:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JN0000000001AA"
+        description: "申請書No."
+      request_category:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "申請区分ID"
+          name:
+            type: string
+            example: "人事"
+            description: "申請区分名"
+      request_form:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "申請フォームID"
+          name:
+            type: string
+            example: "入社申請"
+            description: "申請フォーム名"
+      status:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "ステータスID<br>1:承認完了<br>2:進行中<br>3:否認<br>4:取下げ<br>7:差し戻し"
+          name:
+            type: string
+            example: "承認完了"
+            description: "ステータス"
+      requester:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "JIN0001"
+            description: "申請者 > 社員番号"
+          last_name:
+            type: string
+            example: "神社"
+            description: "申請者 > 職場氏名（氏）"
+          first_name:
+            type: string
+            example: "一郎"
+            description: "申請者 > 職場氏名（名）"
+          department:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "申請者 > 所属グループID"
+              name:
+                type: string
+                example: "第一営業部"
+                description: "申請者 > 所属グループ名"
+      last_approver:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "JIN0002"
+            description: "最終承認者 > 社員番号"
+          last_name:
+            type: string
+            example: "神社"
+            description: "最終承認者 > 職場氏名（氏）"
+          first_name:
+            type: string
+            example: "二郎"
+            description: "最終承認者 > 職場氏名（名）"
+          comment:
+            type: string
+            example: "承認しました。"
+            description: "最終承認者 > コメント"
+      title:
+        type: string
+        example: "【2024年4月】中途採用者入社申請"
+        description: "件名"
+      remarks:
+        type: string
+        example: "◯◯という備考です。"
+        description: "備考"
+      reason:
+        type: string
+        example: "◯◯という理由です。"
+        description: "理由"
+      request_url:
+        type: string
+        example: "https://employee.jinjer.biz/request/confirm/12345/12345"
+        description: "申請書URL"
+      requested_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "申請日時"
+      last_approved_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "最終承認（差し戻しを含む）日時または否認日時"
+      created_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "作成日時"
+      updated_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "更新日時"
+      approval_histories:
+        type: array
+        items:
+          type: object
+          properties:
+            step:
+              type: string
+              example: "1"
+              description: "承認履歴 > Step"
+            approver:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "JIN0002"
+                  description: "承認履歴 > 対応者 > 社員番号"
+                last_name:
+                  type: string
+                  example: "神社"
+                  description: "承認履歴 > 対応者 > 職場氏名（氏）"
+                first_name:
+                  type: string
+                  example: "二郎"
+                  description: "承認履歴 > 対応者 > 職場氏名（名）"
+            status_afterward:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "承認履歴 > 対応内容ID<br>1:承認なし<br>2:申請<br>3:承認<br>4:差し戻し<br>5:否認"
+                name:
+                  type: string
+                  example: "承認"
+                  description: "承認履歴 > 対応内容"
+            approved_date:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "承認履歴 > 対応日時"
+            comment:
+              type: string
+              example: "承認しました。"
+              description: "承認履歴 > コメント"
+      viewing_histories:
+        type: array
+        items:
+          type: object
+          properties:
+            viewer:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "JIN0002"
+                  description: "回覧者確認 > 回覧者 > 社員番号"
+                last_name:
+                  type: string
+                  example: "神社"
+                  description: "回覧者確認 > 回覧者 > 職場氏名（氏）"
+                first_name:
+                  type: string
+                  example: "二郎"
+                  description: "回覧者確認 > 回覧者 > 職場氏名（名）"
+            status:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "回覧者確認 > ステータスID<br>0:未対応 (回覧依頼未済)<br>1:未対応 (回覧依頼済)<br>2:回覧済み"
+                name:
+                  type: string
+                  example: "未対応 (回覧依頼済)"
+                  description: "回覧者確認 > ステータス"
+            viewed_date:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "回覧者確認 > 回覧日時"
+      custom_request:
+        type: object
+        properties:
+          last_approval_setting:
+            type: object
+            properties:
+              transfer_source_bank_accounts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: "1"
+                      description: "カスタム申請項目 > 承認者記入欄 > 振込元銀行種別<br>1:給与振込設定 口座1<br>2:給与振込設定 口座2<br>3:給与振込設定 口座3<br>4:賞与振込設定 口座1<br>5:賞与振込設定 口座2<br>6:賞与振込設定 口座3"
+                    id:
+                      type: string
+                      example: "1"
+                      description: "カスタム申請項目 > 承認者記入欄 > 振込元銀行ID"
+                    code:
+                      type: string
+                      example: "0000"
+                      description: "カスタム申請項目 > 承認者記入欄 > 振込元銀行コード"
+                    name:
+                      type: string
+                      example: "日本"
+                      description: "カスタム申請項目 > 承認者記入欄 > 振込元銀行名"
+                    phonetic:
+                      type: string
+                      example: "ﾆﾎﾝ"
+                      description: "カスタム申請項目 > 承認者記入欄 > 振込元銀行名カナ"
+                    branch:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: "093"
+                          description: "カスタム申請項目 > 承認者記入欄 > 振込元支店コード"
+                        name:
+                          type: string
+                          example: "本店"
+                          description: "カスタム申請項目 > 承認者記入欄 > 振込元支店名"
+                        phonetic:
+                          type: string
+                          example: "ﾎﾝﾃﾝ"
+                          description: "カスタム申請項目 > 承認者記入欄 > 振込元支店名カナ"
+          custom_details:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "カスタム申請項目 > ID<br>マイナンバーに関する既存項目は返却されません。"
+                display_order:
+                  type: string
+                  example: "1"
+                  description: "カスタム申請項目 > 表示順"
+                original_item_name:
+                  type: string
+                  example: "プルダウン項目"
+                  description: "カスタム申請項目 > 項目名<br>管理者のための名称"
+                displayed_item_name:
+                  type: string
+                  example: "プルダウン項目"
+                  description: "カスタム申請項目 > 表示名<br>申請/承認時に表示される名称"
+                value:
+                  type: array or string
+                  example: "10"
+                  description: "カスタム申請項目 > 入力値"
+                type:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                      description: "カスタム申請項目 > 入力形式ID<br>1:カレンダー（年月）<br>2:カレンダー（年月日）<br>3:カレンダー（日時指定）<br>4:従業員を選択<br>5:所属グループを選択<br>6:ファイル<br>7:プルダウン<br>8:チェックボックス<br>9:ラジオボタン<br>10:テキストフォーム<br>11:ロングテキストエリア<br>12:数値<br>13:英数字<br>14:郵便番号<br>15:電話番号<br>16:変更不可<br>17:金額<br>18:URL<br>20:計上部門を選択<br>21:見出し<br>22:時刻<br>23:計算式"
+                    name:
+                      type: string
+                      example: "テキストフォーム"
+                      description: "カスタム申請項目 > 入力形式"
+                unit:
+                  type: string
+                  example: "km"
+                  description: "カスタム申請項目 > 単位<br>入力形式がテキストフォーム、ロングテキストエリア、数字、英数字、金額の場合のみ出力されます。"
+                label:
+                  type: array or string
+                  example: "選択肢1"
+                  description: "カスタム申請項目 > 選択肢<br>入力形式がプルダウン、ラジオボタン、チェックボックスなど選択型の場合のみ出力されます。"
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: "file.jpg"
+                        description: "カスタム申請項目 > ファイル名<br>入力形式がファイルの場合のみ出力されます。"
+                      extension:
+                        type: string
+                        example: "jpg"
+                        description: "カスタム申請項目 > ファイル拡張子<br>入力形式がファイルの場合のみ出力されます。"
+                      temporary_url:
+                        type: string
+                        example: "https://example.com/file.jpg"
+                        description: "カスタム申請項目 > ファイルURL<br>入力形式がファイルの場合のみ出力されます。"

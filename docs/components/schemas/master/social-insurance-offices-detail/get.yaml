@@ -1,0 +1,486 @@
+type: object
+properties:
+  id:
+    description: "社会保険事業所コード<br>企業が任意に登録できるIDです。"
+    type: string
+    example: "1"
+  histories:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          description: "社会保険事業所名"
+          type: string
+          example: "○○社保事業所"
+        activate_date:
+          description: "適用開始日"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd"
+          example: "2020-03-01"
+        active:
+          description: "有効ステータス"
+          type: boolean
+          example: TRUE
+        health_insurance_document_type:
+          type: object
+          properties:
+            id:
+              description: "健康保険書類タイプID<br>※廃止された項目のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+            name:
+              description: "健康保険書類タイプ<br>※廃止された項目のため、現状データは返却いたしません。"
+              type: string
+              example: ""
+        health_insurance_society:
+          type: object
+          properties:
+            id:
+              description: "保険者ID"
+              type: string
+              example: "585"
+            name:
+              description: "保険者名"
+              type: string
+              example: "関東ＩＴソフトウェア健康保険組合"
+            extension_code:
+              description: "保険者拡張コード"
+              type: string
+              example: "0009283700$$健保$$関東ＩＴソフトウェア健康保険組合"
+        health_insurance_number:
+          description: "健保保険者番号"
+          type: string
+          example: "12740000"
+        health_insurance_office_mark:
+          description: "健保事業所整理記号"
+          type: string
+          example: "01234560"
+        employee_pension_office_mark:
+          description: "厚年事業所整理記号"
+          type: string
+          example: "05-ホヘト"
+        employee_pension_office_number:
+          description: "厚年事業所整理番号"
+          type: string
+          example: "05234"
+        pension_office:
+          type: object
+          properties:
+            id:
+              description: "管轄年金事務所ID"
+              type: string
+              example: "943"
+            name:
+              description: "管轄年金事務所"
+              type: string
+              example: "杉並年金事務所"
+        administration_center:
+          type: object
+          properties:
+            id:
+              description: "管轄事務センターID"
+              type: string
+              example: "618"
+            name:
+              description: "管轄事務センター"
+              type: string
+              example: "杉並年金事務所（東京事務センター）"
+        information_for_electronic_application:
+          type: object
+          properties:
+            office_name:
+              description: "電子申請用情報 事業所名称"
+              type: string
+              example: "◯◯社会保険事業所"
+            business_owner_name:
+              description: "電子申請用情報 事業主氏名"
+              type: string
+              example: "神社二郎"
+            phone_number:
+              description: "電子申請用情報 電話番号"
+              type: string
+              example: "03-5908-8291"
+            zip_code:
+              description: "電子申請用情報 郵便番号"
+              type: string
+              example: "060-0001"
+            national_local_government_code:
+              description: "電子申請用情報 都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+              type: string
+              example: "011011"
+            prefecture:
+              type: object
+              properties:
+                id:
+                  description: "電子申請用情報 都道府県ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "電子申請用情報 都道府県"
+                  type: string
+                  example: "北海道"
+            municipality:
+              type: object
+              properties:
+                id:
+                  description: "電子申請用情報 市区町村ID"
+                  type: string
+                  example: "101"
+                name:
+                  description: "電子申請用情報 市区町村"
+                  type: string
+                  example: "札幌市中央区"
+            street_and_building:
+              description: "電子申請用情報 丁目・番地・建物名・ 部屋番号"
+              type: string
+              example: "北１条西２丁目"
+        health_insurance_overall:
+          type: object
+          properties:
+            rate:
+              description: "健保料率給与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "健保端数給与全体 端数処理ID"
+                  type: string
+                  example: "0"
+                name:
+                  description: "健保端数給与全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        health_insurance_individual:
+          type: object
+          properties:
+            rate:
+              description: "健保料率給与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "健保端数給与個人 端数処理ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "健保端数給与個人 端数処理"
+                  type: string
+                  example: "切り捨て"
+        health_insurance_bonus_overall:
+          type: object
+          properties:
+            rate:
+              description: "健保料率賞与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "健保端数賞与全体 端数処理ID"
+                  type: string
+                  example: "2"
+                name:
+                  description: "健保端数賞与全体 端数処理"
+                  type: string
+                  example: "四捨五入"
+        health_insurance_bonus_individual:
+          type: object
+          properties:
+            rate:
+              description: "健保料率賞与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "健保端数賞与個人 端数処理ID"
+                  type: string
+                  example: "3"
+                name:
+                  description: "健保端数賞与個人 端数処理"
+                  type: string
+                  example: "切り上げ"
+        calculate_care_insurance_by_health_insurance:
+          description: "健康保険料を用いて計算する場合は 1<br>その他の場合は 0"
+          type: string
+          example: "0"
+        care_insurance_overall:
+          type: object
+          properties:
+            rate:
+              description: "介護料率給与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "介護端数給与全体 端数処理ID"
+                  type: string
+                  example: "0"
+                name:
+                  description: "介護端数給与全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        care_insurance_individual:
+          type: object
+          properties:
+            rate:
+              description: "介護料率給与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "介護端数給与個人 端数処理ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "介護端数給与個人 端数処理"
+                  type: string
+                  example: "切り捨て"
+        care_insurance_bonus_overall:
+          type: object
+          properties:
+            rate:
+              description: "介護料率賞与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "介護端数賞与全体 端数処理ID"
+                  type: string
+                  example: "2"
+                name:
+                  description: "介護端数賞与全体 端数処理"
+                  type: string
+                  example: "四捨五入"
+        care_insurance_bonus_individual:
+          type: object
+          properties:
+            rate:
+              description: "介護料率賞与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "介護端数賞与個人 端数処理ID"
+                  type: string
+                  example: "3"
+                name:
+                  description: "介護端数賞与個人 端数処理"
+                  type: string
+                  example: "切り上げ"
+        employee_pension_overall:
+          type: object
+          properties:
+            rate:
+              description: "厚年料率給与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "厚年端数給与全体 端数処理ID"
+                  type: string
+                  example: "0"
+                name:
+                  description: "厚年端数給与全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        employee_pension_individual:
+          type: object
+          properties:
+            rate:
+              description: "厚年料率給与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "厚年端数給与個人 端数処理ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "厚年端数給与個人 端数処理"
+                  type: string
+                  example: "切り捨て"
+        employee_pension_bonus_overall:
+          type: object
+          properties:
+            rate:
+              description: "厚年料率賞与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "厚年端数賞与全体 端数処理ID"
+                  type: string
+                  example: "2"
+                name:
+                  description: "厚年端数賞与全体 端数処理"
+                  type: string
+                  example: "四捨五入"
+        employee_pension_bonus_individual:
+          type: object
+          properties:
+            rate:
+              description: "厚年料率賞与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "厚年端数賞与個人 端数処理ID"
+                  type: string
+                  example: "3"
+                name:
+                  description: "厚年端数賞与個人 端数処理"
+                  type: string
+                  example: "切り上げ"
+        employee_pension_fund_overall:
+          type: object
+          properties:
+            rate:
+              description: "基金料率給与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "基金端数給与全体 端数処理ID"
+                  type: string
+                  example: "0"
+                name:
+                  description: "基金端数給与全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        employee_pension_fund_individual:
+          type: object
+          properties:
+            rate:
+              description: "基金料率給与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "基金端数給与個人 端数処理ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "基金端数給与個人 端数処理"
+                  type: string
+                  example: "切り捨て"
+        employee_pension_fund_bonus_overall:
+          type: object
+          properties:
+            rate:
+              description: "基金料率賞与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "基金端数賞与全体 端数処理ID"
+                  type: string
+                  example: "2"
+                name:
+                  description: "基金端数賞与全体 端数処理"
+                  type: string
+                  example: "四捨五入"
+        employee_pension_fund_bonus_individual:
+          type: object
+          properties:
+            rate:
+              description: "基金料率賞与個人 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "基金端数賞与個人 端数処理ID"
+                  type: string
+                  example: "3"
+                name:
+                  description: "基金端数賞与個人 端数処理"
+                  type: string
+                  example: "切り上げ"
+        child_contribution_overall:
+          type: object
+          properties:
+            rate:
+              description: "児童料率給与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "児童端数給与全体 端数処理ID"
+                  type: string
+                  example: "0"
+                name:
+                  description: "児童端数給与全体 端数処理"
+                  type: string
+                  example: "五捨六入"
+        child_contribution_bonus_overall:
+          type: object
+          properties:
+            rate:
+              description: "児童料率賞与全体 料率"
+              type: string
+              example: "1.1000"
+            fraction:
+              type: object
+              properties:
+                id:
+                  description: "児童端数賞与全体 端数処理ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "児童端数賞与全体 端数処理"
+                  type: string
+                  example: "切り捨て"
+        health_insurance_bonus_limit:
+          description: "標準賞与健保上限"
+          type: number
+          example: 5730000
+        bonus_employee_limit:
+          description: "標準賞与厚年上限"
+          type: number
+          example: 1500000
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"

@@ -1,0 +1,103 @@
+type: object
+required:
+  - employee_id
+  - attendances
+properties:
+  employee_id:
+    description: "社員番号<br>打刻する従業員の社員番号を指定してください。<br>打刻日時は POST を受け付けたときのサーバ日時が適用されます。"
+    minLength: 1
+    maxLength: 50
+    type: string
+    example: "JIN0001"
+  attendances:
+    type: object
+    required:
+      - store
+      - stamps
+    properties:
+      store:
+        type: object
+        required:
+          - id
+        properties:
+          id:
+            description: "打刻グループID<br>打刻グループIDを指定してください。"
+            minLength: 1
+            maxLength: 10
+            type: string
+            example: "1"
+      night_mode:
+        description: "ナイトモード<br>0:ナイトモードを利用しない<br>1:ナイトモードを利用する<br>ナイトモードは打刻タイプが 1:出勤 または 2:直行 の場合のみ指定できます。<br>また、ナイトモードの利用には就業規則の設定が必要です。<br>https://jinjer-kintai.zendesk.com/hc/ja/articles/360037844211"
+        minLength: 0
+        maxLength: 1
+        type: number
+        example: 1
+      stamps:
+        type: object
+        required:
+          - stamp_type
+        properties:
+          stamp_type:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                description: "打刻タイプID<br>打刻タイプIDを以下のいずれかから指定してください。<br>1:出勤<br>2:直行<br>3:退勤<br>4:直帰<br>5:休憩開始<br>6:休憩終了<br>7:外出開始<br>8:外出終了"
+                minLength: 1
+                maxLength: 1
+                type: string
+                example: "1"
+          break_type:
+            type: object
+            properties:
+              id:
+                description: "休憩種別ID<br>0:通常休憩<br>1:食事1<br>2:食事2<br>3:通常休憩終了<br>4:食事1終了<br>5:食事2終了<br>指定しない場合は「通常休憩」扱いとなります。"
+                minLength: 0
+                maxLength: 1
+                type: string
+                example: "1"
+          break_meal:
+            type: object
+            properties:
+              classification:
+                description: "食費種別<br>-1:対象外<br>0:控除<br>1:支給"
+                minLength: 0
+                maxLength: 2
+                type: string
+                example: "1"
+              fee:
+                description: "食費単価"
+                minLength: 0
+                maxLength: 20
+                type: string
+                example: "1234567"
+          latitude:
+            description: "打刻緯度"
+            minLength: 0
+            maxLength: 19
+            type: number
+            example: 35.69497633
+          longitude:
+            description: "打刻経度"
+            minLength: 0
+            maxLength: 20
+            type: number
+            example: 139.6898476
+          comment:
+            description: "打刻時コメント"
+            minLength: 0
+            maxLength: 1000
+            type: string
+            example: "◯◯という理由です。"
+      stamp_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              description: "打刻区分ID<br>打刻区分IDを指定することができます。"
+              minLength: 1
+              maxLength: 2
+              type: string
+              example: "1"

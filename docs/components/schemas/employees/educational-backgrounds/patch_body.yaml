@@ -1,0 +1,89 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  educational_backgrounds:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "学歴ID"
+      school_name:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "ジンジャー大学"
+        description: "学校名"
+      faculty:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "理工学部"
+        description: "学部名"
+      department:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "生命医科学科"
+        description: "学科名"
+      major:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "生命医科学専攻"
+        description: "専攻名"
+      event_date:
+        type: string
+        minLength: 7
+        maxLength: 7
+        format: date
+        pattern: yyyy-MM
+        example: "2024-04"
+        description: "入卒年月"
+      event_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "入卒区分ID<br>人事設定＞学歴＞入卒区分にて登録されているマスタのIDが設定可能です。"
+      education_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "学歴区分ID<br>人事設定＞学歴＞学歴区分にて登録されているマスタのIDが設定可能です。"
+      department_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "文理区分ID<br>人事設定＞学歴＞文理区分にて登録されているマスタのIDが設定可能です。"
+      management_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "公私区分ID<br>人事設定＞学歴＞公私区分にて登録されているマスタのIDが設定可能です。"

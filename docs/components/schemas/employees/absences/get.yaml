@@ -1,0 +1,75 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  absences:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "休職ID<br>従業員管理＞休職で表示されるNo.（連番）です。"
+        absence_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "休職区分ID<br>人事設定＞休職＞休職区分にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "育児休業"
+              description: "休職区分"
+        start_date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "休職開始年月日"
+        expected_end_date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "休職終了予定年月日"
+        end_date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "休職終了年月日"
+        reason:
+          type: string
+          example: "育児休業のため"
+          description: "休職理由詳細"
+        payment_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "休職支給区分ID<br>0: 未選択, 1: 支給する, 2: 支給しない"
+            name:
+              type: string
+              example: "支給する"
+              description: "休職支給区分"
+        remarks:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

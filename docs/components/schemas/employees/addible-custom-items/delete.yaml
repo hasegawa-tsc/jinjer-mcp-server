@@ -1,0 +1,21 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  customize_menu:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "カスタム項目ID"
+      # POST/PATCHと違いcustomize_dataがある
+      customize_data:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "項目追加のデータID"

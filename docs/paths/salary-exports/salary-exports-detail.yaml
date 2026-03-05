@@ -1,0 +1,41 @@
+get:
+  tags:
+    - 給与 エクスポート
+  summary: /v1/salary-exports/{id}
+  description: "給与 エクスポート詳細を取得する。"
+  operationId: get_id-salary-exports
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: string
+        example: 1
+        description: "エクスポートIDを1つのみ指定します。<br>エクスポートIDは `GET /v1/salary-exports` で得られる `id` の値で指定します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/salary-exports/get_detail.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

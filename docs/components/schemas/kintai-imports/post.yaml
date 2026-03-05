@@ -1,0 +1,16 @@
+type: object
+properties:
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "インポート 実行者 社員番号"
+  type:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "5"
+        description: "インポート種別ID"

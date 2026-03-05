@@ -1,0 +1,262 @@
+type: object
+required:
+  - template_type
+  - template_id
+properties:
+  template_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "テンプレート種別<br>0:デフォルトテンプレート<br>1:カスタムテンプレート<br>2:集計レポート<br><br>本エンドポイントに POST することで、リクエストボディで指定された条件でのファイルのエクスポート処理が開始されます。<br>- エクスポート処理の状況及び結果は GET でご確認ください。<br>- ファイルに出力される情報はマスタアカウントのロール設定に依存します。"
+  template_id:
+    type: string
+    minLength: 1
+    maxLength: 20
+    example: "1"
+    description: "テンプレートID<br>テンプレート種別が 0:デフォルトテンプレート の場合、以下のいずれかを指定します。<br>1:給与支給控除項目一覧表<br>2:賞与支給控除項目一覧表<br>3:退職金支給控除項目一覧表<br>4:賃金台帳（PDF）<br>5:賃金台帳（XLSX）<br>6:年末調整項目一覧表<br>7:源泉徴収簿<br>8:給与所得の源泉徴収票合計表集計データ<br>9:給与設定レポート<br>10:給与テーブル（XLSX）<br>11:給与差分レポート（XLSX）<br><br>テンプレート種別が 1:カスタムテンプレート の場合、テンプレートID は `GET /v1/master/salary-export-templates?template-type=1` で得られる `id` の値で指定します。<br>メニュー種別が 4:賃金台帳 のテンプレートは指定できません。<br><br>テンプレート種別が 2:集計レポート の場合、テンプレートID は `GET /v1/master/salary-export-templates?template-type=2` で得られる `id` の値で指定します。"
+  salary_setting:
+    type: object
+    properties:
+      executed_on:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "出力月または処理月<br><br>以下のデフォルトテンプレートの場合、出力月の指定が必須です。<br>- 1:給与支給控除項目一覧表<br>- 2:賞与支給控除項目一覧表<br><br>以下のデフォルトテンプレートの場合、処理月の指定が必須です。<br>- 3:退職金支給控除項目一覧表<br>- 11:給与差分レポート（XLSX）<br><br>カスタムテンプレートのメニュー種別が以下の場合、出力月の指定が必須です。<br>- 1:給与計算<br>- 2:賞与計算<br>カスタムテンプレートのメニュー種別が以下の場合、処理月の指定が必須です。<br>- 3:退職金計算"
+      bonus_count:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "2"
+        description: "賞与回数<br><br>以下のデフォルトテンプレートの場合、賞与計算の回数の指定が必須です。<br>- 2:賞与支給控除項目一覧表<br><br>カスタムテンプレートのメニュー種別が以下の場合、賞与計算の回数の指定が必須です。<br>- 2:賞与計算"
+      year_of_execution:
+        type: string
+        format: date
+        pattern: yyyy
+        minLength: 0
+        maxLength: 4
+        example: "2024"
+        description: "出力年<br><br>以下のデフォルトテンプレートの場合、出力年の指定が必須です。<br>- 6:年末調整項目一覧表<br>- 7:源泉徴収簿<br>- 8:給与所得の源泉徴収票合計表集計データ<br>- 9:給与設定レポート"
+      revised_on:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        minLength: 0
+        maxLength: 10
+        example: "2024-04-13"
+        description: "改定年月日<br><br>以下のデフォルトテンプレートの場合、改定年月日の指定が必須です。<br>- 10:給与テーブル（XLSX）"
+      output_criteria:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "出力基準<br>1:支給日<br>2:処理月<br><br>以下のデフォルトテンプレートの場合、出力基準を指定します。<br>- 4:賃金台帳（PDF）<br>- 5:賃金台帳（XLSX）"
+      period_from:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "出力期間 開始月<br><br>以下のデフォルトテンプレートの場合、出力期間の開始月の指定が必須です。<br>- 4:賃金台帳（PDF）<br>- 5:賃金台帳（XLSX）"
+      period_to:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "出力期間 終了月<br><br>以下のデフォルトテンプレートの場合、出力期間の終了月の指定が必須です。<br>- 4:賃金台帳（PDF）<br>- 5:賃金台帳（XLSX）<br><br>13ヶ月以上の出力期間が指定されている場合、エラーを返却します。"
+      compared_to:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 5
+        example: "2024-04"
+        description: "比較対象月<br><br>以下のデフォルトテンプレートの場合、比較対象月の指定が必須です。<br>- 11:給与差分レポート（XLSX）"
+      export_type:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "出力形式<br>1:テキスト<br>2:コード<br><br>以下のデフォルトテンプレートの場合、出力形式を指定します。<br>- 2:賞与支給控除項目一覧表"
+      employe_address_type:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "従業員住所 種別<br>0:住所<br>1:住民票住所<br><br>以下のデフォルトテンプレートの場合、従業員住所の種別を指定します。<br>- 7:源泉徴収簿"
+      payment_company:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 2
+              example: "1"
+              description: "納付元会社ID<br>納付元会社IDは `GET /v1/master/payment-companies` で得られる `id` の値で指定します。<br>納付元会社が未設定の従業員を指定したい場合は `未設定` を指定します。<br><br>以下のデフォルトテンプレートの場合、納付元会社を指定します。<br>- 8:給与所得の源泉徴収票合計表集計データ"
+      exports_target_list:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "集計元の対象者一覧データを出力<br>true:出力する<br>false:出力しない<br><br>以下のデフォルトテンプレートの場合、集計元の対象者一覧データの出力有無を指定します。<br>- 8:給与所得の源泉徴収票合計表集計データ"
+      salary_table:
+        type: object
+        properties:
+          linked_unit_classification_id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "0"
+            description: "連携先単価種別ID<br>0:給与支給単価<br>1:給与控除単価<br><br>以下のデフォルトテンプレートの場合、給与テーブルが紐づく連携先単価種別の指定が必須です。<br>- 10:給与テーブル（XLSX）"
+          id:
+            type: string
+            minLength: 0
+            maxLength: 2
+            example: "1"
+            description: "給与テーブルID<br>給与テーブルIDは `GET /v1/master/salary-tables` で得られる `id` の値で指定します。<br><br>以下のデフォルトテンプレートの場合、給与テーブルの指定が必須です。<br>- 10:給与テーブル（XLSX）"
+      salary_systems:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "給与体系ID<br>給与体系IDは `GET /v1/master/salary-systems` で得られる `id` の値で指定します。"
+      salary_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "給与区分ID<br>給与区分IDは下記のいずれかの値で指定します。<br>1:完全月給<br>2:日給月給<br>3:日給<br>4:時給"
+      departments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "1"
+              description: "所属グループID<br>所属グループIDは `GET /v1/departments` で得られる `id` の値で指定します。<br>所属グループが未設定の従業員を指定したい場合は `未設定` を指定します。"
+      enrollment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "在籍区分ID<br>在籍区分IDは下記のいずれかの値で指定します。<br>0:在籍<br>1:退職<br>2:休職"
+      employment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "雇用区分ID<br>雇用区分IDは `GET /v1/master/employment-classifications` で得られる `id` の値で指定します。<br>雇用区分が未設定の従業員を指定したい場合は `未設定` を指定します。"
+      employee_id_from:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "1234"
+        description: "社員番号 範囲の開始値"
+      employee_id_to:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "1234"
+        description: "社員番号 範囲の終了値"
+  aggregate_setting:
+    type: object
+    properties:
+      output_criteria:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "出力基準<br>1:支給月<br>2:処理月<br><br>テンプレート種別が 2:集計レポート の場合、指定は必須です。"
+      aggregate_criteria:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "集計基準<br>0:当月<br>1:前月<br><br>テンプレート種別が 2:集計レポート かつテンプレートのメニュー種別が 1:給与計算 の場合、指定は必須です。"
+      period_from:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "集計レポート 出力期間 開始月<br><br>テンプレート種別が 2:集計レポート の場合、指定は必須です。"
+      period_to:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "集計レポート 出力期間 終了月<br><br>13ヶ月以上の出力期間が指定されている場合、エラーを返却します。"
+      condition_type_1:
+        type: object
+        properties:
+          item:
+            type: string
+            minLength: 0
+            maxLength: 25
+            example: "giving_system_id"
+            description: "集計レポート 集計条件1 集計項目<br>giving_system_id:給与体系<br>dept_id:所属グループ<br>employment_classification:雇用区分<br>job_title_id:役職<br>job_category_id:職種<br>duty_id:職務<br>master_office_id:事業所マスタ<br>gender:性別<br>option_one_id:任意項目1<br>option_two_id:任意項目2<br>option_three_id:任意項目3<br>employee_code:社員番号"
+          conditions:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 0
+                  maxLength: 50
+                  example: "1"
+                  description: "集計レポート 集計条件1 条件<br><br>集計項目が giving_system_id:給与体系 の場合、給与体系IDを `GET /v1/master/salary-systems` で得られる `id` の値で指定します。<br><br>集計項目が dept_id:所属グループ の場合、所属グループIDを `GET /v1/departments` で得られる `id` の値で指定します。<br><br>集計項目が employment_classification:雇用区分 の場合、雇用区分IDを `GET /v1/master/employment-classifications` で得られる `id` の値で指定します。<br><br>集計項目が job_title_id:役職 の場合、役職IDを `GET /v1/master/employee-posts` で得られる `id` の値で指定します。<br><br>集計項目が job_category_id:職種 の場合、職種IDを `GET /v1/master/job-classifications` で得られる `id` の値で指定します。<br><br>集計項目が duty_id:職務 の場合、職務IDを `GET /v1/master/duty-classifications` で得られる `id` の値で指定します。<br><br>集計項目が master_office_id:事業所マスタ の場合、事業所コードを `GET /v1/master/social-and-labor-insurance-offices` で得られる `id` の値で指定します。<br><br>集計項目が gender:性別 の場合、以下のいずれかの値で指定します。<br>0:未選択<br>1:男性<br>2:女性<br><br>集計項目が option_one_id:任意項目1~3 の場合、任意項目IDを `GET /v1/master/optional-classifications` で得られる `options.id` の値で指定します。<br><br>集計項目が employee_code:社員番号 の場合、社員番号を `GET /v1/employees` で得られる `id` の値で指定します。<br><br>集計項目が giving_system_id:給与体系 及び employee_code:社員番号 以外の場合、 <br>各項目が未設定の従業員を指定したい場合は `未設定` を指定します。<br><br>条件が未指定の場合、集計項目のすべての条件が指定されます。<br>集計レポートの出力方法についてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/12068324682393 "
+      condition_type_2:
+        type: object
+        properties:
+          item:
+            type: string
+            minLength: 0
+            maxLength: 25
+            example: "giving_system_id"
+            description: "集計レポート 集計条件2 集計項目<br>giving_system_id:給与体系<br>dept_id:所属グループ<br>employment_classification:雇用区分<br>job_title_id:役職<br>job_category_id:職種<br>duty_id:職務<br>master_office_id:事業所マスタ<br>gender:性別<br>option_one_id:任意項目1<br>option_two_id:任意項目2<br>option_three_id:任意項目3<br>employee_code:社員番号"
+          conditions:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 0
+                  maxLength: 50
+                  example: "1"
+                  description: "集計レポート 集計条件2 条件<br><br>集計項目が giving_system_id:給与体系 の場合、給与体系IDを `GET /v1/master/salary-systems` で得られる `id` の値で指定します。<br><br>集計項目が dept_id:所属グループ の場合、所属グループIDを `GET /v1/departments` で得られる `id` の値で指定します。<br><br>集計項目が employment_classification:雇用区分 の場合、雇用区分IDを `GET /v1/master/employment-classifications` で得られる `id` の値で指定します。<br><br>集計項目が job_title_id:役職 の場合、役職IDを `GET /v1/master/employee-posts` で得られる `id` の値で指定します。<br><br>集計項目が job_category_id:職種 の場合、職種IDを `GET /v1/master/job-classifications` で得られる `id` の値で指定します。<br><br>集計項目が duty_id:職務 の場合、職務IDを `GET /v1/master/duty-classifications` で得られる `id` の値で指定します。<br><br>集計項目が master_office_id:事業所マスタ の場合、事業所コードを `GET /v1/master/social-and-labor-insurance-offices` で得られる `id` の値で指定します。<br><br>集計項目が gender:性別 の場合、以下のいずれかの値で指定します。<br>0:未選択<br>1:男性<br>2:女性<br><br>集計項目が option_one_id:任意項目1~3 の場合、任意項目IDを `GET /v1/master/optional-classifications` で得られる `options.id` の値で指定します。<br><br>集計項目が employee_code:社員番号 の場合、社員番号を `GET /v1/employees` で得られる `id` の値で指定します。<br><br>集計項目が giving_system_id:給与体系 及び employee_code:社員番号 以外の場合、 <br>各項目が未設定の従業員を指定したい場合は `未設定` を指定します。<br><br>条件が未指定の場合、集計項目のすべての条件が指定されます。<br>集計レポートの出力方法についてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/12068324682393 "

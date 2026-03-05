@@ -1,0 +1,33 @@
+type: object
+properties:
+  department_id:
+    type: string
+    example: "JIN0001"
+    description: "所属グループID"
+  jinji_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "人事タグに貼付けされた組織タグのID"
+  manager_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "マネージャータグに貼付けされた組織タグのID"
+  business_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "経営タグに貼付けされた組織タグのID"

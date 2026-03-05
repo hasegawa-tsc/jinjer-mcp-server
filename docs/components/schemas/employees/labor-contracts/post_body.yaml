@@ -1,0 +1,106 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  labor_contracts:
+    type: object
+    required:
+      - contract_on
+      - period_start_on
+    properties:
+      contract_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "契約年月日"
+      fixed_term_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "期間の定めID<br>0:未選択<br>1:あり<br>2:なし"
+      period_start_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "開始年月日"
+      period_end_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "満了年月日"
+      update_status_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "更新ステータスID<br>0:未選択<br>1:更新済<br>2:更新不要"
+      renewal_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "契約更新の有無ID<br>0:未選択<br>1:自動更新<br>2:更新することがある<br>3:更新しない"
+      schedule_working:
+        type: object
+        properties:
+          days:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "5"
+            description: "1週間の所定労働日数"
+          hours:
+            type: string
+            minLength: 0
+            maxLength: 3
+            example: "160"
+            description: "1週間の所定労働時間（時間）"
+          minutes:
+            type: string
+            minLength: 0
+            maxLength: 2
+            example: "0"
+            description: "1週間の所定労働時間（分）"
+      remarks1:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "◯◯という備考です。"
+        description: "備考1"
+      remarks2:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "◯◯という備考です。"
+        description: "備考2"
+      remarks3:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "◯◯という備考です。"
+        description: "備考3"

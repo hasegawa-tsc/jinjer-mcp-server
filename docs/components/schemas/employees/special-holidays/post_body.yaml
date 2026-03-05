@@ -1,0 +1,66 @@
+type: object
+required:
+  - employee_id
+  - employee_holidays
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  employee_holidays:
+    type: object
+    required:
+      - special_holiday
+    properties:
+      special_holiday:
+        type: object
+        required:
+          - special_holiday_setting
+          - days_of_holiday
+          - period_started_at
+          - period_ended_at
+          - expired_at
+        properties:
+          special_holiday_setting:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                type: string
+                minLength: 1
+                maxLength: 10
+                example: "1"
+                description: "特別休暇設定ID<br>特別休暇設定IDは `GET /v1/special-holiday-settings` で得られる `id` の値で指定します。<br>自動付与設定 `is_auto_granted` が設定されている特別休暇設定は指定できません。"
+          days_of_holiday:
+            type: string
+            minLength: 1
+            maxLength: 8
+            example: "20"
+            description: "付与日数"
+          period_started_at:
+            type: string
+            minLength: 10
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "有効期間 開始年月日"
+          period_ended_at:
+            type: string
+            minLength: 10
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "有効期間 終了年月日"
+          expired_at:
+            type: string
+            minLength: 10
+            maxLength: 10
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "申請/登録猶予期限 年月日"

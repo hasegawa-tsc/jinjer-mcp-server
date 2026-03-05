@@ -1,0 +1,471 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  company:
+    type: object
+    properties:
+      last_name:
+        type: string
+        example: "神社"
+        description: "職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "職場氏名（名）"
+      last_name_phonetic:
+        type: string
+        example: "ジンジャ"
+        description: "職場氏名（氏）（フリガナ）"
+      first_name_phonetic:
+        type: string
+        example: "イチロウ"
+        description: "職場氏名（名）（フリガナ）"
+      joined_on:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "入社年月日"
+      mobile_number:
+        type: string
+        example: "090-0000-0000"
+        description: "携帯電話番号（社用）"
+      email:
+        type: string
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "E-Mail（社用）"
+      fax_number:
+        type: string
+        example: "03-5908-8291"
+        description: "FAX番号（社用）"
+      ext_number:
+        type: string
+        example: "1001"
+        description: "内線番号"
+      enrollment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "在籍区分ID<br>0:在籍<br>1:退職<br>2:休職"
+          name:
+            type: string
+            example: "退職"
+            description: "在籍区分"
+      employment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "雇用区分ID<br>人事設定＞基本情報＞雇用区分にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "正社員"
+            description: "雇用区分"
+      permission_to_transfer:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "転勤可否ID<br>人事設定＞基本情報＞転勤可否にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "転勤可"
+            description: "転勤可否"
+      solo_transfer_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "単身赴任区分ID<br>人事設定＞基本情報＞単身赴任区分にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "可"
+            description: "単身赴任区分"
+      retirement_date:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "退職年月日"
+      retirement_payment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "退職支給区分ID<br>1:支給する<br>2:支給しない"
+          name:
+            type: string
+            example: "支給する"
+            description: "退職支給区分"
+      retirement_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "退職区分ID<br>人事設定＞基本情報＞退職区分にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "自己都合退職"
+            description: "退職区分"
+      retirement_reason:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "退職理由ID<br>人事設定＞基本情報＞退職理由にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "転職"
+            description: "退職理由"
+          details:
+            type: string
+            example: "◯◯という理由です。"
+            description: "退職理由詳細"
+      retirement_date_of_retirement_age:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "定年退職予定年月日"
+      display_order:
+        type: number
+        example: 2
+        description: "表示順"
+  personal:
+    type: object
+    properties:
+      date_of_birth:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "生年月日"
+      last_name:
+        type: string
+        example: "神社"
+        description: "戸籍氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "戸籍氏名（名）"
+      last_name_phonetic:
+        type: string
+        example: "ジンジャ"
+        description: "戸籍氏名（氏）（フリガナ）"
+      first_name_phonetic:
+        type: string
+        example: "イチロウ"
+        description: "戸籍氏名（名）（フリガナ）"
+      last_name_alphabet:
+        type: string
+        example: "Jinjer"
+        description: "戸籍氏名英字（氏）"
+      first_name_alphabet:
+        type: string
+        example: "Ichiro"
+        description: "戸籍氏名英字（名）"
+      gender:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "性別ID<br>0:未選択<br>1:男性<br>2:女性"
+          name:
+            type: string
+            example: "男性"
+            description: "性別"
+      blood_type:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "血液型ID<br>1:A型<br>2:B型<br>3:O型<br>4:AB型<br>5:不明"
+          name:
+            type: string
+            example: "A型"
+            description: "血液型"
+      japanese_nationality:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "日本国籍ID<br>1:あり<br>2:なし"
+          name:
+            type: string
+            example: "あり"
+            description: "日本国籍"
+      nationality:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "JPN"
+            description: "国名コード"
+          name:
+            type: string
+            example: "Japan"
+            description: "国名"
+      phone_number:
+        type: string
+        example: "03-5908-8291"
+        description: "電話番号（個人）"
+      mobile_number:
+        type: string
+        example: "090-0000-0000"
+        description: "携帯電話（個人）"
+      email:
+        type: string
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "E-Mail（個人）"
+      marital_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "婚姻区分ID<br>1:未婚<br>2:既婚<br>3:離婚<br>4:再婚"
+          name:
+            type: string
+            example: "未婚"
+            description: "婚姻区分"
+      marital_date:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "婚姻年月日"
+      place_of_birth:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "出身地ID<br>人事設定＞基本情報＞出身地にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "北海道"
+            description: "出身地"
+  addresses:
+    type: array
+    items:
+      type: object
+      properties:
+        date_of_moving:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "住所 転居年月日"
+        residential_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住所 住居区分ID<br>人事設定＞基本情報＞住居区分にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "持ち家（自己名義）"
+              description: "住所 住居区分"
+        zip_code:
+          type: string
+          example: "060-0001"
+          description: "住所 郵便番号"
+        phonetic:
+          type: string
+          example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+          description: "住所 住所（フリガナ）"
+        prefecture:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住所 都道府県ID"
+            name:
+              type: string
+              example: "北海道"
+              description: "住所 都道府県"
+        municipality:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "101"
+              description: "住所 市区町村ID"
+            name:
+              type: string
+              example: "札幌市中央区"
+              description: "住所 市区町村"
+        street:
+          type: string
+          example: "北１条西２丁目"
+          description: "住所 丁目･番地"
+        building:
+          type: string
+          example: "札幌ビル"
+          description: "住所 建物名"
+  residence_addresses:
+    type: array
+    items:
+      type: object
+      properties:
+        date_of_moving:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "住民票住所 転居年月日"
+        residential_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住民票住所 住居区分ID<br>人事設定＞基本情報＞住居区分にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "持ち家（自己名義）"
+              description: "住民票住所 住居区分"
+        zip_code:
+          type: string
+          example: "060-0001"
+          description: "住民票住所 郵便番号"
+        phonetic:
+          type: string
+          example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+          description: "住民票住所 住所（フリガナ）"
+        prefecture:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住民票住所 都道府県ID"
+            name:
+              type: string
+              example: "北海道"
+              description: "住民票住所 都道府県"
+        municipality:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "101"
+              description: "住民票住所 市区町村ID"
+            name:
+              type: string
+              example: "札幌市中央区"
+              description: "住民票住所 市区町村"
+        street:
+          type: string
+          example: "北１条西２丁目"
+          description: "住民票住所 丁目･番地"
+        building:
+          type: string
+          example: "札幌ビル"
+          description: "住民票住所 建物名"
+  emergency_contacts:
+    type: array
+    items:
+      type: object
+      properties:
+        last_name_phonetic:
+          type: string
+          example: "ジンジャ"
+          description: "緊急連絡先 氏（フリガナ）"
+        last_name:
+          type: string
+          example: "神社花子"
+          description: "緊急連絡先 氏"
+        first_name_phonetic:
+          type: string
+          example: "ハナコ"
+          description: "緊急連絡先 名（フリガナ）"
+        first_name:
+          type: string
+          example: "花子"
+          description: "緊急連絡先 名"
+        phone_number:
+          type: string
+          example: "090-0000-0000"
+          description: "緊急連絡先 電話番号"
+        relationship:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "緊急連絡先 続柄ID<br>人事設定＞家族＞続柄にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "妻"
+              description: "緊急連絡先 続柄"
+        zip_code:
+          type: string
+          example: "060-0001"
+          description: "緊急連絡先 郵便番号"
+        address_phonetic:
+          type: string
+          example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+          description: "緊急連絡先 住所（フリガナ）"
+        prefecture:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "緊急連絡先 都道府県ID"
+            name:
+              type: string
+              example: "北海道"
+              description: "緊急連絡先 都道府県"
+        municipality:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "101"
+              description: "緊急連絡先 市区町村ID"
+            name:
+              type: string
+              example: "札幌市中央区"
+              description: "緊急連絡先 市区町村"
+        street:
+          type: string
+          example: "北１条西２丁目"
+          description: "緊急連絡先 丁目･番地"
+        building:
+          type: string
+          example: "札幌ビル"
+          description: "緊急連絡先 建物名"
+        email:
+          type: string
+          example: "jinjer_customer@jinjer.co.jp"
+          description: "緊急連絡先 E-mail"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

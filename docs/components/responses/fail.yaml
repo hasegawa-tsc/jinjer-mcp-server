@@ -1,0 +1,22 @@
+type: object
+properties:
+  results:
+    type: string
+    example: failure
+  errors:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          description: Error's code
+          type: string
+          example: "{{Error Code}}"
+        reason:
+          description: Error's reason
+          type: string
+          example: "{{Response status}}."
+        message:
+          description: Error's message
+          type: string
+          example: "{{Message}}"

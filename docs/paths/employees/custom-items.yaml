@@ -1,0 +1,39 @@
+get:
+  tags:
+    - 従業員 カスタム項目
+  summary: /v1/employees/custom-items
+  description: "従業員に紐づくカスタム項目を取得する。"
+  operationId: employeescustomitemsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/employee-ids
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/employees/custom-items/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

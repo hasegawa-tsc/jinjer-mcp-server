@@ -1,0 +1,44 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "労務提出先ID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "札幌公共職業安定所"
+    description: "労務提出先名"
+  type:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "D"
+        description: "労務提出先種別ID<br>D:公共職業安定所<br>E:事務センター<br>F:年金事務所<br>G:船保年金事務所<br>H:労働基準監督署又は公共職業安定所<br>I:労働基準監督署<br>J:労働局又は労働基準監督署<br>K:労働局"
+      name:
+        type: string
+        example: "公共職業安定所"
+        description: "労務提出先種別名"
+  prefecture:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "都道府県ID"
+      name:
+        type: string
+        example: "北海道"
+        description: "都道府県名"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

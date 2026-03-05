@@ -1,0 +1,91 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  educational_backgrounds:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "学歴ID"
+          type: string
+          example: "1234"
+        school_name:
+          description: "学校名"
+          type: string
+          example: "生姜大学"
+        faculty:
+          description: "学部名"
+          type: string
+          example: "理工学部"
+        department:
+          description: "学科名"
+          type: string
+          example: "生命医科学科"
+        major:
+          description: "専攻名"
+          type: string
+          example: "生命医科学専攻"
+        event_date:
+          description: "入卒年月"
+          type: string
+          example: "2021-04"
+        event_classification:
+          type: object
+          properties:
+            id:
+              description: "入卒区分ID<br>人事設定＞学歴＞入卒区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "入卒区分"
+              type: string
+              example: "入学"
+        education_classification:
+          type: object
+          properties:
+            id:
+              description: "学歴区分ID<br>人事設定＞学歴＞学歴区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "7"
+            name:
+              description: "学歴区分"
+              type: string
+              example: "大学"
+        department_classification:
+          type: object
+          properties:
+            id:
+              description: "文理区分ID<br>人事設定＞学歴＞文理区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "2"
+            name:
+              description: "文理区分"
+              type: string
+              example: "理系"
+        management_classification:
+          type: object
+          properties:
+            id:
+              description: "公私区分ID<br>人事設定＞学歴＞公私区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "3"
+            name:
+              description: "公私区分"
+              type: string
+              example: "私立"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-01-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-01-01 10:00:00"

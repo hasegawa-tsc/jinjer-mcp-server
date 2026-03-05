@@ -1,0 +1,146 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+type: object
+properties:
+  results:
+    type: string
+    example: "success"
+  data:
+    allOf:
+      - $ref: "../base.yaml"
+      - type: object
+        properties:
+          request_form:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "3"
+                description: "申請フォームID"
+              name:
+                type: string
+                example: "異動申請（兼務）"
+                description: "申請フォーム名"
+          sub_affiliation_change:
+            type: object
+            properties:
+              employee:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "JIN0001"
+                    description: "異動申請（兼務） > 社員番号"
+                  last_name:
+                    type: string
+                    example: "神社"
+                    description: "異動申請（兼務） > 職場氏名（氏）"
+                  first_name:
+                    type: string
+                    example: "一郎"
+                    description: "異動申請（兼務） > 職場氏名（名）"
+              date_of_issue:
+                type: string
+                format: date
+                pattern: yyyy-MM-dd
+                example: "2024-04-13"
+                description: "異動申請（兼務） > 発令年月日"
+              sub_affiliations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    department:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 所属グループID"
+                        name:
+                          type: string
+                          example: "第一営業部"
+                          description: "異動申請（兼務） > 所属グループ"
+                    change_classification:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 異動区分ID"
+                        name:
+                          type: string
+                          example: "昇格"
+                          description: "異動申請（兼務） > 異動区分"
+                    employee_post:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 役職ID"
+                        name:
+                          type: string
+                          example: "部長"
+                          description: "異動申請（兼務） > 役職"
+                    work_location:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 勤務地ID"
+                        name:
+                          type: string
+                          example: "本社"
+                          description: "異動申請（兼務） > 勤務地"
+                    job_classification:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 職種ID"
+                        name:
+                          type: string
+                          example: "企画職"
+                          description: "異動申請（兼務） > 職種"
+                    duty_classification:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "1"
+                          description: "異動申請（兼務） > 職務ID"
+                        name:
+                          type: string
+                          example: "商品企画"
+                          description: "異動申請（兼務） > 職務"
+                    optional_classifications:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          number:
+                            type: number
+                            example: 1
+                            description: "異動申請（兼務） > 任意項目番号<br>任意項目の1-3に対応します。"
+                          label:
+                            type: string
+                            example: "任意項目"
+                            description: "異動申請（兼務） > 任意項目名称"
+                          id:
+                            type: string
+                            example: "1"
+                            description: "異動申請（兼務） > 任意項目ID"
+                          value:
+                            type: string
+                            example: "選択肢1"
+                            description: "異動申請（兼務） > 任意項目の選択肢"
+                    end_date_of_issue:
+                      type: string
+                      format: date
+                      pattern: yyyy-MM-dd
+                      example: "2024-04-13"
+                      description: "異動申請（兼務） > 兼務終了年月日"
+              custom_details:
+                $ref: "../custom_details.yaml"

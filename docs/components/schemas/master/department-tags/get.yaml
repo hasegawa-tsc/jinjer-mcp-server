@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "組織タグID<br>マスタにて任意に登録されるIDです。"
+  name:
+    type: string
+    example: "金のなる木"
+    description: "組織タグ名"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  is_jinji_tag:
+    type: boolean
+    example: true
+    description: "人事フラグ<br>true の場合、人事タグとして利用可能です。"
+  is_manager_tag:
+    type: boolean
+    example: true
+    description: "マネージャーフラグ<br>true の場合、マネージャータグとして利用可能です。"
+  is_business_tag:
+    type: boolean
+    example: true
+    description: "経営フラグ<br>true の場合、経営タグとして利用可能です。"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

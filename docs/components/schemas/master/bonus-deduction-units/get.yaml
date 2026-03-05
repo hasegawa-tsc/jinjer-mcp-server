@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "賞与控除単価ID<br>マスタにて表示されるNo.（連番）です。"
+  name:
+    type: string
+    example: "単価1"
+    description: "賞与控除単価名"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

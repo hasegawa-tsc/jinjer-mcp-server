@@ -1,0 +1,84 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  evaluations:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 10
+        example: "1"
+        description: "評価ID<br>従業員管理＞評価で表示されるNo.（連番）です。"
+      eval_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "評価実施年月日"
+      period_start_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "人事評価対象期間（自）"
+      period_end_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "人事評価対象期間（至）"
+      eval_system:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "成果評価"
+        description: "実施評価体系"
+      evaluator_id:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "2"
+        description: "評価者 社員番号"
+      score:
+        type: string
+        minLength: 0
+        maxLength: 13
+        example: "2"
+        description: "評価pt"
+      eval_result:
+        type: string
+        minLength: 0
+        maxLength: 4
+        example: "2"
+        description: "評価判定"
+      performance_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "パフォーマンス区分ID<br>1:ハイパフォーマー<br>2:ミドルパフォーマー <br>3:ローパフォーマー"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"

@@ -1,0 +1,760 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  statements:
+    type: array
+    items:
+      type: object
+      properties:
+        executed_on:
+          type: string
+          format: date
+          pattern: yyyy-MM
+          example: "2024-04"
+          description: "処理月"
+        basic_info:
+          type: object
+          properties:
+            last_name:
+              type: string
+              example: "神社"
+              description: "職場氏名（氏）"
+            first_name:
+              type: string
+              example: "一郎"
+              description: "職場氏名（名）"
+            last_name_phonetic:
+              type: string
+              example: "ジンジャ"
+              description: "職場氏名（氏）（フリガナ）"
+            first_name_phonetic:
+              type: string
+              example: "イチロウ"
+              description: "職場氏名（名）（フリガナ）"
+            joined_on:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "入社年月日"
+            enrollment_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "在籍区分ID<br>0:在籍<br>1:退職<br>2:休職"
+                name:
+                  type: string
+                  example: "退職"
+                  description: "在籍区分"
+            employment_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "雇用区分ID<br>人事設定＞基本情報＞雇用区分にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "正社員"
+                  description: "雇用区分"
+            retirement_date:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "退職年月日"
+            salary_payment_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "給与支給区分ID<br>0:未選択<br>1:支給する<br>2:支給しない"
+                name:
+                  type: string
+                  example: "支給する"
+                  description: "給与支給区分"
+            taxation_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "課税区分ID<br>0:未選択<br>1:甲欄<br>2:乙欄<br>3:指定税率<br>4:課税不要"
+                name:
+                  type: string
+                  example: "甲欄"
+                  description: "課税区分"
+            taxation_monthly_designation:
+              type: object
+              properties:
+                classification:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                      description: "月次指定ID<br>1:税率<br>2:税額"
+                    name:
+                      type: string
+                      example: "税率"
+                      description: "月次指定"
+                rate:
+                  type: number
+                  example: 12.3
+                  description: "月次指定税率"
+                amount:
+                  type: number
+                  example: 50000
+                  description: "月次指定税額"
+            widow_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "寡婦区分ID<br>0:未選択<br>1:対象外<br>2:寡婦<br>4:ひとり親"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "寡婦区分"
+            disability_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "障害者区分ID<br>0:未選択<br>1:対象外<br>2:一般障害者<br>3:特別障害者"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "障害者区分"
+            working_student_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "勤労学生区分ID<br>0:未選択<br>1:対象外<br>2:勤労学生"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "勤労学生区分"
+            minor_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "未成年者区分ID<br>0:未選択<br>1:対象外<br>2:未成年者"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "未成年者区分"
+            disaster_relief_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "災害者区分ID<br>0:未選択<br>1:対象外<br>2:災害者"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "災害者区分"
+            foreign_nationality_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "外国人区分ID<br>0:未選択<br>1:対象外<br>2:外国人"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "外国人区分"
+            resident_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "居住者区分ID<br>0:未選択<br>1:居住者<br>2:非居住者"
+                name:
+                  type: string
+                  example: "居住者"
+                  description: "居住者区分"
+            salary_system:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "給与体系ID<br>給与設定＞給与体系にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "通常給与体系"
+                  description: "給与体系"
+            payment_municipality:
+              type: object
+              properties:
+                national_local_government_code:
+                  type: string
+                  example: "011011"
+                  description: "納付先市区町村ID<br>人事設定＞納付先情報＞市区町村にて登録されているマスタの市区町村コードが出力されます。"
+                name:
+                  type: string
+                  example: "札幌市中央区"
+                  description: "納付先市区町村"
+            resident_tax_collection:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "住民税徴収方法ID<br>0:未選択<br>1:特別徴収<br>2:普通徴収"
+                name:
+                  type: string
+                  example: "特別徴収"
+                  description: "住民税徴収方法"
+            resident_tax_collection_after_retirement:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "退職時住民税徴収方法ID<br>0:未選択<br>1:特別徴収継続<br>2:一括徴収<br>3:普通徴収"
+                name:
+                  type: string
+                  example: "特別徴収継続"
+                  description: "退職時住民税徴収方法"
+            payment_method_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "支払方法ID<br>1:口座1全額<br>2:口座1固定額/口座2残額<br>3:口座1固定額/現金残額<br>4:口座1・口座2固定額/現金残額<br>5:口座1・現金固定額/口座2残額<br>6:現金全額<br>7:現金固定額/口座1残額<br>8:口座1・口座2固定額/口座3残額"
+                name:
+                  type: string
+                  example: "口座1全額"
+                  description: "支払方法"
+            social_insurance_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "社保加入区分ID<br>0:未選択<br>1:加入<br>2:未加入"
+                name:
+                  type: string
+                  example: "加入"
+                  description: "社保加入区分"
+            part_time_job_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "パート区分ID<br>0:未選択<br>1:対象外<br>2:対象（パート）<br>3:対象（短時間）"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "パート区分"
+            health_insurance_calculation_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "健康保険計算区分<br>0:被保険者（対象）<br>1:75歳以上（対象外）<br>2:対象外"
+                name:
+                  type: string
+                  example: "75歳以上（対象外）"
+                  description: "健康保険計算区分"
+            parental_leave_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "育児休業区分<br>0:未選択<br>1:対象"
+                name:
+                  type: string
+                  example: "対象"
+                  description: "育児休業区分"
+            care_insurance_calculation_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "介護保険計算区分ID<br>0:対象外<br>1:第1号被保険者<br>2:第2号被保険者<br>3:特定被保険者（徴収）"
+                name:
+                  type: string
+                  example: "第1号被保険者"
+                  description: "介護保険計算区分"
+            employees_pension:
+              type: object
+              properties:
+                calculation_classification:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                      description: "厚生年金計算区分ID<br>0:被保険者（対象）<br>1:70歳以上（対象外）<br>2:対象外"
+                    name:
+                      type: string
+                      example: "70歳以上（対象外）"
+                      description: "厚生年金計算区分"
+            compensation_insurance_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "労災保険区分ID<br>0:未選択<br>1:計算する<br>2:計算しない<br>3:計算する（役員）"
+                name:
+                  type: string
+                  example: "計算する"
+                  description: "労災保険区分"
+            employment_insurance_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "雇用保険区分ID<br>0:未選択<br>1:計算する<br>2:計算しない<br>3:計算する（役員）"
+                name:
+                  type: string
+                  example: "計算する"
+                  description: "雇用保険区分"
+            high_age_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "高年齢区分ID<br>0:未選択<br>1:対象外<br>2:対象"
+                name:
+                  type: string
+                  example: "対象外"
+                  description: "高齢区分"
+            health_insurance:
+              type: number
+              example: 123456
+              description: "健康保険の標準報酬月額"
+            employee_pension:
+              type: number
+              example: 123456
+              description: "厚生年金の標準報酬月額"
+            department:
+              type: string
+              example: "第一営業部"
+              description: "主務 所属グループ名"
+            employee_post_rank:
+              type: string
+              example: "部長"
+              description: "主務 役職ランク"
+            employee_post:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 役職ID<br>人事設定＞所属＞役職にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "第一営業部"
+                  description: "主務 役職"
+            work_location:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 勤務地ID<br>人事設定＞所属＞勤務地にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "本社"
+                  description: "主務 勤務地"
+            job_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 職種ID<br>人事設定＞所属＞職種にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "企画職"
+                  description: "主務 職種"
+            duty_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 職務ID<br>人事設定＞所属＞職務にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "商品企画"
+                  description: "主務 職務"
+            last_update:
+              type: object
+              properties:
+                updater:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "JIN0002"
+                      description: "最終更新者の社員番号"
+            is_social_insurance_calculated:
+              type: boolean
+              example: true
+              description: "社会保険料算出フラグ<br>true:社会保険料算出済<br>false:社会保険料算出未済"
+            allowance1:
+              type: number
+              example: 1234
+              description: "給与支給単価1"
+            salary_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "給与区分ID<br>0:未選択<br>1:完全月給<br>2:日給月給<br>3:日給<br>4:時給"
+                name:
+                  type: string
+                  example: "完全月給"
+                  description: "給与区分"
+            elderly_fund_classification:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "厚年基金区分ID<br>0:未加入<br>1:加入"
+                name:
+                  type: string
+                  example: "加入"
+                  description: "厚年基金区分"
+            gender:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "性別ID<br>0:未選択<br>1:男<br>2:女"
+                name:
+                  type: string
+                  example: "男"
+                  description: "性別"
+            date_of_birth:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "生年月日"
+            payment_company:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "納付元会社ID"
+                name:
+                  type: string
+                  example: "Jinjer株式会社"
+                  description: "納付元会社名"
+                name_phonetic:
+                  type: string
+                  example: "ジンジャーカブシキガイシャ"
+                  description: "納付元会社名（フリガナ）"
+                address_phonetic:
+                  type: string
+                  example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+                  description: "納付元会社住所（フリガナ）"
+        dependent_info:
+          type: object
+          properties:
+            spouse_classification:
+              type: string
+              example: "控除対象"
+              description: "配偶者区分ID<br>控除対象 or 未選択 (-)"
+            elderly_spouse_classification:
+              type: string
+              example: "対象"
+              description: "配偶者老人区分ID<br>対象 or 未選択 (-)"
+            disabled_spouse_classification:
+              type: string
+              example: "対象外"
+              description: "配偶者障害区分ID<br>一般障害者 or 同居特別障害者 or 非同居特別障害者 or 対象外"
+            headcount_of_elderly_dependents:
+              type: string
+              example: "2"
+              description: "老人扶養人数"
+            headcount_of_general_dependents:
+              type: string
+              example: "2"
+              description: "一般扶養人数"
+            headcount_of_specified_dependents:
+              type: string
+              example: "2"
+              description: "特定扶養人数"
+            headcount_of_dependents_with_general_disabilities:
+              type: string
+              example: "2"
+              description: "一般障害人数"
+            headcount_of_dependents_with_special_disabilities:
+              type: string
+              example: "2"
+              description: "特別障害人数"
+            headcount_of_people_with_special_disabilities_living_together:
+              type: string
+              example: "2"
+              description: "同居特別障害人数"
+            headcount_of_elderly_parents_living_together:
+              type: string
+              example: "2"
+              description: "同居老親人数"
+            headcount_of_minor_dependents:
+              type: string
+              example: "2"
+              description: "年少扶養者"
+            headcount_of_family_dependents:
+              type: string
+              example: "2"
+              description: "家族扶養合計"
+            total_headcount_of_dependents:
+              type: string
+              example: "2"
+              description: "扶養合計"
+            headcount_of_specific_family_members:
+              type: string
+              example: "2"
+              description: "特定親族人数"
+            headcount_of_family_members_eligible_for_withholding_deduction:
+              type: string
+              example: "2"
+              description: "源泉控除対象親族数"
+        payroll_info:
+          type: object
+          properties:
+            is_calculated:
+              type: boolean
+              example: true
+              description: "計算実行フラグ<br>true:計算実行済<br>false:計算未実行済"
+            is_recalculated:
+              type: boolean
+              example: true
+              description: "再計算実行フラグ<br>true:再計算実行済<br>false:再計算未実行済"
+            salary_system:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "給与体系ID<br>給与設定＞給与体系にて登録されているマスタのIDが出力されます。"
+                name:
+                  type: string
+                  example: "通常給与体系"
+                  description: "給与体系名"
+                supply_month:
+                  type: string
+                  example: "1"
+                  description: "給与体系支給月<br>0:翌月<br>1:当月"
+                closing_date:
+                  type: string
+                  example: "13"
+                  description: "給与体系締め日"
+            is_payroll_closed:
+              type: boolean
+              example: true
+              description: "締め処理フラグ<br>true:締め処理済<br>false:締め処理未済"
+            detail_message:
+              type: string
+              example: "◯◯という備考です。"
+              description: "明細メッセージ"
+            salary_items:
+              type: array
+              description: "支給項目"
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "allowance33"
+                    description: "支給項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "法定内残業手当"
+                    description: '支給項目 共通項目名称<br>給与設定＞共通項目名称＞給与支給項目にて登録されている "法定内残業手当" 等の項目名称が出力されます。'
+                  salary_system_label:
+                    type: string
+                    example: "法定内残業手当"
+                    description: '支給項目 給与体系名称<br>給与設定＞給与体系＞給与支給項目にて登録されている "法定内残業手当" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 123456
+                    description: "支給項目値"
+            salary_deduction_items:
+              type: array
+              description: "控除項目"
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "deduction28"
+                    description: "控除項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "雇用保険料"
+                    description: '控除項目 共通項目名称<br>給与設定＞共通項目名称＞給与控除項目にて登録されている "雇用保険料" 等の項目名称が出力されます。'
+                  salary_system_label:
+                    type: string
+                    example: "雇用保険料"
+                    description: '控除項目 給与体系名称<br>給与設定＞給与体系＞給与控除項目にて登録されている "雇用保険料" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 123456
+                    description: "控除項目値"
+            salary_attendance_items:
+              type: array
+              description: "勤怠項目"
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "kintai1"
+                    description: "勤怠項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "出勤日数"
+                    description: '勤怠項目 共通項目名称<br>給与設定＞共通項目名称＞給与勤怠項目にて登録されている "出勤日数" 等の項目名称が出力されます。'
+                  salary_system_label:
+                    type: string
+                    example: "出勤日数"
+                    description: '勤怠項目名 給与体系名称<br>給与設定＞給与体系＞給与勤怠項目にて登録されている "出勤日数" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 160.12
+                    description: "勤怠項目値"
+            salary_payment_items:
+              type: array
+              description: "支払項目"
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "payment1"
+                    description: "支払項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "差引支給額"
+                    description: '支払項目 名称<br>"差引支給額" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 123456
+                    description: "支払項目値"
+            salary_other_items:
+              type: array
+              description: その他項目
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "other6"
+                    description: "その他項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "労災保険対象額"
+                    description: 'その他項目 名称<br>"源泉対象額" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 123456
+                    description: "その他項目値"
+            salary_fixed_tax_abatement_items:
+              type: array
+              description: 定額減税項目
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "amount"
+                    description: "定額減税項目ID<br>システム上で自動で発番される一意のIDです。"
+                  label:
+                    type: string
+                    example: "定額減税額"
+                    description: '定額減税項目 名称<br>"定額減税額" 等の項目名称が出力されます。'
+                  value:
+                    type: number
+                    example: 123456
+                    description: "定額減税項目値"
+            is_checked_not_to_apply_formulas:
+              type: boolean
+              example: true
+              description: "給与データ訂正時の計算方法<br>「編集した項目は計算式設定を適用しない」にチェックをつけたかどうかが出力されます。<br>true:チェックあり<br>false:チェックなし"
+            paid_on:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "支給日"
+            created_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-07-16 12:59:32"
+              description: "作成日時"
+            updated_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-07-16 12:59:32"
+              description: "更新日時"
+        revision_info:
+          type: array
+          items:
+            type: object
+            properties:
+              admin_note:
+                type: string
+                example: "◯◯という備考です。"
+                description: "管理者メモ"
+              is_revised:
+                type: boolean
+                example: true
+                description: "変更フラグ<br>true:変更あり<br>false:変更なし"
+              is_salary_system_revised:
+                type: boolean
+                example: true
+                description: "給与体系変更フラグ<br>true:変更あり<br>false:変更なし"
+              is_employee_info_revised:
+                type: boolean
+                example: true
+                description: "従業員情報変更フラグ<br>true:変更あり<br>false:変更なし"
+              created_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "作成日時"
+              updated_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "更新日時"

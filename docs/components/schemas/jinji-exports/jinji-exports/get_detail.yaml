@@ -1,0 +1,74 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "エクスポートID<br>システム上で自動で発番される一意のIDです。<br><br>`POST /v1/jinji-exports` で受け付けたエクスポート処理が、何らかの理由で失敗した等の理由により本エンドポイントでレスポンスされない場合があります。<br>出力処理の状況は、マスタアカウントに送信される通知メールまたは UI のエクスポート＞エクスポート結果一覧にてご確認ください。<br><br>以下を含むファイルはエクスポートできません。これらを含むファイルのエクスポートはUI（エクスポート＞人事＞デフォルトテンプレートまたはカスタムテンプレート）から実施してください。<br>- マスタアカウントのロール設定の範囲外の情報<br>- 従業員情報＞マイナンバーに属する項目"
+  name:
+    type: string
+    example: "1"
+    description: "エクスポート テンプレート名"
+  template:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1234567"
+        description: "エクスポート 出力テンプレートID<br>カスタムテンプレートの場合、出力時に指定された出力テンプレートのIDを返却します。<br>デフォルトテンプレート及び年調収集の場合、空文字を返却します。"
+      name:
+        type: string
+        example: "ジンジャー会計フォーマット"
+        description: "エクスポート 出力テンプレート名<br>カスタムテンプレートの場合、出力時に指定された出力テンプレートの名称を返却します。<br>デフォルトテンプレート及び年調収集の場合、空文字を返却します。"
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "エクスポート 実行者 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "エクスポート 実行者 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "エクスポート 実行者 職場氏名（名）"
+  application:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "エクスポート アプリケーションID"
+      name:
+        type: string
+        example: "人事労務"
+        description: "エクスポート アプリケーション名"
+  output_file:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "仕訳データ_800080_20240924.csv"
+        description: "エクスポート ファイル名"
+      extension:
+        type: string
+        example: "csv"
+        description: "エクスポート ファイル拡張子"
+      temporary_url:
+        type: string
+        example: "https://example.com/file.csv"
+        description: "エクスポート ファイルURL"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

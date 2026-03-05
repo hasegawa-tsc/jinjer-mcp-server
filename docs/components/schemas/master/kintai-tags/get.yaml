@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "勤怠タグID<br>マスタにて任意に登録されるIDです。"
+  name:
+    type: string
+    example: "フルタイム"
+    description: "勤怠タグ名"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

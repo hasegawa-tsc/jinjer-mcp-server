@@ -1,0 +1,49 @@
+type: object
+properties:
+  id:
+    description: "役職ID<br>マスタにて任意に登録されるIDです。"
+    type: string
+    example: "1"
+  name:
+    description: "役職名"
+    type: string
+    example: "取締役"
+  rank:
+    description: "ランク"
+    type: integer
+    example: 1
+  officer_classification:
+    type: object
+    properties:
+      id:
+        description: "役員区分ID<br>0:役員<br>1:役員以外"
+        type: integer
+        example: 1
+      name:
+        description: "役員区分名"
+        type: string
+        example: "役員以外"
+  date_of_activation:
+    description: "開始日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2020-01-01"
+  date_of_abolition:
+    description: "廃止日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2021-01-01"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2020-01-01 10:00:00"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2020-01-01 10:00:00"

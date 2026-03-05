@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "役職ID"
+  name:
+    type: string
+    example: "部長"
+    description: "役職名"

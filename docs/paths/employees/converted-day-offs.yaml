@@ -1,0 +1,50 @@
+get:
+  tags:
+    - 従業員 振休代休データ
+  summary: /v1/employees/converted-day-offs
+  description: "従業員に紐づく振休代休データを取得する。"
+  operationId: employees-converted-day-offs-get
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: employee-id
+      in: query
+      schema:
+        type: string
+        example: JIN0001
+        description: "指定された社員番号の社員の振休代休データを返却します。<br>社員番号が指定されていない場合、エラーを返却します。"
+      required: true
+    - name: month
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        example: 2023-04
+        description: "取得する振休代休データの年月を指定します。<br>年月は月度（締めの単位）ではなく暦月で指定します。<br>年月が指定されていない場合、エラーを返却します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/converted-day-offs/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

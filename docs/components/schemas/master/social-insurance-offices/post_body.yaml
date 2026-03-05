@@ -1,0 +1,464 @@
+type: object
+required:
+  - id
+  - name
+  - activate_date
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 3
+    example: "1"
+    description: "社会保険事業所コード<br>企業が任意に登録できるIDです。"
+  name:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "◯◯社会保険事業所"
+    description: "社会保険事業所名"
+  activate_date:
+    type: string
+    minLength: 10
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "適用開始日"
+  active:
+    type: boolean
+    minLength: 4
+    maxLength: 5
+    example: true
+    description: "有効ステータス<br>true:有効<br>false:無効"
+  insurer:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 4
+        example: "1"
+        description: "保険者ID (健康保険書類タイプID)<br>保険者は `GET /v1/master/insurers` で得られる `id` の値（保険者ID）で指定します。"
+  health_insurance_number:
+    type: string
+    minLength: 0
+    maxLength: 8
+    example: "1234567"
+    description: "健保保険者番号"
+  health_insurance_office_mark:
+    type: string
+    minLength: 0
+    maxLength: 8
+    example: "1234567"
+    description: "健保事業所整理記号"
+  employee_pension_office_mark:
+    type: string
+    minLength: 0
+    maxLength: 9
+    example: "49-ムミテ"
+    description: "厚年事業所整理記号"
+  employee_pension_office_number:
+    type: string
+    minLength: 5
+    maxLength: 5
+    example: "12345"
+    description: "厚年事業所整理番号"
+  pension_office:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 4
+        example: "943"
+        description: "管轄年金事務所ID<br>労務提出先として年金事務所を指定することができます。<br>労務提出先は `GET /v1/master/submission-places` で得られる `id` の値（労務提出先ID）で指定します。"
+  administration_center:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 4
+        example: "618"
+        description: "管轄事務センターID<br>労務提出先として事務センターを指定することができます。<br>労務提出先は `GET /v1/master/submission-places` で得られる `id` の値（労務提出先ID）で指定します。"
+  information_for_electronic_application:
+    type: object
+    properties:
+      office_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "◯◯社会保険事業所"
+        description: "電子申請用情報 事業所名称"
+      business_owner_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "神社二郎"
+        description: "電子申請用情報 事業主氏名"
+      phone_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "03-5908-8291"
+        description: "電子申請用情報 電話番号"
+      zip_code:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "電子申請用情報 郵便番号"
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "電子申請用情報 都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+      street_and_building:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "北１条西２丁目"
+        description: "電子申請用情報 丁目・番地・建物名・ 部屋番号"
+  health_insurance_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "健保料率給与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "健保端数給与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  health_insurance_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "健保料率給与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "健保端数給与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  health_insurance_bonus_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "健保料率賞与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "健保端数賞与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  health_insurance_bonus_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "健保料率賞与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "健保端数賞与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  calculate_care_insurance_by_health_insurance:
+    type: string
+    minLength: 0
+    maxLength: 1
+    example: "1"
+    description: "健康保険料を用いて計算する場合は 1<br>その他の場合は 0"
+  care_insurance_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "介護料率給与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "介護端数給与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  care_insurance_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "介護料率給与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "介護端数給与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  care_insurance_bonus_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "介護料率賞与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "介護端数賞与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  care_insurance_bonus_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "介護料率賞与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "介護端数賞与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "厚年料率給与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "厚年端数給与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "厚年料率給与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "厚年端数給与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_bonus_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "厚年料率賞与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "厚年端数賞与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_bonus_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "厚年料率賞与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "厚年端数賞与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_fund_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "基金料率給与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基金端数給与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_fund_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "基金料率給与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基金端数給与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_fund_bonus_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "基金料率賞与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基金端数賞与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employee_pension_fund_bonus_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "基金料率賞与個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "基金端数賞与個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  child_contribution_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "児童料率給与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "児童端数給与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  child_contribution_bonus_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1.1000"
+        description: "児童料率賞与全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "児童端数賞与全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  health_insurance_bonus_limit:
+    type: number
+    minLength: 0
+    maxLength: 7
+    example: 1234567
+    description: "標準賞与健保上限"
+  bonus_employee_limit:
+    type: number
+    minLength: 0
+    maxLength: 7
+    example: 1234567
+    description: "標準賞与厚年上限"

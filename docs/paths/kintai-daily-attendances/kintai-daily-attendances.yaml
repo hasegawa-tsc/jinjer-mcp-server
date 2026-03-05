@@ -1,0 +1,52 @@
+get:
+  tags:
+    - 勤怠 日次打刻データ
+  summary: /v1/kintai-daily-attendances
+  description: "勤怠 日次打刻データを取得する。"
+  operationId: get-kintai-daily-attendances
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-04-01"
+        description: "取得する勤務データの年月日を指定します。<br>年月日が指定されていない場合、エラーを返却します。"
+      required: true
+    - name: store-id
+      in: query
+      schema:
+        type: string
+        example: Store1
+        description: "打刻グループを1つのみ指定します。<br>打刻グループは `GET /v1/stores` で得られる `id` の値（打刻グループID）で指定します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/kintai-daily-attendances/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

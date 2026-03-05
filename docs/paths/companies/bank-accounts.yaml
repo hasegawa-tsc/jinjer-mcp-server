@@ -1,0 +1,38 @@
+get:
+  tags:
+    - 企業情報 企業銀行
+  summary: /v1/companies/bank-accounts
+  description: "企業情報 企業銀行を取得する。"
+  operationId: get-bank-accounts
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/companies/bank-accounts/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

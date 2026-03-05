@@ -1,0 +1,93 @@
+type: object
+properties:
+  employee_id:
+    description: 社員番号
+    type: string
+    example: "JIN0001"
+  labor_hour_settings:
+    type: array
+    items:
+      type: object
+      properties:
+        year:
+          description: 対象年
+          type: string
+          format: date
+          pattern: "yyyy"
+          example: "2012"
+        months:
+          type: array
+          items:
+            type: object
+            properties:
+              month:
+                description: 対象月
+                type: string
+                example: "1"
+              working_hours:
+                description: 所定労働時間
+                type: string
+                example: "160"
+              working_hours_condition:
+                type: object
+                properties:
+                  id:
+                    description: "所定労働時間の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+                    type: string
+                    example: "1"
+                  name:
+                    description: "所定労働時間の条件"
+                    type: string
+                    example: "以上"
+              holidays:
+                description: 休日日数
+                type: string
+                example: "20"
+              holidays_condition:
+                type: object
+                properties:
+                  id:
+                    description: "休日日数の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+                    type: string
+                    example: "1"
+                  name:
+                    description: "休日日数の条件"
+                    type: string
+                    example: "以上"
+              legal_holidays:
+                description: 法定休日日数
+                type: string
+                example: "4"
+              legal_holidays_condition:
+                type: object
+                properties:
+                  id:
+                    description: "法定休日日数の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+                    type: string
+                    example: "2"
+                  name:
+                    description: "法定休日日数の条件"
+                    type: string
+                    example: "と等しい"
+  target_days_of_annual_leave:
+    description: "年休取得目標日数"
+    type: string
+    example: "10"
+  starting_date_of_paid_leave:
+    description: "有休起算日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2023-07-10"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2023-07-10 11:53:46"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2023-07-11 12:59:32"

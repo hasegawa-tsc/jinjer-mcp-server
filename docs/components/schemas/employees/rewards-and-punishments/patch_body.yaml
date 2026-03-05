@@ -1,0 +1,85 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  rewards_and_punishments:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "賞罰ID"
+      start_date:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "賞罰発令日"
+      end_date:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "賞罰失効日"
+      money:
+        type: number
+        minLength: 0
+        maxLength: 8
+        example: 1234
+        description: "報奨金/減額金"
+      classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "賞罰区分ID<br>0:未選択<br>1:表彰<br>2:懲罰<br>賞罰区分が指定されておらず、かつ懲罰区分または表彰区分が指定されている場合、エラーを返却します"
+      punishment_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "懲罰区分ID<br>人事設定＞賞罰＞懲罰区分にて登録されているマスタのIDが設定可能です。"
+      commendation_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "表彰区分ID<br>人事設定＞賞罰＞表彰区分にて登録されているマスタのIDが設定可能です。"
+      application_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "適用事項ID<br>人事設定＞賞罰＞適用事項にて登録されているマスタのIDが設定可能です。"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"

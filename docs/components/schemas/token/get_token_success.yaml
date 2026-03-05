@@ -1,0 +1,9 @@
+    type: object
+    properties:
+      results:
+        type: string
+        example: success
+      data:
+        type: object
+        properties:
+          $ref: get_token_data.yaml

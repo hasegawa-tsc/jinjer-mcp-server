@@ -1,0 +1,8 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "スケジュール雛形ID<br>従業員や打刻グループに紐づけられているスケジュール雛形の削除はできません。利用中のスケジュール雛形の削除はUI（勤怠管理者画面＞従業員設定＞スケジュール雛形）から実施してください。"

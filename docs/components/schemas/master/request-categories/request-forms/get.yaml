@@ -1,0 +1,185 @@
+type: object
+properties:
+  request_categories:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "申請区分ID<br>以下のいずれかに該当する申請区分はワークフロー申請書のエンドポイント (`/v1/workflow-requests`) では取り扱いません。<br>2:勤怠<br>2x:勤怠2<br>3:経費"
+        name:
+          type: string
+          example: "人事"
+          description: "申請区分名"
+        display_order:
+          type: number
+          example: 2
+          description: "表示順"
+        active:
+          type: boolean
+          example: true
+          description: "有効ステータス"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"
+        request_forms:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "申請フォームID<br>申請区分が以下のいずれかに該当する申請フォームはワークフロー申請書のエンドポイント (`/v1/workflow-requests`) では取り扱いません。<br>2:勤怠<br>2x:勤怠2<br>3:経費"
+              name:
+                type: string
+                example: "入社申請"
+                description: "申請フォーム名"
+              description:
+                type: string
+                example: "◯◯という備考です。"
+                description: "管理者用メモ"
+              overview:
+                type: string
+                example: "◯◯という備考です。"
+                description: "概要説明"
+              display_order:
+                type: number
+                example: 2
+                description: "表示順"
+              public:
+                type: boolean
+                example: true
+                description: "フォームの公開<br>true の場合、公開されます。<br>false の場合、公開されません。"
+              recommended:
+                type: boolean
+                example: true
+                description: "お気に入りの初期設定<br>true の場合、お気に入りに初期設定されます。<br>false の場合、お気に入りに初期設定されません。"
+              detail:
+                type: object
+                properties:
+                  requester_edit_type:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "承認ルート編集（申請者）ID<br>1:利用可<br>2:利用不可"
+                      name:
+                        type: string
+                        example: "利用可"
+                        description: "承認ルート編集（申請者）"
+                  approver_edit_type:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "承認ルート編集（承認者）ID<br>1:利用可<br>2:利用不可"
+                      name:
+                        type: string
+                        example: "利用可"
+                        description: "承認ルート編集（承認者）"
+                  self_approval_type:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "自己承認の制御ID<br>1:許可する<br>2:警告する<br>3:禁止する"
+                      name:
+                        type: string
+                        example: "許可する"
+                        description: "自己承認の制御"
+                  viewing_type:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "回覧ID<br>1:利用可<br>0:利用不可"
+                      name:
+                        type: string
+                        example: "利用可"
+                        description: "回覧"
+                  viewers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "JIN0002"
+                          description: "回覧者 > 社員番号"
+                        last_name:
+                          type: string
+                          example: "神社"
+                          description: "回覧者 > 職場氏名（氏）"
+                        first_name:
+                          type: string
+                          example: "二郎"
+                          description: "回覧者 > 職場氏名（名）"
+                  browsability_type:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "申請書の閲覧ID<br>1:許可する<br>0:許可しない"
+                      name:
+                        type: string
+                        example: "許可する"
+                        description: "申請書の閲覧"
+              numbering:
+                type: object
+                properties:
+                  method:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "1"
+                        description: "採番方式ID<br>1:数字<br>2:英数字（数字の前に文字をつける）<br>3:英数字（数字の後ろに文字をつける）<br>4:英数字（数字の前後両方に文字をつける）"
+                      name:
+                        type: string
+                        example: "数字"
+                        description: "採番方式"
+                  prefix:
+                    type: string
+                    example: "AA"
+                    description: "採番方式 > 前につける文字"
+                  suffix:
+                    type: string
+                    example: "AA"
+                    description: "採番方式 > 後ろにつける文字"
+                  digit:
+                    type: string
+                    example: "2"
+                    description: "数字の桁数"
+                  next_number:
+                    type: string
+                    example: "2"
+                    description: "採番開始番号"
+              created_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "作成日時"
+              updated_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "更新日時"

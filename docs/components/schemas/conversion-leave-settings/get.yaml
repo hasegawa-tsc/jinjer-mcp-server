@@ -1,0 +1,50 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "振休設定ID"
+  name:
+    type: string
+    example: "正社員用"
+    description: "振休設定名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  is_conversion_leave_granted:
+    type: boolean
+    example: true
+    description: "振休付与<br>true:する<br>false:しない"
+  expiration_period_classification:
+    type: number
+    example: 1
+    description: "消滅日基準<br>1:付与日基準<br>0:締め日基準"
+  expiration_period:
+    type: number
+    example: 2
+    description: "消滅日<br>-1:無期限<br>0:当月<br>1~24:ヶ月後"
+  is_half_day_off_available:
+    type: boolean
+    example: true
+    description: "半休申請<br>true:利用できる<br>false:利用できない"
+  is_time_off_available:
+    type: boolean
+    example: true
+    description: "振休の時間付与<br>true:設定する<br>false:設定しない"
+  is_conversion_leave_date_required_on_holiday_work_application:
+    type: boolean
+    example: true
+    description: "休日出勤申請時の振休取得日設定<br>true:できる<br>false:できない"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

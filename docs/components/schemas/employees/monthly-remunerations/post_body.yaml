@@ -1,0 +1,62 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  monthly_remunerations:
+    type: object
+    required:
+      - year
+      - month
+    properties:
+      year:
+        type: string
+        minLength: 4
+        maxLength: 4
+        format: date
+        pattern: yyyy
+        example: "2024"
+        description: "基準年"
+      month:
+        type: string
+        minLength: 1
+        maxLength: 2
+        format: date
+        pattern: MM
+        example: "01"
+        description: "基準月"
+      health_insurance:
+        type: object
+        properties:
+          standard_fee:
+            type: string
+            minLength: 0
+            maxLength: 7
+            example: "88000"
+            description: "健康保険の標準報酬月額<br>標準報酬月額または報酬月額のいずれかの入力が必須です。"
+          fee:
+            type: string
+            minLength: 0
+            maxLength: 9
+            example: "88000"
+            description: "健康保険の報酬月額<br>データベースには標準報酬月額に換算された後の値のみ保存されます。<br>標準報酬月額または報酬月額のいずれかの入力が必須です。"
+      employee_pension:
+        type: object
+        properties:
+          standard_fee:
+            type: string
+            minLength: 0
+            maxLength: 7
+            example: "88000"
+            description: "厚生年金の標準報酬月額<br>標準報酬月額または報酬月額のいずれかの入力が必須です。"
+          fee:
+            type: string
+            minLength: 0
+            maxLength: 9
+            example: "88000"
+            description: "厚生年金の報酬月額<br>データベースには標準報酬月額に換算された後の値のみ保存されます。<br>標準報酬月額または報酬月額のいずれかの入力が必須です。"

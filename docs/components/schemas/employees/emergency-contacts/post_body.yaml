@@ -1,0 +1,91 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  emergency_contacts:
+    type: object
+    required:
+      - last_name
+      - first_name
+    properties:
+      last_name_phonetic:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "ジンジャ"
+        description: "緊急連絡先 氏（フリガナ）<br>半角カナまたは全角カナで入力可能です。"
+      last_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "神社"
+        description: "緊急連絡先 氏"
+      first_name_phonetic:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "ハナコ"
+        description: "緊急連絡先 名（フリガナ）<br>半角カナまたは全角カナで入力可能です。"
+      first_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "花子"
+        description: "緊急連絡先 名"
+      phone_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "090-0000-0000"
+        description: "緊急連絡先 電話番号"
+      relationship:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "緊急連絡先 続柄<br>人事設定にて登録されているマスタのIDが設定可能です。"
+      zip_code:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "緊急連絡先 郵便番号"
+      address_phonetic:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+        description: "緊急連絡先 住所（フリガナ）"
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "緊急連絡先 都道府県/市区町村<br>全国地方公共団体コードを指定可能です。<br>全国地方公共団体コードは `/v1/master/municipalities` で得られる `national_local_government_code` の値で指定します。"
+      street:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "北１条西２丁目"
+        description: "緊急連絡先 丁目･番地"
+      building:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "札幌ビル"
+        description: "緊急連絡先 建物名"
+      email:
+        type: string
+        minLength: 3
+        maxLength: 256
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "緊急連絡先 E-mail"

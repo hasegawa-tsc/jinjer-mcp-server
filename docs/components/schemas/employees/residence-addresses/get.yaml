@@ -1,0 +1,86 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  residence_addresses:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "住民票住所ID<br>従業員管理＞基本情報＞住民票住所で表示されるNo.（連番）です。"
+        date_of_moving:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "住民票住所 転居年月日"
+        residential_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住民票住所 住居区分ID<br>人事設定＞基本情報＞住居区分にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "持ち家（自己名義）"
+              description: "住民票住所 住居区分"
+        zip_code:
+          type: string
+          example: "060-0001"
+          description: "住民票住所 郵便番号"
+        phonetic:
+          type: string
+          example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+          description: "住民票住所 住所（フリガナ）"
+        national_local_government_code:
+          type: string
+          example: "011011"
+          description: "住民票住所  都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+        prefecture:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住民票住所 都道府県ID"
+            name:
+              type: string
+              example: "北海道"
+              description: "住民票住所 都道府県"
+        municipality:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "101"
+              description: "住民票住所 市区町村ID"
+            name:
+              type: string
+              example: "札幌市中央区"
+              description: "住民票住所 市区町村"
+        street:
+          type: string
+          example: "北１条西２丁目"
+          description: "住民票住所 丁目･番地"
+        building:
+          type: string
+          example: "札幌ビル"
+          description: "住民票住所 建物名"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

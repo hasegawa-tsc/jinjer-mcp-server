@@ -1,0 +1,70 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  payment_method_classification_id:
+    type: string
+    minLength: 0
+    maxLength: 1
+    example: "1"
+    description: "支払方法ID<br>0:未選択<br>1:口座1全額<br>2:口座1固定額/口座2残額<br>3:口座1固定額/現金残額<br>4:口座1・口座2固定額/現金残額<br>5:口座1・現金固定額/口座2残額<br>6:現金全額<br>7:現金固定額/口座1残額<br>8:口座1・口座2固定額/口座3残額"
+  transfer_source_bank_account_id_1:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座1振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが設定可能です。<br>支払方法IDが 1,2,3,4,5,7,8 のいずれか、かつ振込元が指定されていない場合、エラーを返却します。"
+  transfer_bank_account_id_1:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座1振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが登録可能です。<br>支払方法IDが 1,2,3,4,5,7,8 のいずれか、かつ振込先が指定されていない場合、エラーを返却します。"
+  transfer_bank_account_fixed_amount_1:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "100000"
+    description: "口座1固定額<br>支払方法IDが 2,3,4,5,8 のいずれか、かつ固定額が指定されていない場合、エラーを返却します。"
+  transfer_source_bank_account_id_2:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座2振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが設定可能です。<br>支払方法IDが 2,4,5,8 のいずれか、かつ振込元が指定されていない場合、エラーを返却します。"
+  transfer_bank_account_id_2:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座2振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが登録可能です。<br>支払方法IDが 2,4,5,8 のいずれか、かつ振込先が指定されていない場合、エラーを返却します。"
+  transfer_bank_account_fixed_amount_2:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "100000"
+    description: "口座2固定額<br>支払方法IDが 4,8 のいずれか、かつ固定額が指定されていない場合、エラーを返却します。"
+  transfer_source_bank_account_id_3:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座3振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが設定可能です。<br>支払方法IDが 8 かつ振込元が指定されていない場合、エラーを返却します。"
+  transfer_bank_account_id_3:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "口座3振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが登録可能です。<br>支払方法IDが 8 かつ振込先が指定されていない場合、エラーを返却します。"
+  fixed_cash_amount:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "100000"
+    description: "現金固定額<br>支払方法IDが 5,7 のいずれか、かつ固定額が指定されていない場合、エラーを返却します。"

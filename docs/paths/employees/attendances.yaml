@@ -1,0 +1,91 @@
+get:
+  tags:
+    - 従業員 打刻データ
+  summary: /v1/employees/attendances
+  description: "従業員に紐づく打刻データを取得する。"
+  operationId: Employees_attendancesGetList
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: employee-id
+      in: query
+      schema:
+        type: string
+        example: JIN0001
+        description: "指定された社員番号の社員の打刻データを返却します。<br>社員番号が指定されていない場合、エラーを返却します。"
+      required: true
+    - name: month
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        example: 2023-04
+        description: "取得する打刻データの年月を指定します。<br>年月が指定されていない場合、エラーを返却します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/attendances/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+post:
+  tags:
+    - 従業員 打刻データ
+  summary: /v1/employees/attendances
+  description: "従業員に紐づく打刻データを登録する。"
+  operationId: post-attendances
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/attendances/post_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/attendances/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

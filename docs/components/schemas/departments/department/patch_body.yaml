@@ -1,0 +1,134 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "1"
+    description: "所属グループID"
+  name:
+    type: string
+    minLength: 1
+    maxLength: 100
+    example: "第一営業部"
+    description: "所属グループ名"
+  phonetic:
+    type: string
+    minLength: 0
+    maxLength: 50
+    example: "ダイイチエイギョウブ"
+    description: "所属グループ名（フリガナ）"
+  abbreviation:
+    type: string
+    minLength: 0
+    maxLength: 15
+    example: "一営"
+    description: "略称"
+  date_of_establishment:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "設立年月日"
+  date_of_abolition:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "廃止年月日<br>最上位の所属グループには登録/更新できません。"
+  phone_number:
+    type: string
+    minLength: 0
+    maxLength: 11
+    example: "03-5908-8291"
+    description: "電話番号"
+  fax_number:
+    type: string
+    minLength: 0
+    maxLength: 11
+    example: "050-3537-7813"
+    description: "FAX番号"
+  address:
+    type: object
+    properties:
+      zip_code:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "郵便番号"
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "都道府県/市区町村<br>全国地方公共団体コードを指定可能です。<br>全国地方公共団体コードは `/v1/master/municipalities` で得られる `national_local_government_code` の値で指定します。"
+      street:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "北１条西２丁目"
+        description: "丁目･番地"
+      building:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "札幌ビル"
+        description: "建物名・部屋番号"
+      phonetic:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+        description: "住所（フリガナ）"
+  labor_insurance_number:
+    type: string
+    minLength: 0
+    maxLength: 18
+    example: "12-3-45-678901-234"
+    description: "労働保険番号"
+  employment_insurance_office_number:
+    type: string
+    minLength: 0
+    maxLength: 13
+    example: "1234-456789-0"
+    description: "雇用保険事業所番号"
+  parent_department_id:
+    type: string
+    minLength: 0
+    maxLength: 50
+    example: "1"
+    description: "親所属グループID<br>子所属グループが存在する場合、親所属グループIDは指定できません。親所属グループの変更はUI（所属グループ管理＞所属グループ編集）から実施してください。"
+  hierarchy:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "1"
+        description: "階層ID<br>階層IDは `GET /v1/master/hierarchies` で得られる `id` の値（階層ID）で指定します。<br>子所属グループが存在する場合、階層IDは指定できません。階層の変更はUI（所属グループ管理＞所属グループ編集）から実施してください。"
+  manager_employee_id:
+    type: string
+    minLength: 0
+    maxLength: 50
+    example: "JIN0002"
+    description: "所属長の社員番号"
+  accounting_department_id:
+    type: string
+    minLength: 0
+    maxLength: 20
+    example: "1"
+    description: "計上部門<br>計上部門は `GET /v1/master/accounting-departments`<br>で得られる `id` の値（計上部門ID）で指定します。"
+  display_order:
+    type: integer
+    minLength: 0
+    maxLength: 9
+    example: 2
+    description: "表示順"

@@ -1,0 +1,98 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  converted_day_offs:
+    type: array
+    items:
+      type: object
+      properties:
+        store:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "打刻グループID"
+            name:
+              type: string
+              example: "第一営業部グループ"
+              description: "打刻グループ名"
+        date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "対象日付"
+        status:
+          type: string
+          example: "1"
+          description: "振休代休申請ステータス<br>0:未対応<br>1:承認<br>2:否認"
+        day_off_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "振休代休名ID<br>0:振休<br>3:代休"
+            name:
+              type: string
+              example: "振休"
+              description: "振休代休名"
+        duration_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "振休代休種別ID<br>0:全日<br>1:午前休<br>2:午後休"
+            name:
+              type: string
+              example: "午前休"
+              description: "振休代休種別"
+        holiday_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "休日種別ID<br>0:法定休日<br>1:所定休日<br>2:振休代休"
+            name:
+              type: string
+              example: "所定休日"
+              description: "休日種別"
+        holiday_work_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "休日出勤種別ID<br>0:振替<br>1:時間外"
+            name:
+              type: string
+              example: "時間外"
+              description: "休日出勤種別"
+        reason:
+          type: string
+          example: "◯◯という備考です。"
+          description: "振休代休理由"
+        expired_at:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "有効期限"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

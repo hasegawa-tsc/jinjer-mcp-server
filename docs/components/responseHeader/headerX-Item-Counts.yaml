@@ -1,0 +1,3 @@
+schema: 
+  type: integer
+description: "このエンドポイントで取り扱うリソースの総数を確認できます。"

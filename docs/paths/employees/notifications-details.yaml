@@ -1,0 +1,59 @@
+get:
+  tags:
+    - 従業員 通知
+  summary: /v1/employees/notifications/{id}
+  description: "従業員に紐づく通知詳細を取得する。"
+  operationId: get_id-notifications
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: string
+        example: "JIN0001"
+        description: "社員番号を指定します。"
+      required: true
+    - name: notified-at-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-01"
+        description: "指定された年月日以降に通知されたデータを返却します。<br>年月日が指定されていない場合、もしくは1ヶ月以上の期間が指定されている場合、エラーを返却します。"
+      required: true
+    - name: notified-at-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-31"
+        description: "指定された年月日以前に通知されたデータを返却します。<br>年月日が指定されていない場合、もしくは1ヶ月以上の期間が指定されている場合、エラーを返却します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/notifications-detail/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

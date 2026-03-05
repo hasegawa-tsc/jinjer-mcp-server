@@ -1,0 +1,126 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  sub_affiliations:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "兼務 所属ID"
+          type: string
+          example: "361493"
+        date_of_issue:
+          description: "兼務 発令年月日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2018-02-01"
+        change_classification:
+          type: object
+          properties:
+            id:
+              description: "兼務 異動区分ID<br>人事設定＞所属＞異動区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "6"
+            name:
+              description: "兼務 異動区分"
+              type: string
+              example: "配属"
+        department:
+          type: object
+          properties:
+            id:
+              description: "兼務 所属グループID"
+              type: string
+              example: "1"
+            name:
+              description: "兼務 所属グループ"
+              type: string
+              example: "JinjerAPI検証株式会社"
+        employee_post:
+          type: object
+          properties:
+            id:
+              description: "兼務 役職ID<br>人事設定＞所属＞役職にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "兼務 役職"
+              type: string
+              example: "マネージャー"
+        work_location:
+          type: object
+          properties:
+            id:
+              description: "兼務 勤務地ID<br>人事設定＞所属＞勤務地にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "兼務 勤務地"
+              type: string
+              example: "本社"
+        job_classification:
+          type: object
+          properties:
+            id:
+              description: "兼務 職種ID<br>人事設定＞所属＞職種にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "4"
+            name:
+              description: "兼務 職種"
+              type: string
+              example: "技術職"
+        duty_classification:
+          type: object
+          properties:
+            id:
+              description: "兼務 職務ID<br>人事設定＞所属＞職務にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "兼務 職務"
+              type: string
+              example: "QC"
+        optional_classifications:
+          type: array
+          items:
+            type: object
+            properties:
+              number:
+                description: "兼務 任意項目番号<br>任意項目の1-3に対応します。"
+                type: integer
+                example: 1
+              label:
+                description: "兼務 任意項目名称"
+                type: string
+                example: "所属任意項目1"
+              id:
+                description: "兼務 任意項目ID<br>人事設定＞所属＞任意項目1~3にて登録されているマスタのIDが出力されます。"
+                type: string
+                example: "1"
+              value:
+                description: "兼務 任意項目の選択肢"
+                type: string
+                example: "所属任意項目1_1"
+        end_date_of_issue:
+          description: "兼務 兼務終了年月日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2023-01-31"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2020-01-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018-01-01 10:00:00"

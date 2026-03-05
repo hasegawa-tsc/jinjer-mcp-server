@@ -1,0 +1,21 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  kintai_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "勤怠タグに貼付けされたタグのID<br>人事設定＞タグ＞勤怠タグにて登録されているマスタのIDが設定可能です。"

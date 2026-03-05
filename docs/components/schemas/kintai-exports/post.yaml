@@ -1,0 +1,29 @@
+type: object
+properties:
+  export_format_type:
+    type: string
+    example: "1"
+    description: "出力フォーマット種別"
+  generic_data:
+    type: object
+    properties:
+      period_type:
+        type: string
+        example: "1"
+        description: "汎用データ 出力期間"
+      period_month:
+        type: string
+        example: "2024-04"
+        description: "汎用データ 出力期間 月指定 対象月"
+      period_started_on:
+        type: string
+        example: "2024-04-13"
+        description: "汎用データ 出力期間 期間指定 開始日"
+      period_ended_on:
+        type: string
+        example: "2024-04-13"
+        description: "汎用データ 出力期間 期間指定 終了日"
+      round_type:
+        type: string
+        example: "1"
+        description: "汎用データ 出力データ区分"

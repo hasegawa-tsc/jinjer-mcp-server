@@ -1,0 +1,39 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  customize_menu:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 10
+        example: "1"
+        description: "カスタム項目ID"
+      customize_item:
+        type: array
+        items:
+          type: object
+          required:
+            - id
+            - value
+          properties:
+            id:
+              type: string
+              minLength: 1
+              maxLength: 10
+              example: "1"
+              description: "項目追加の項目ID"
+            value:
+              type: array or string
+              example: "2021-01-01"
+              description: "項目羅列の項目登録値/項目追加の項目登録値"

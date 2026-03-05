@@ -1,0 +1,21 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  mfa_setting:
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "1"
+        description: "2段階認証<br>0:利用しない<br>1:利用する<br><br>2段階認証を利用するには、まず企業の2段階認証の利用（企業設定＞パスワードポリシー＞2段階認証）を有効にする必要があります。"

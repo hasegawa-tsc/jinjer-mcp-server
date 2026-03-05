@@ -1,0 +1,34 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  head_household:
+    type: object
+    properties:
+      last_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "神社"
+        description: "世帯主氏名（氏）"
+      first_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "一郎"
+        description: "世帯主氏名（名）"
+      relationship:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "続柄ID<br>人事設定＞家族＞続柄にて登録されているマスタのIDが設定可能です。"

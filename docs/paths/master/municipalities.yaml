@@ -1,0 +1,49 @@
+get:
+  tags:
+    - 市区町村マスタ
+  summary: /v1/master/municipalities
+  description: "市区町村マスタを取得する。"
+  operationId: municipalitiesGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: prefecture-id
+      in: query
+      schema:
+        type: string
+        example: "13"
+        description: "指定された都道府県に属するデータを返却します。<br>都道府県は `/v1/master/prefectures` で得られる `id` の値（都道府県ID）で指定します。<br>都道府県IDが指定されていない場合、全データを返却します。"
+    - name: municipality-name
+      in: query
+      schema:
+        type: string
+        example: "府中"
+        description: "指定された語句を市区町村名に含むデータを返却します。<br>都道府県名を含まない市区町村名を部分一致で検索します。<br>語句が指定されていない場合、全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/master/municipalities/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

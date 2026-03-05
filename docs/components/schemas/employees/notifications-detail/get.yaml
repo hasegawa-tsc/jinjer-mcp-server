@@ -1,0 +1,342 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  workflow_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "ワークフロー通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "ワークフロー通知 通知種別ID<br>1:承認依頼<br>2:承認<br>3:否認<br>4:差し戻し<br>5:取下げ<br>6:回覧依頼"
+        request:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "JN0000000001AA"
+              description: "ワークフロー通知 申請書No."
+            request_form:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "ワークフロー通知 申請フォームID"
+                name:
+                  type: string
+                  example: "入社申請"
+                  description: "ワークフロー通知 申請フォーム名"
+            requester:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "JIN0001"
+                  description: "ワークフロー通知 申請者 社員番号"
+                last_name:
+                  type: string
+                  example: "神社"
+                  description: "ワークフロー通知 申請者 職場氏名（氏）"
+                first_name:
+                  type: string
+                  example: "一郎"
+                  description: "ワークフロー通知 申請者 職場氏名（名）"
+        content:
+          type: string
+          example: "入社申請の承認依頼があります。"
+          description: "ワークフロー通知 内容"
+        is_read:
+          type: boolean
+          example: true
+          description: "ワークフロー通知 状態<br>true:既読<br>false:未読"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "ワークフロー通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "ワークフロー通知 更新日時"
+  payroll_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "給与明細通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "給与明細通知 通知種別ID<br>1:給与明細<br>2:賞与明細<br>3:源泉徴収票"
+        target_period:
+          type: string
+          example: "2024年"
+          description: "給与明細通知 対象年月または対象年"
+        content:
+          type: string
+          example: "1"
+          description: "給与明細通知 内容<br>0:公開取消<br>1:公開"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "給与明細通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "給与明細通知 更新日時"
+  contract_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "配布書類通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "配布書類通知 通知種別ID<br>1:合意依頼<br>2:合意依頼取消<br>3:合意依頼再送<br>4:破棄依頼<br>5:破棄依頼取消<br>6:破棄依頼再送<br>7:破棄依頼実行"
+        request_title:
+          type: string
+          example: "労働条件通知書合意依頼"
+          description: "配布書類通知 依頼名"
+        content:
+          type: string
+          example: "労働条件通知書への合意が依頼されました。"
+          description: "配布書類通知 内容"
+        is_read:
+          type: boolean
+          example: true
+          description: "配布書類通知 状態<br>true:既読<br>false:未読"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "配布書類通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "配布書類通知 更新日時"
+  year_end_adjustment_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "年末調整通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "年末調整通知 通知種別ID<br>1:回答依頼<br>2:回答取消<br>3:回答依頼再送<br>4:回答再依頼<br>5:回答差戻し<br>6:原本書類差戻し"
+        request_title:
+          type: string
+          example: "年末調整回答依頼"
+          description: "年末調整通知 依頼名"
+        target_period:
+          type: string
+          example: "2024年"
+          description: "年末調整通知 年度"
+        content:
+          type: string
+          example: "年末調整の回答が依頼されました。"
+          description: "年末調整通知 内容"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "年末調整通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "年末調整通知 更新日時"
+  mypage_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "マイページ変更申請 発生時刻"
+        content:
+          type: string
+          example: "変更申請が承認されました。"
+          description: "マイページ変更申請 内容"
+        notified_by:
+          type: string
+          example: "JIN0002"
+          description: "マイページ変更申請 承認者 社員番号"
+        comment:
+          type: string
+          example: "承認しました。"
+          description: "マイページ変更申請 承認/否認コメント"
+        approved_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "マイページ変更申請 承認日時"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "マイページ変更申請 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "マイページ変更申請 更新日時"
+  expense_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "経費通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "経費通知 通知種別ID<br>1:承認通知<br>2:否認通知<br>3:差し戻し通知<br>4:締切アラート<br>5:承認依頼通知<br>6:取り下げ通知<br>7:FBデータ未出力アラート(従業員)<br>8:FBデータ未出力アラート(取引先)<br>9:支払依頼未確定アラート<br>10:ファイル編集通知<br>11:ファイル削除通知<br>12:承認取り消し通知<br>13:代理申請完了通知"
+        request:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "JN0000000001AA"
+              description: "経費通知 申請書No."
+            request_form:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "2"
+                  description: "経費通知 申請フォームID"
+                name:
+                  type: string
+                  example: "経費申請"
+                  description: "経費通知 申請フォーム名"
+            requester:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "JIN0001"
+                  description: "経費通知 申請者 社員番号"
+                last_name:
+                  type: string
+                  example: "神社"
+                  description: "経費通知 申請者 職場氏名（氏）"
+                first_name:
+                  type: string
+                  example: "一郎"
+                  description: "経費通知 申請者 職場氏名（名）"
+        content:
+          type: string
+          example: "交通費申請が承認されました。"
+          description: "経費通知 内容"
+        is_read:
+          type: boolean
+          example: true
+          description: "経費通知 状態<br>true:既読<br>false:未読"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "経費通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "経費通知 更新日時"
+  attendance_notifications:
+    type: array
+    items:
+      type: object
+      properties:
+        store:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "勤怠通知 打刻グループID"
+            name:
+              type: string
+              example: "第一営業部グループ"
+              description: "勤怠通知 打刻グループ名"
+        notified_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "勤怠通知 発生時刻"
+        notified_for:
+          type: string
+          example: "1"
+          description: "勤怠通知 通知種別ID<br>0:全体<br>1:管理者<br>2:従業員<br>9:シフト提出依頼<br>10:承認／否認"
+        title:
+          type: string
+          example: "労働時間超過（月）"
+          description: "勤怠通知 タイトル"
+        content:
+          type: string
+          example: "１ヶ月の総労働時間が90.0時間を超えました。"
+          description: "勤怠通知 内容"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "勤怠通知 作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "勤怠通知 更新日時"

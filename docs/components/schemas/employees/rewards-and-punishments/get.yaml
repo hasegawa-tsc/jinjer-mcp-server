@@ -1,0 +1,91 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: "社員番号"
+    example: "JIN0001"
+  rewards_and_punishments:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "賞罰ID"
+          type: string
+          example: "1"
+        start_date:
+          description: "賞罰発令日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2021-10-01"
+        end_date:
+          description: "賞罰失効日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2021-10-01"
+        money:
+          description: "報奨金/減額金"
+          type: integer
+          example: 100000
+        classification:
+          type: object
+          properties:
+            id:
+              description: "賞罰区分ID<br>0:未選択<br>1:表彰<br>2:懲罰"
+              type: string
+              example: "12"
+            name:
+              description: "賞罰区分"
+              type: string
+              example: "表彰"
+        punishment_classification:
+          type: object
+          properties:
+            id:
+              description: "懲罰区分ID<br>人事設定＞賞罰＞懲罰区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "123"
+            name:
+              description: "懲罰区分"
+              type: string
+              example: "厳重注意"
+        commendation_classification:
+          type: object
+          properties:
+            id:
+              description: "表彰区分ID<br>人事設定＞賞罰＞表彰区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1234"
+            name:
+              description: "表彰区分"
+              type: string
+              example: "社長賞"
+        application_classification:
+          type: object
+          properties:
+            id:
+              description: "適用事項ID<br>人事設定＞賞罰＞適用事項にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "12345"
+            name:
+              description: "適用事項"
+              type: string
+              example: "服務規定違反"
+        remarks:
+          description: "備考"
+          type: string
+          example: "賞罰備考テキスト"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2022-10-01 10:00:00"

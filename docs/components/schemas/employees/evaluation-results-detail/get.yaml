@@ -1,0 +1,84 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  evaluation_integrate:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1234"
+        description: "評価結果項目ID<br>システム上で自動で発番される一意のIDです。"
+      name:
+        type: string
+        example: "第3期下半期人事評価"
+        description: "評価結果項目名"
+      description:
+        type: string
+        example: "第3期下半期人事評価"
+        description: "評価結果項目 説明"
+      date_title:
+        type: string
+        example: "第3期下半期人事評価"
+        description: "評価実施年月日 項目名"
+  evaluation_results:
+    type: array
+    items:
+      type: object
+      properties:
+        number:
+          type: string
+          example: "1"
+          description: "連番"
+        evaluated_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "評価実施年月日"
+        sheets:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "成果評価"
+                description: "人事評価シート イベント名<br>ジンジャー人事評価の仕様変更に伴い、評価シートをAPIで取得することはできなくなりました。評価シートに関する情報はUI（人事評価＞評価シート）でご確認ください。"
+              url:
+                type: string
+                example: "https://example.com/file.jpg"
+                description: "人事評価シート URL<br>ジンジャー人事評価の仕様変更に伴い、評価シートをAPIで取得することはできなくなりました。評価シートに関する情報はUI（人事評価＞評価シート）でご確認ください。"
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1234"
+                description: "評価結果詳細項目ID<br>システム上で自動で発番される一意のIDです。"
+              title:
+                type: string
+                example: "確定"
+                description: "評価結果詳細項目名"
+              value:
+                type: string
+                example: "100"
+                description: "評価結果詳細項目 値"
+              type:
+                type: string
+                example: "number"
+                description: "評価結果詳細項目 入力形式<br>number:数値<br>text:テキスト<br>longtext:ロングテキスト<br>calendar:カレンダー<br>pulldown:プルダウン<br>radio:ラジオボタン"
+              description:
+                type: string
+                example: "◯◯という理由です。"
+                description: "評価結果詳細項目 説明"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

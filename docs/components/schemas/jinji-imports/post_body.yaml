@@ -1,0 +1,96 @@
+type: object
+properties:
+  type:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "1"
+        description: "インポート種別ID<br>1:新規登録<br>2:更新<br>3:新規登録/更新<br>4:履歴追加/更新<br>5:履歴削除<br>7:削除<br><br>以下の入力テンプレートの場合、3の指定が必須です。<br>- メニュー種別が `給与計算`<br>- メニュー種別が `賞与計算`<br>- メニュー種別が `退職金計算`<br>- メニュー種別が `月変算定`<br>- メニュー種別が `年末調整`<br><br>利用できるインポート種別には入力テンプレートごとに制限があります。<br>利用できるインポート種別についてはこちらをご確認ください。<br>https://jinjer-jinji.zendesk.com/hc/ja/articles/360037603472<br><br>一括ファイル登録は利用できません。<br>APIで顔写真などのファイルを登録する場合は `PATCH /v1/async/files` をご利用ください。"
+  template:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 20
+        example: "1234567"
+        description: "入力テンプレートID<br>入力テンプレートIDは `GET /v1/master/jinji-import-templates` で得られる `id` の値で指定します。<br><br>以下の入力テンプレートは利用できません。<br>- デフォルトのテンプレート＞給与単価（一括改定）<br>- ユーザ作成のテンプレート＞メニュー種別が `プロジェクト` のテンプレート<br>- メニュー種別詳細が`従業員管管理＞勤怠2`<br><br>以下は入力テンプレートが存在しないためインポートできません。<br>- メニュー種別が `遡及計算`<br>- メニュー種別が `ワークフロー`<br>- メニュー種別が `年調収集`<br>- メニュー種別が `会計データ設定`<br>- メニュー種別詳細が `従業員情報＞住民税（eLTAX）`<br>- メニュー種別詳細が `経費設定＞税区分` <br>- メニュー種別詳細が `ワークフロー＞個別承認ルート`<br>- メニュー種別詳細が `ワークフロー＞共通承認ルート`<br>- メニュー種別詳細が `ワークフロー＞条件分岐`<br>- メニュー種別詳細が `ワークフロー＞条件分岐(経費)`<br>- メニュー種別詳細が `ワークフロー＞条件分岐(勤怠)`<br>- メニュー種別詳細が `年調収集＞団体保険`<br>- メニュー種別詳細が `年調収集＞企業型確定拠出年金`<br>- メニュー種別詳細が `従業員管理＞従業員情報` かつテンプレートが `退職金計算`<br>- メニュー種別詳細が `会計データ設定＞集計グループ`<br><br>インポート種別が 4:履歴追加/更新 または 5:履歴削除 の場合、ユーザ作成のテンプレートは利用できません。<br>インポート種別が 4:履歴追加/更新 または 5:履歴削除 以外の場合、デフォルトのテンプレートは利用できません。"
+  schedule_setting:
+    type: object
+    properties:
+      classification:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "インポート予約<br>0:登録予約しない<br>1:登録予約する<br><br>以下の入力テンプレートの場合、インポート予約はできません。<br>- メニュー種別が `経費設定` <br>- メニュー種別詳細が `人事設定＞計上部門`"
+      date:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        minLength: 0
+        maxLength: 10
+        example: "2024-04-13"
+        description: "インポート予約年月日<br><br>以下の場合、エラーを返却します。<br>- インポート予約が 0:登録予約しない かつ インポート予約年月日が指定されている<br>- インポート予約が 1:登録予約する かつ インポート予約年月日が指定されていない<br>- インポート予約年月日が今日（リクエスト時点のシステム日付）またはそれ以前"
+      time:
+        type: string
+        format: time
+        pattern: hh
+        minLength: 0
+        maxLength: 2
+        example: "23"
+        description: "インポート予約時刻<br>毎時ちょうどの時刻（0~23）で指定します。<br><br>以下の場合、エラーを返却します。<br>- インポート予約が 0:登録予約しない かつ インポート予約時刻が指定されている<br>- インポート予約が 1:登録予約する かつ インポート予約時刻が指定されていない"
+  salary_setting:
+    type: object
+    properties:
+      executed_on:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        minLength: 0
+        maxLength: 7
+        example: "2024-04"
+        description: "処理月または算定期間<br>以下の入力テンプレートの場合、処理月を指定します。<br>- メニュー種別が `給与計算`<br>- メニュー種別が `賞与計算`<br>- メニュー種別が `退職金計算`<br>以下の入力テンプレートの場合、算定期間の開始月を指定します。<br>- メニュー種別が `月変算定`"
+      bonus_count:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "2"
+        description: "賞与回数<br>以下の入力テンプレートの場合、賞与計算の回数を指定します。<br>- メニュー種別が `賞与計算`"
+      year_of_adjustment:
+        type: string
+        format: date
+        pattern: yyyy
+        minLength: 0
+        maxLength: 4
+        example: "2024"
+        description: "年調処理年<br>以下の入力テンプレートの場合、年調処理年を指定します。<br>- メニュー種別が `年末調整`"
+      is_checked_not_to_apply_formulas:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "計算方法<br>以下の入力テンプレートの場合、「編集した項目は計算式を適用しない」を有効にするかどうかを指定します。<br>- メニュー種別が `給与計算`<br>- メニュー種別が `賞与計算`<br>- メニュー種別が `退職金計算`<br>- メニュー種別が `年末調整` かつメニュー種別詳細が `計算情報`"
+  file:
+    type: object
+    required:
+      - name
+      - encoded_string
+    properties:
+      name:
+        type: string
+        minLength: 1
+        maxLength: 255
+        example: "仕訳データ_800080_20240924.csv"
+        description: "インポートファイル名<br>インポートするファイルのファイル名を指定します。"
+      encoded_string:
+        type: string
+        example: "UE9TVCBQT1NUIFBPU1QgUE9TVA=="
+        description: "インポートファイル<br>インポートするファイルを Base64 エンコード形式で指定します。<br>CSV ファイル、または CSV を圧縮した ZIP ファイルを指定可能です。 <br>複数の CSV ファイルが圧縮された ZIP ファイルの場合、最初の CSV ファイルのみが処理されます。<br><br>本エンドポイントに POST することで、指定された条件とファイルでのインポート処理が予約されます。<br>- インポート処理の状況及び結果は GET でご確認ください。<br>- インポート処理はバッチ処理で実行されます。<br><br>ファイルサイズが大きい場合、またジンジャーAPIへのアクセスが集中している場合、エラーが返却されることがあります。その場合は時間をおいて再度リクエストしてください。"

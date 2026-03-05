@@ -1,0 +1,94 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  induction_courses:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 3
+        example: "1"
+        description: "研修ID"
+      classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "研修名称ID<br>人事設定＞研修＞研修名称にて登録されているマスタのIDが設定可能です。"
+      start_on:
+        type: string
+        minLength: 10
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "開始年月日"
+      end_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "修了年月日"
+      training_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "研修区分ID<br>人事設定＞研修＞研修区分にて登録されているマスタのIDが設定可能です。"
+      completion_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "修了区分ID<br>人事設定＞研修＞修了区分にて登録されているマスタのIDが設定可能です。"
+      organizer:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "主催者ID<br>人事設定＞研修＞主催者にて登録されているマスタのIDが設定可能です。"
+      results_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "成績ID<br>人事設定＞研修＞成績にて登録されているマスタのIDが設定可能です。"
+      cost:
+        type: number
+        minLength: 0
+        maxLength: 8
+        example: 1234
+        description: "研修費用"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "備考"

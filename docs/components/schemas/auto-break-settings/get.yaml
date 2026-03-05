@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "自動休憩設定ID"
+  name:
+    type: string
+    example: "正社員用"
+    description: "自動休憩設定名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  type:
+    type: string
+    example: "1"
+    description: "管理方法<br>0:時刻管理<br>1:時間管理<br>2:休憩実績登録"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

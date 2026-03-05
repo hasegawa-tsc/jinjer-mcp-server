@@ -1,0 +1,108 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "打刻グループID"
+  code:
+    type: string
+    example: "1"
+    description: "打刻グループID"
+  name:
+    type: string
+    example: "第一営業部"
+    description: "打刻グループ名"
+  phonetic:
+    type: string
+    example: "ダイイチエイギョウブ"
+    description: "打刻グループ名（フリガナ）"
+  abbreviation:
+    type: string
+    example: "一営"
+    description: "打刻グループ略称"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス<br>true の場合、従業員の打刻グループとして選択が可能です。<br>false の場合、従業員の打刻グループとして選択できません。"
+  zip_code:
+    type: string
+    example: "060-0001"
+    description: "郵便番号"
+  full_address:
+    type: string
+    example: "北海道札幌市中央区北１条西２丁目"
+    description: "住所"
+  phone_number:
+    type: string
+    example: "03-5908-8291"
+    description: "電話番号"
+  gps_attendance_function:
+    type: object
+    properties:
+      active:
+        type: boolean
+        example: true
+        description: "GPS打刻 有効ステータス<br>true の場合、GPS打刻機能が有効です。<br>false の場合、GPS打刻機能が無効です。"
+      latitude:
+        type: number
+        example: 35.69497633
+        description: "GPS打刻 グループ座標（緯度）"
+      longitude:
+        type: number
+        example: 35.69497633
+        description: "GPS打刻 グループ座標（経度）"
+      available_meter:
+        type: number
+        example: 1234567
+        description: "GPS打刻 許容範囲（半径）"
+  smile_attendance_function:
+    type: object
+    properties:
+      active:
+        type: boolean
+        example: true
+        description: "笑顔判定 有効ステータス<br>true の場合、笑顔判定機能が有効です。<br>false の場合、笑顔判定機能が無効です。"
+  chatwork_room:
+    type: string
+    example: "123456789"
+    description: "Chatwork Room"
+  slack_team_domain:
+    type: string
+    example: "jinjer"
+    description: "Slack チームドメイン"
+  slack_channel_name:
+    type: string
+    example: "Slack打刻専用チャンネル"
+    description: "Slack チャンネル"
+  slack_incomming_url:
+    type: string
+    example: "https://hooks.slack.com/services/ABCDE"
+    description: "Slack Webhook URL"
+  ibeacon_uuid:
+    type: string
+    example: "39ED98FF-2900-441A-802F-9C398FC199D2"
+    description: "ビーコンのUUID"
+  ibeacon_major:
+    type: string
+    example: "100"
+    description: "ビーコンのmajor 値"
+  ibeacon_minor:
+    type: string
+    example: "1"
+    description: "ビーコンのminor 値"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,43 @@
+get:
+  tags:
+    - ロールマスタ
+  summary: /v1/master/roles
+  description: "ロールマスタを取得する。"
+  operationId: rolesGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: application-id
+      in: query
+      schema:
+        type: string
+        example: "1"
+        description: "アプリケーションIDを指定します。<br>アプリケーションIDが指定されていない場合、エラーを返却します。<br>アプリケーションIDは下記のいずれかを指定できます。<br>1:人事労務<br>2:社保手続き<br>3:勤怠<br>4:経費<br>5:ワーク・バイタル<br>6:マイナンバー<br>7:給与<br>10:ワークフロー<br>11:年末調整<br>12:サイン<br>13:請求書<br>15:ジンジャー労務<br>16:人事評価<br>18:勤怠2<br>19:人事データ分析<br>21:サーベイ"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/master/roles/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

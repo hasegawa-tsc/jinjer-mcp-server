@@ -1,0 +1,17 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  residence-addresses:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "住民票住所ID<br>従業員管理＞基本情報＞住民票住所で表示されるNo.（連番）です。"

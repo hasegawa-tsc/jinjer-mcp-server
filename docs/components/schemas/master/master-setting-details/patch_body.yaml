@@ -1,0 +1,42 @@
+type: object
+required:
+  - id
+properties:
+  type:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 2
+        example: "1"
+        description: "マスタ種別<br>対象のマスタの種別を以下のいずれかから指定します。<br>マスタ種別が指定されていない場合、エラーを返却します。<br><br>1:出身地<br>2:雇用区分<br>3:転勤可否<br>4:単身赴任区分<br>5:退職区分<br>6:退職理由<br>7:住居区分<br>8:続柄<br>13:在留資格<br>14:異動区分<br>15:勤務地<br>16:職種<br>17:職務<br>18:任意項目1<br>19:任意項目2<br>20:任意項目3<br>21:入卒区分<br>22:学歴区分<br>23:公私区分<br>24:文理区分<br>25:業種<br>26:採用区分<br>27:採用地<br>28:採用経路<br>29:免許資格区分<br>30:研修区分<br>31:主催者<br>32:研修名称<br>33:修了区分<br>34:成績<br>35:表彰区分<br>36:懲罰区分<br>37:適用事項<br>38:従業員タグ<br>39:組織タグ<br>41:勤怠タグ<br>40:休職区分"
+  id:
+    type: string
+    minLength: 1
+    maxLength: 10
+    example: "1"
+    description: "ID<br>マスタにて任意に登録されるIDです。<br>APIではIDの変更はできません。IDを変更したい場合はUI（人事設定）から変更してください。"
+  name:
+    type: string
+    minLength: 1
+    maxLength: 60
+    example: "商品企画"
+    description: "名称"
+  active:
+    type: boolean
+    minLength: 4
+    maxLength: 5
+    example: true
+    description: "有効ステータス<br>true:有効<br>false:無効"
+  extra1:
+    type: object
+    properties:
+      id:
+        type: array or string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "追加情報1<br>マスタ種別に応じて追加情報を指定できます。<br><br>2:雇用区分 の場合、以下のいずれかを指定できます。<br>1:フルタイム<br>2:パートタイム<br><br>8:続柄 の場合、以下のいずれかを指定できます。<br>1:配偶者<br>2:その他<br>3:親<br>4:子<br><br>15:勤務地 の場合、以下のいずれかを指定できます。<br>0:国内<br>1:海外<br><br>26:採用区分 の場合、以下のいずれかを指定できます。<br>0:新卒<br>1:中途<br><br>38:従業員タグ または 39:組織タグ の場合、<br>boolean の配列 (例. [true,true,true]) を指定できます。 <br>1つ目が true の場合、人事タグとして利用可能です<br>2つ目が true の場合、マネージャー タグとして利用可能です<br>3つ目が true の場合、経営タグとして利用可能です<br>"

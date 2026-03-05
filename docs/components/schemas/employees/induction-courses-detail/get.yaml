@@ -1,0 +1,121 @@
+type: object
+properties:
+  employee_id:
+    description: 社員番号
+    type: string
+    example: "JIN0001"
+  induction_courses:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: 研修ID
+          type: integer
+          example: 123
+        classification:
+          type: object
+          properties:
+            id:
+              description: "研修名称ID<br>人事設定＞研修＞研修名称にて登録されているマスタのIDが出力されます。"
+              type: integer
+              example: 1
+            name:
+              description: 研修名称
+              type: string
+              example: "新入社員研修"
+        start_on:
+          description: 開始年月日
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2023-04-03"
+        end_on:
+          description: 修了年月日
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2023-04-14"
+        training_classification:
+          type: object
+          properties:
+            id:
+              description: "研修区分ID<br>
+  人事設定＞研修＞研修区分にて登録されているマスタのIDが出力されます。"
+              type: integer
+              example: 1
+            name:
+              description: 研修区分
+              type: string
+              example: "社内研修"
+        completion_classification:
+          type: object
+          properties:
+            id:
+              description: "修了区分ID<br>
+  人事設定＞研修＞修了区分にて登録されているマスタのIDが出力されます。"
+              type: integer
+              example: 1
+            name:
+              description: 修了区分
+              type: string
+              example: "修了"
+        organizer:
+          type: object
+          properties:
+            id:
+              description: "主催者ID<br>
+  人事設定＞研修＞主催者にて登録されているマスタのIDが出力されます。"
+              type: integer
+              example: 1
+            name:
+              description: 主催者
+              type: string
+              example: "人事部"
+        results_classification:
+          type: object
+          properties:
+            id:
+              description: "成績ID<br>
+  人事設定＞研修＞成績にて登録されているマスタのIDが出力されます。"
+              type: integer
+              example: 2
+            name:
+              description: 成績
+              type: string
+              example: "A"
+        attached_file:
+          type: object
+          properties:
+            name:
+              description: "研修添付ファイル<br>ファイル名"
+              type: string
+              example: "file.jpg"
+            extension:
+              description: "研修添付ファイル<br>ファイル拡張子"
+              type: string
+              example: "jpg"
+            temporary_url:
+              description: "研修添付ファイル<br>ファイルURL"
+              type: string
+              example: "https://example.com/file.jpg"
+        cost:
+          description: 研修費用
+          type: integer
+          example: 10000
+        remarks:
+          description: 備考
+          type: string
+          example: "特になし"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2023-07-10 11:53:46"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2023-07-11 12:59:32"

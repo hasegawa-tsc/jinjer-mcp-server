@@ -1,0 +1,216 @@
+get:
+  tags:
+    - 従業員 資格・免許
+  summary: /v1/employees/qualifications
+  description: "従業員に紐づく資格・免許を取得する。"
+  operationId: employees-qualifications-get
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/employee-ids
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at
+    - name: qualified-on-period-start-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "取得年月日が指定された年月日以前であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: qualified-on-period-end-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "取得年月日が指定された年月日以降であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: expiration-on-period-start-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "有効期限が指定された年月日以前であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: expiration-on-period-end-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "有効期限が指定された年月日以降であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: renewal-on-period-start-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "更新年月日が指定された年月日以前であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: renewal-on-period-end-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "更新年月日が指定された年月日以降であるデータを返却します。<br>年月日が指定されていなかったら全データを返却します。"
+    - name: classification-id
+      in: query
+      schema:
+        type: integer
+        example: 1
+        description: "指定された資格免許区分IDのデータを返却します。 <br>資格免許区分IDは `GET /v1/master/qualification-classifications` で得られる `id` の値で指定します。<br>資格免許区分IDが指定されていなかったら全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/employees/qualifications/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+post:
+  tags:
+    - 従業員 資格・免許
+  summary: /v1/employees/qualifications
+  description: "従業員に紐づく資格・免許を登録する。"
+  operationId: employees-qualifications-post
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/qualifications/post_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/qualifications/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+patch:
+  tags:
+    - 従業員 資格・免許
+  summary: /v1/employees/qualifications
+  description: "従業員に紐づく資格・免許を更新する。"
+  operationId: employees-qualifications-patch
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/qualifications/patch_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/qualifications/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+delete:
+  tags:
+    - 従業員 資格・免許
+  summary: /v1/employees/qualifications
+  description: "従業員に紐づく資格・免許を削除する。"
+  operationId: employees-qualifications-delete
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/qualifications/delete_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/qualifications/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

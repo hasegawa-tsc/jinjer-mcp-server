@@ -1,0 +1,120 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  labor_contracts:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "労働契約ID"
+        contract_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "契約年月日"
+        fixed_term_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "期間の定めID<br>0:未選択<br>1:あり<br>2:なし"
+            name:
+              type: string
+              example: "あり"
+              description: "期間の定め"
+        period_start_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "開始年月日"
+        period_end_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "満了年月日"
+        update_status_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "更新ステータスID<br>0:未選択<br>1:更新済<br>2:更新不要"
+            name:
+              type: string
+              example: "更新済"
+              description: "更新ステータス"
+        renewal_classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "契約更新の有無ID<br>0:未選択<br>1:自動更新<br>2:更新することがある<br>3:更新しない"
+            name:
+              type: string
+              example: "自動更新"
+              description: "契約更新の有無"
+        schedule_working:
+          type: object
+          properties:
+            days:
+              type: string
+              example: "5"
+              description: "1週間の所定労働日数"
+            hours:
+              type: string
+              example: "160"
+              description: "1週間の所定労働時間（時間）"
+            minutes:
+              type: string
+              example: "0"
+              description: "1週間の所定労働時間（分）"
+        document:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "file.jpg"
+              description: "労働契約書<br>ファイル名"
+            extension:
+              type: string
+              example: "jpg"
+              description: "労働契約書<br>ファイル拡張子"
+            temporary_url:
+              type: string
+              example: "https://example.com/file.jpg"
+              description: "労働契約書<br>ファイルURL"
+        remarks1:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考1"
+        remarks2:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考2"
+        remarks3:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考3"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

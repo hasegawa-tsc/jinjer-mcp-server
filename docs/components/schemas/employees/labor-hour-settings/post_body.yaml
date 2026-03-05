@@ -1,0 +1,95 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  labor_hour_settings:
+    type: object
+    required:
+      - year
+    properties:
+      year:
+        type: number
+        minLength: 4
+        maxLength: 4
+        format: date
+        pattern: yyyy
+        example: 2024
+        description: "対象年"
+      months:
+        type: array
+        items:
+          type: object
+          properties:
+            month:
+              type: string
+              minLength: 1
+              maxLength: 2
+              format: date
+              pattern: m
+              example: "3"
+              description: "対象月"
+            working_hours:
+              type: string
+              minLength: 0
+              maxLength: 7
+              example: "160"
+              description: "所定労働時間<br>小数点以下3桁まで入力できます。"
+            working_hours_condition:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 0
+                  maxLength: 1
+                  example: "1"
+                  description: "所定労働時間の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+            holidays:
+              type: string
+              minLength: 0
+              maxLength: 2
+              example: "8"
+              description: "休日日数"
+            holidays_condition:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 0
+                  maxLength: 1
+                  example: "1"
+                  description: "休日日数の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+            legal_holidays:
+              type: string
+              minLength: 0
+              maxLength: 2
+              example: "4"
+              description: "法定休日日数"
+            legal_holidays_condition:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 0
+                  maxLength: 1
+                  example: "1"
+                  description: "法定休日日数の条件ID<br>0:未選択<br>1:以上<br>2:と等しい"
+      target_days_of_annual_leave:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "10"
+        description: "年休取得目標日数"
+      starting_date_of_paid_leave:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "有休起算日"

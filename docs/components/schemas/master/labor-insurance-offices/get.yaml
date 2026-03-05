@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    description: "労働保険事業所コード<br>企業が任意に登録できるIDです。"
+    type: string
+    example: "1"
+  name:
+    description: "労働保険事業所名<br>適用開始日が最新の労保事業所情報を返却します。"
+    type: string
+    example: "○○労保事業所"
+  activate_date:
+    description: "適用開始日<br>適用開始日が最新の労保事業所情報を返却します。"
+    type: string
+    example: "2020-03-01"
+  active:
+    description: "有効ステータス<br>適用開始日が最新の労保事業所情報を返却します。"
+    type: boolean
+    example: TRUE
+  created_at:
+    description: "作成日時"
+    type: string
+    example: "2018–10–26 21:32:52"
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+  updated_at:
+    description: "更新日時"
+    type: string
+    example: "2018–10–26 21:32:52"
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"

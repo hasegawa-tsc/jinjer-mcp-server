@@ -1,0 +1,10 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号 変更前"
+  new_employee_id:
+    type: string
+    example: "JIN0002"
+    description: "社員番号 変更後"

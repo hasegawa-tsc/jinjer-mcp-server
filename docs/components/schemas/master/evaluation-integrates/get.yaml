@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234"
+    description: "評価結果項目ID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "第3期下半期人事評価"
+    description: "評価結果項目名"
+  description:
+    type: string
+    example: "第3期下半期人事評価"
+    description: "評価結果項目 説明"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

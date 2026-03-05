@@ -1,0 +1,83 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  qualifications:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "資格・免許ID"
+        classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "資格免許区分ID<br>人事設定＞資格・免許＞免許資格区分にて登録されているマスタのIDが出力されます。"
+            name:
+              type: string
+              example: "免許"
+              description: "資格免許区分"
+        qualified_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "取得年月日"
+        expiration_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "有効期限"
+        renewal_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "更新年月日"
+        title:
+          type: string
+          example: "普通自動車第一種免許"
+          description: "資格免許名称"
+        certification_number:
+          type: string
+          example: "1234567"
+          description: "認定番号"
+        certification:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "免許証画像.jpg"
+              description: "資格証明書<br>ファイル名"
+            extension:
+              type: string
+              example: "jpg"
+              description: "資格証明書<br>ファイル拡張子"
+            temporary_url:
+              type: string
+              example: "https://example.com/file.jpg"
+              description: "資格証明書<br>ファイルURL"
+        remarks:
+          type: string
+          example: "◯◯という備考です。"
+          description: "備考"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

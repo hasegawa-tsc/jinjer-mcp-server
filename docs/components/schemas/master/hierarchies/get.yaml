@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    description: "階層ID"
+    type: string
+    example: "1"
+  level:
+    description: "階層<br>階層を表す数値（第一階層の場合1）を返却します。"
+    type: string
+    example: "2"
+  name:
+    description: "マスタ名称"
+    type: string
+    example: "事業本部"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"

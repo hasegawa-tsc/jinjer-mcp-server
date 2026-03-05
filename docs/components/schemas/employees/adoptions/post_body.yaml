@@ -1,0 +1,48 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  adoption:
+    type: object
+    properties:
+      classification:
+        type: object
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            minLength: 1
+            maxLength: 10
+            example: "1"
+            description: "採用区分ID<br>人事設定＞採用＞採用区分にて登録されているマスタのIDが設定可能です。"
+      route_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "採用経路ID<br>人事設定＞採用＞採用経路にて登録されているマスタのIDが設定可能です。"
+      region_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "採用地ID<br>人事設定＞採用＞採用地にて登録されているマスタのIDが設定可能です。"
+      remarks:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "◯◯という備考です。"
+        description: "採用詳細"

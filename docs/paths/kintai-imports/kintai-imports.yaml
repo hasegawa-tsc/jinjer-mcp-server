@@ -1,0 +1,91 @@
+post:
+  tags:
+    - 勤怠 インポート
+  summary: /v1/kintai-imports
+  description: "勤怠 インポートを登録する。"
+  operationId: post-kintai-imports
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/kintai-imports/post_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/kintai-imports/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+get:
+  tags:
+    - 勤怠 インポート
+  summary: /v1/kintai-imports
+  description: "勤怠 インポートを取得する。"
+  operationId: get-kintai-imports
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at-new
+    - name: executor-id
+      in: query
+      schema:
+        type: string
+        example: "JIN0001"
+        description: "指定された社員番号を実行者とするインポート処理のデータを返却します。<br>社員番号が指定されていない場合、マスタアカウントで実行されたインポート処理のデータを返却します。"
+    - name: input-file-name
+      in: query
+      schema:
+        type: string
+        example: "JIN0001"
+        description: "指定された値にファイル名が部分一致するインポート処理のデータを返却します。<br>ファイル名が指定されていない場合、全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/kintai-imports/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

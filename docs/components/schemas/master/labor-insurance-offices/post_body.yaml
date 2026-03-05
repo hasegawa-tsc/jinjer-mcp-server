@@ -1,0 +1,173 @@
+type: object
+required:
+  - id
+  - name
+  - activate_date
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 3
+    example: "1"
+    description: "労働保険事業所コード<br>企業が任意に登録できるIDです。"
+  name:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "◯◯社会保険事業所"
+    description: "労働保険事業所名"
+  activate_date:
+    type: string
+    minLength: 10
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "適用開始日"
+  active:
+    type: boolean
+    minLength: 4
+    maxLength: 5
+    example: true
+    description: "有効ステータス<br>true:有効<br>false:無効"
+  employment_insurance_office_number:
+    type: string
+    minLength: 0
+    maxLength: 13
+    example: "1234-567890-1"
+    description: "雇用保険事業所番号"
+  employment_security_office:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "173"
+        description: "管轄公共職業安定所ID<br>労務提出先として公共職業安定所を指定することができます。<br>労務提出先は `GET /v1/master/submission-places` で得られる `id` の値（労務提出先ID）で指定します。"
+  employment_industry:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "雇保業種ID<br>1:一般事業<br>2:農林水産・清酒製造業<br>3:建設事業"
+  labor_insurance_number:
+    type: string
+    minLength: 0
+    maxLength: 18
+    example: "13-1-01-111111-000"
+    description: "労働保険番号"
+  labor_standards_inspection_office:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "2209"
+        description: "管轄労働基準監督署ID<br>労務提出先として労働基準監督署を指定することができます。<br>労務提出先は `GET /v1/master/submission-places` で得られる `id` の値（労務提出先ID）で指定します。"
+  labor_accident_industry:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "労災業種ID<br>労災業種は `GET /v1/master/labor-industries` で得られる `id` の値（労災業種ID）で指定します。"
+  information_for_electronic_application:
+    type: object
+    properties:
+      office_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "◯◯社会保険事業所"
+        description: "電子申請用情報 事業所名称"
+      business_owner_name:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "神社二郎"
+        description: "電子申請用情報 事業主氏名"
+      phone_number:
+        type: string
+        minLength: 0
+        maxLength: 11
+        example: "03-5908-8291"
+        description: "電子申請用情報 電話番号"
+      zip_code:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "060-0001"
+        description: "電子申請用情報 郵便番号"
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "電子申請用情報 都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+      street_and_building:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "北１条西２丁目"
+        description: "電子申請用情報 丁目・番地・建物名・ 部屋番号"
+  employment_insurance_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 7
+        example: "1.1000"
+        description: "雇用保険料率 全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "雇用保険料率 全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  employment_insurance_individual:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 7
+        example: "1.1000"
+        description: "雇用保険料率 個人 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "雇用保険料率 個人 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"
+  work_accident_insurance_overall:
+    type: object
+    properties:
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 7
+        example: "1.1000"
+        description: "労災保険料率 全体 料率"
+      fraction:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "労災保険料率 全体 端数処理ID<br>0:五捨六入<br>1:切り捨て<br>2:四捨五入<br>3:切り上げ"

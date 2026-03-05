@@ -1,0 +1,49 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 10
+    example: "1"
+    description: "役職ID<br>マスタにて任意に登録されるIDです。<br>APIではIDの変更はできません。IDを変更したい場合はUI（人事設定＞所属＞役職）から変更してください。"
+  name:
+    type: string
+    minLength: 0
+    maxLength: 60
+    example: "部長"
+    description: "役職名"
+  rank:
+    type: number
+    minLength: 1
+    maxLength: 2
+    example: 2
+    description: "ランク"
+  officer_classification:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "役員区分ID<br>0:役員<br>1:役員以外"
+  date_of_activation:
+    type: string
+    minLength: 10
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "開始日"
+  date_of_abolition:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "廃止日"

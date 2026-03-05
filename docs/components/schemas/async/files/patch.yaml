@@ -1,0 +1,32 @@
+type: object
+properties:
+  type:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "ファイル種別ID"
+      name:
+        type: string
+        example: "職歴＞前職源泉徴収票"
+        description: "ファイル種別名"
+  employee_id:
+    type: string
+    example: "1"
+    description: "社員番号"
+  customize_menu:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "ファイル添付先カスタム項目ID"
+      name:
+        type: string
+        example: "カスタム項目(羅列)"
+        description: "ファイル添付先カスタム項目名"
+  record_code:
+    type: string
+    example: "1"
+    description: "ファイル添付先レコード番号"

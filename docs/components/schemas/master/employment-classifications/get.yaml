@@ -1,0 +1,41 @@
+type: object
+properties:
+  id:
+    description: "雇用区分ID<br>マスタにて任意に登録されるIDです。"
+    type: string
+    example: "4"
+  name:
+    description: "雇用区分名"
+    type: string
+    example: 役員
+  active:
+    description: "有効ステータス"
+    type: boolean
+    example: true
+  is_default:
+    description: "既定値フラグ<br>TRUE の場合、ID を変更できません。"
+    type: boolean
+    example: true
+  labor_hour_classification:
+    type: object
+    properties:
+      id:
+        description: "勤務区分ID<br>1:フルタイム<br>2:パートタイム"
+        type: string
+        example: "1"
+      name:
+        description: "勤務区分名"
+        type: string
+        example: "フルタイム"
+  created_at:
+    description: 作成日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: 2018-08-06 17:51:08
+  updated_at:
+    description: 更新日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: 	2018-08-28 06:44:16

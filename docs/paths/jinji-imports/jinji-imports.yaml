@@ -1,0 +1,148 @@
+post:
+  tags:
+    - 人事 インポート
+  summary: /v1/jinji-imports
+  description: "人事 インポートを登録する。"
+  operationId: post-jinji-imports
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/jinji-imports/post_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/jinji-imports/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+get:
+  tags:
+    - 人事 インポート
+  summary: /v1/jinji-imports
+  description: "人事 インポートを取得する。"
+  operationId: get-jinji-imports
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: menu-id
+      in: query
+      schema:
+        type: string
+        description: |
+          指定されたメニュー種別IDのデータを返却します。<br>
+          メニュー種別IDが指定されていない場合、全データを返却します。<br>
+          メニュー種別IDは以下の左のコードで指定してください。<br>
+
+          employee:従業員管理<br>
+          dept:所属グループ管理<br>
+          payroll_calculation:給与計算<br>
+          bonus_calculation:賞与計算<br>
+          resign_calculation:退職金計算<br>
+          monthly_change:月変算定<br>
+          year_end_adjustment:年末調整<br>
+          retroactive_calculation:遡及計算<br>
+          setting_company:企業設定<br>
+          setting_hr:人事設定<br>
+          setting_keihi:経費設定<br>
+          workflow:ワークフロー<br>
+          project:プロジェクト<br>
+          insurance:年調収集
+    - name: type-id
+      in: query
+      schema:
+        type: string
+        description: |
+          指定されたインポート種別IDのデータを返却します。<br>
+          インポート種別IDが指定されていない場合、全データを返却します。<br>
+          インポート種別IDは以下の左のコードで指定してください。<br>
+
+          1:新規登録<br>
+          2:更新<br>
+          3:新規登録/更新<br>
+          4:履歴追加/更新<br>
+          5:履歴削除<br>
+          6:一括ファイル登録<br>
+          7:削除<br>
+          8:新規登録/追加（年調収集）<br>
+          9:一括削除（年調収集）
+    - name: template-name
+      in: query
+      schema:
+        type: string
+        description: |
+          指定された名称に入力テンプレート名が部分一致するデータを返却します。<br>
+          デフォルトテンプレートの名称は指定できません。<br>
+          名称が指定されていない場合、全データを返却します。<br>
+    - name: template-id
+      in: query
+      schema:
+        type: string
+        description: |
+          入力テンプレートID<br>
+          入力テンプレートIDは `GET /v1/master/jinji-import-templates` で得られる `id` の値で指定します。<br>
+          デフォルトテンプレートのIDは指定できません。<br>
+          入力テンプレートIDが指定されていない場合、全データを返却します。
+    - name: schedule-setting-classification
+      in: query
+      schema:
+        type: string
+        description: |
+          指定されたインポート予約有無のデータを返却します。<br>
+          インポート予約有無が指定されていない場合、全データを返却します。<br>
+          インポート予約有無は以下の左のコードで指定してください。<br>
+
+          0:登録予約しない<br>
+          1:登録予約する<br>
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at-new
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/jinji-imports/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

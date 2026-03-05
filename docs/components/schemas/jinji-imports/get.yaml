@@ -1,0 +1,89 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "インポートID<br>システム上で自動で発番される一意のIDです。<br><br>`POST /v1/jinji-imports` で受け付けたインポート処理が、何らかの理由で失敗した等の理由により本エンドポイントでレスポンスされない場合があります。<br>インポート処理の状況は、マスタアカウントに送信される通知メールまたは UI のインポート＞予約状況一覧または処理結果一覧にてご確認ください。"
+  menu:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "employee"
+        description: "メニュー種別ID<br>employee:従業員管理<br>dept:所属グループ管理<br>payroll_calculation:給与計算<br>bonus_calculation:賞与計算<br>resign_calculation:退職金計算<br>monthly_change:月変算定<br>year_end_adjustment:年末調整<br>retroactive_calculation:遡及計算<br>setting_company:企業設定<br>setting_hr:人事設定<br>setting_keihi:経費設定<br>workflow:ワークフロー<br>project:プロジェクト<br>insurance:年調収集"
+      name:
+        type: string
+        example: "従業員管理"
+        description: "メニュー種別名"
+  menu_detail:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "supplier"
+        description: "メニュー種別詳細ID<br>employee_information:従業員管理＞従業員情報<br>resident_tax:従業員管理＞住民税（eLTAX）<br>basic_information:年末調整＞申告書情報<br>calc_information:年末調整＞計算情報<br>supplier:企業設定＞取引先<br>payment_destination:人事設定＞納付先情報<br>attandance_group:人事設定＞打刻グループ<br>accounting_dept:人事設定＞計上部門<br>account:経費設定＞勘定科目<br>auxiliary:経費設定＞補助科目<br>taxes:経費設定＞税区分<br>breakdown:経費設定＞内訳<br>transportation:経費設定＞交通機関<br>flag_business:経費設定＞出張区分<br>area_business:経費設定＞出張エリア<br>personal:ワークフロー＞個別承認ルート<br>route:ワークフロー＞共通承認ルート<br>workflow_branch:ワークフロー＞条件分岐<br>keihi_branch:ワークフロー＞条件分岐(経費)<br>branch:ワークフロー＞条件分岐(勤怠)<br>insurance_group:年調収集＞団体保険（従業員単位）<br>insurance_group_life:年調収集＞団体保険（生命保険単位）<br>insurance_group_earthquake:年調収集＞団体保険（地震保険単位）<br>insurance_group_linc:年調収集＞団体保険（LINC形式）<br>insurance_group_non_life:年調収集＞団体保険（損保標準形式）<br>business_pension:年調収集＞企業型確定拠出年金"
+      name:
+        type: string
+        example: "取引先"
+        description: "メニュー種別詳細名"
+  type:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "インポート種別ID<br>1:新規登録<br>2:更新<br>3:新規登録/更新<br>4:履歴追加/更新<br>5:履歴削除<br>6:一括ファイル登録<br>7:削除<br>8:新規登録/追加（年調収集）<br>9:一括削除（年調収集）"
+      name:
+        type: string
+        example: "新規登録"
+        description: "インポート種別名"
+  template:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1234567"
+        description: "入力テンプレートID<br>ユーザ作成のテンプレートの場合、登録時に指定された入力テンプレートのIDを返却します。<br>デフォルトのテンプレートの場合、空文字を返却します。"
+      name:
+        type: string
+        example: "従業員管理"
+        description: "入力テンプレート名<br>ユーザ作成のテンプレートの場合、登録時に指定された入力テンプレートの名称を返却します。<br>デフォルトのテンプレートの場合、空文字を返却します。"
+  schedule_setting:
+    type: object
+    properties:
+      classification:
+        type: string
+        example: "1"
+        description: "インポート予約<br>0:登録予約しない<br>1:登録予約する"
+      date:
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "インポート予約年月日"
+      time:
+        type: string
+        format: time
+        pattern: hh:mm
+        example: "23:00"
+        description: "インポート予約時刻"
+  number_of_total_rows:
+    type: string
+    example: "1234"
+    description: "処理件数"
+  number_of_failed_rows:
+    type: string
+    example: "1234"
+    description: "処理失敗件数"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,4 @@
+access_token:
+  description: "アクセストークン"
+  type: string
+  example: "ApplicationJWT"

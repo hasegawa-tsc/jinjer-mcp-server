@@ -1,0 +1,492 @@
+type: object
+required:
+  - template_type
+  - template_id
+  - charset_type
+properties:
+  template_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "テンプレート種別<br>0:デフォルトテンプレート<br>1:カスタムテンプレート<br>2:年調収集<br><br>本エンドポイントに POST することで、リクエストボディで指定された条件でのファイルのエクスポート処理が開始されます。<br>- エクスポート処理の状況及び結果は GET でご確認ください。<br>- ファイルに出力される情報はマスタアカウントのロール設定に依存します。<br>- 従業員情報＞マイナンバーに属する項目を含むファイルはエクスポートできません。"
+  template_id:
+    type: string
+    minLength: 1
+    maxLength: 20
+    example: "1"
+    description: "テンプレートID<br>テンプレート種別が 0:デフォルトテンプレート の場合、以下のいずれかを指定します。<br>1:社員台帳（簡易版）<br>2:社員台帳（詳細版）<br>3:社員台帳（全項目）<br>4:社員台帳（インポート用）<br>5:労働者名簿<br>6:給与項目一覧<br><br>テンプレート種別が 1:カスタムテンプレートの場合、テンプレートID は `GET /v1/master/jinji-export-templates` で得られる `id` の値で指定します。<br><br>テンプレート種別が 2:年調収集 の場合、0を指定します。"
+  charset_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "文字コード<br>1:Shift_JIS<br>2:UTF-8 with BOM<br><br>テンプレート種別が 2:年調収集 の場合、0を指定します。"
+  calendar_type:
+    type: string
+    minLength: 0
+    maxLength: 8
+    example: "japanese"
+    description: "年表記の形式<br>western:西暦<br>japanese:和暦<br><br>年表記の形式が指定されない場合、西暦となります。<br>テンプレート種別が 2:年調収集 の場合、指定できません。<br>西暦で1899年以前の日付の場合、和暦を指定しても西暦となります。"
+  employee:
+    type: object
+    properties:
+      order_by:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "従業員情報 出力順<br>1:社員番号順<br>2:50音順<br>3:雇用区分順<br>4:入社年月日順"
+      reference_date:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 基準日"
+      profile_picture:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "従業員情報 顔写真<br>0:なし<br>1:あり"
+      export_type:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "従業員情報 出力形式<br>1:テキスト出力<br>2:コード出力<br><br>テンプレートIDで以下を指定している場合は指定できません。<br>4:社員台帳（インポート用）"
+      employee_id_from:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "1234"
+        description: "従業員情報 社員番号 範囲の開始値"
+      employee_id_to:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "1234"
+        description: "従業員情報 社員番号 範囲の終了値"
+      joined_on_from:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 入社年月日 範囲の開始値"
+      joined_on_to:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 入社年月日 範囲の終了値"
+      retirement_date_from:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 退職年月日 範囲の開始値"
+      retirement_date_to:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 退職年月日 範囲の終了値"
+      years_at_work_from:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "1"
+        description: "従業員情報 勤続年数 範囲の開始値"
+      years_at_work_to:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "2"
+        description: "従業員情報 勤続年数 範囲の終了値"
+      departments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "1"
+              description: "従業員情報 所属グループID<br>所属グループIDは `GET /v1/departments` で得られる `id` の値で指定します。"
+      stores:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 打刻グループID<br>打刻グループIDは `GET /v1/stores` で得られる `id` の値で指定します。"
+      genders:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "従業員情報 性別ID<br>0:未選択<br>1:男<br>2:女"
+      employee_posts:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 役職ID<br>役職IDは `GET /v1/master/employee-posts` で得られる `id` の値で指定します。"
+      enrollment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "従業員情報 在籍区分ID<br>在籍区分IDは下記のいずれかの値で指定します。<br>0:在籍<br>1:退職<br>2:休職"
+      employment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 雇用区分ID<br>雇用区分IDは `GET /v1/master/employment-classifications` で得られる `id` の値で指定します。"
+      tags:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 タグID<br>組織タグIDは `GET /v1/master/employee-tags` で得られる `id` の値で指定します。"
+      roles:
+        type: array
+        items:
+          type: object
+          properties:
+            application_id:
+              type: string
+              minLength: 0
+              maxLength: 2
+              example: "1"
+              description: "従業員情報 ロール アプリケーションID<br>アプリケーションIDは下記のいずれかを指定できます。<br>1:人事労務<br>2:社保手続き<br>3:勤怠<br>5:ワーク・バイタル<br>6:マイナンバー<br>7:給与<br>10:ワークフロー<br>12:サイン"
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 ロール ロールID<br>ロールIDは `GET /v1/master/roles` で得られる `id` の値で指定します。<br>また、指定できるロールIDは `employee.roles.application_id` で指定されたアプリケーションIDに属するもののみです。"
+      nationalities:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 3
+              example: "JPN"
+              description: '従業員情報 国名コード<br>ISO で定義された半角英字3桁で指定してください。<br>日本国籍の場合は "JPN" と指定します。<br>ISO 3166-1 alpha-3 の定義は以下をご参照ください。<br>https://www.iso.org/iso-3166-country-codes.html'
+      place_of_births:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 出身地ID<br>出身地IDは `GET /v1/master/birthplaces` で得られる `id` の値で指定します。"
+      marital_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "従業員情報 婚姻区分ID<br>婚姻区分IDは下記のいずれかの値で指定します。<br>0:未選択<br>1:未婚<br>2:既婚<br>3:離婚<br>4:再婚"
+      age_from:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "1"
+        description: "従業員情報 年齢 範囲の開始値"
+      age_to:
+        type: string
+        minLength: 0
+        maxLength: 2
+        example: "2"
+        description: "従業員情報 年齢 範囲の終了値"
+      retirement_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 退職区分ID<br>退職区分IDは `GET /v1/master/retirement-classifications` で得られる `id` の値で指定します。"
+      email:
+        type: string
+        minLength: 0
+        maxLength: 100
+        example: "jinjer_customer@jinjer.co.jp"
+        description: "従業員情報 E-mail（社用）"
+      retirement_date_of_retirement_age_from:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 定年退職予定年月日 範囲の開始値"
+      retirement_date_of_retirement_age_to:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "従業員情報 定年退職予定年月日 範囲の終了値"
+      solo_transfer_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 単身赴任区分ID<br>単身赴任区分IDは `GET /v1/master/solo-transfer-classifications` で得られる `id` の値で指定します。"
+      permission_to_transfers:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 転勤可否ID<br>転勤可否IDは `GET /v1/master/transfer-requests` で得られる `id` の値で指定します。"
+      job_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 職種ID<br>職種IDは `GET /v1/master/job-classifications` で得られる `id` の値で指定します。"
+      adoption_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 採用区分ID<br>採用区分IDは `GET /v1/master/adoption-classifications` で得られる `id` の値で指定します。"
+      qualification_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 資格免許区分ID<br>資格免許区分IDは `GET /v1/master/qualification-classifications` で得られる `id` の値で指定します。"
+      training_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 研修区分ID<br>研修区分IDは `GET /v1/master/training-classifications` で得られる `id` の値で指定します。"
+      work_locations:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "従業員情報 勤務地ID<br>勤務地IDは `GET /v1/master/work-locations` で得られる `id` の値で指定します。"
+      benefit_status:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "従業員情報 福利厚生<br>0:利用しない<br>1:利用する"
+  department:
+    type: object
+    properties:
+      order_by:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "所属グループ情報 出力順<br>1:所属グループID順<br>2:50音順<br>3:設立年月日順"
+      id:
+        type: string
+        minLength: 0
+        maxLength: 50
+        example: "1"
+        description: "所属グループ情報 所属グループID<br>所属グループIDは `GET /v1/departments` で得られる `id` の値で指定します。"
+      manager_employee:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "JIN0002"
+              description: "所属グループ情報 所属長の社員番号"
+      date_of_establishment_from:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "所属グループ情報 設立年月日 範囲の開始値"
+      date_of_establishment_to:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "所属グループ情報 設立年月日 範囲の終了値"
+      date_of_abolition_from:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "所属グループ情報 廃止年月日 範囲の開始値"
+      date_of_abolition_to:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "所属グループ情報 廃止年月日 範囲の終了値"
+      tags:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "所属グループ情報 組織タグID<br>組織タグIDは `GET /v1/master/department-tags` で得られる `id` の値で指定します。"
+  year_end_collection:
+    type: object
+    properties:
+      export_type:
+        type: string
+        minLength: 3
+        maxLength: 3
+        example: "csv"
+        description: "年調収集 出力形式<br>csv:CSV出力<br>pdf:PDF出力<br><br>テンプレート種別が 2:年調収集 の場合、指定は必須です。"
+      year_of_execution:
+        type: string
+        format: date
+        pattern: yyyy
+        minLength: 0
+        maxLength: 4
+        example: "2024"
+        description: "年調収集 年度<br>テンプレート種別が 2:年調収集 の場合、指定は必須です。"
+      employees:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "JIN0001"
+              description: "年調収集 社員番号<br>社員番号は `GET /v1/employees` で得られる `id` の値で指定します。<br>テンプレート種別が 2:年調収集 の場合、指定は必須です。"
+      target_type:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "年調収集 CSV 出力対象<br>0:入力情報<br>1:回答結果<br><br>出力形式が csv:CSV出力 の場合、指定は必須です。<br>出力形式が pdf:PDF出力 の場合、指定できません。"
+      target_document_types:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "年調収集 CSV 出力対象書類<br>1:基本情報(本年度) <br>2:基本情報(来年度) <br>3:申告書情報<br>4:扶養情報(本年度)<br>5:扶養情報(来年度)<br>6:扶養親族以外の定額減税対象者情報<br><br>出力形式が csv:CSV出力 かつ出力対象が 0:入力情報 の場合、指定は必須です。<br>出力形式が pdf:PDF出力 の場合、または出力対象が 1:回答結果 の場合、指定できません。<br><br>年度が 2024 以外の場合、以下は指定できません。<br>- 6:扶養親族以外の定額減税対象者情報"
+      target_document_type:
+        type: object
+        properties:
+          id:
+            type: string
+            maxLength: 1
+            example: "1"
+            description: "年調収集 PDF 出力対象書類<br>1:本年度扶養控除等（異動）申告書<br>2:来年度扶養控除等（異動）申告書<br>3:給与所得者の基礎控除、配偶者（特別）控除及び所得金額調整控除の申告書<br>4:保険料控除申告書<br>9:年末調整に係る定額減税のための申告書<br><br>出力形式が pdf:PDF出力 の場合、指定は必須です。<br>出力形式が csv:CSV出力 の場合、指定できません。<br><br>年度が 2024 以外の場合、以下は指定できません。<br>- 9:年末調整に係る定額減税のための申告書"

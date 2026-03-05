@@ -1,0 +1,49 @@
+get:
+  tags:
+    - 従業員 休日休暇データ
+  summary: /v2/employees/requested-day-offs
+  description: "従業員に紐づく休日休暇データを取得する。"
+  operationId: get-requested-day-offs-v2
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../../components/parameters/common.yaml#/components/parameters/page
+      description: "クエリパラメータが無い場合、20件返却します。<br>21-40件目を取得したい場合、`page=2` を指定してください。"
+    - $ref: ../../../components/parameters/common.yaml#/components/parameters/employee-ids
+      description: "複数の社員番号をカンマ区切りで指定できます。<br>20件以上含まれる場合は、20件までを返します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: month
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: yyyy-MM
+        example: 2023-04
+        description: "取得する休日休暇データの年月を指定します。<br>年月は月度（締めの単位）ではなく暦月で指定します。<br>年月が指定されていない場合、エラーを返却します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../../components/schemas/v2/employees/requested-day-offs/get.yaml
+    "400":
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse405

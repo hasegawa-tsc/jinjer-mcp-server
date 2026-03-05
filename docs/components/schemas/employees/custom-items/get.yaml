@@ -1,0 +1,63 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  customize_menu:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "カスタム項目ID"
+          type: integer
+          example: 1234
+        name:
+          description: "カスタム項目名<br>項目名は項目カスタマイズ＞項目一覧画面にて出力されます。"
+          type: string
+          example: "カスタム項目(羅列)"
+        customize_item:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: "項目羅列のデータID/項目追加のデータID<br><br>項目羅列の場合、<br>- 各入力項目の入力順に自動採番されたIDを返却します。<br>- 項目カスタマイズ＞詳細項目のID、及びより詳細な情報を取得されたい場合は `GET /v1/employees/general-custom-items` をご利用ください。<br><br>項目追加の場合、<br>- 各レコードの追加順に自動採番されたIDを返却します。 <br>- 項目カスタマイズ＞詳細項目のID、及びより詳細な情報を取得されたい場合は `GET /v1/employees/addible-custom-items` をご利用ください。"
+                type: string
+                example: "1"
+              title:
+                description: "項目羅列の項目名/項目追加の項目名"
+                type: string
+                example: "プルダウン項目"
+              value:
+                description: "項目羅列の項目登録値/項目追加の項目登録値<br>チェックボックスの場合はカンマ区切りの文字列で返却します。<br>その他の項目の場合はオブジェクトで返却します。"
+                type: string
+                example: "1"
+              type:
+                type: object
+                properties:
+                  id:
+                    description: "入力形式ID<br>1:テキストフォーム<br>2:カレンダー<br>3:ファイル<br>4:プルダウン<br>5:ラジオボタン<br>6:チェックボックス<br>7:テキストエリア<br>8:URL"
+                    type: integer
+                    example: 4
+                  name:
+                    description: "入力形式"
+                    type: string
+                    example: "プルダウン"
+              unit:
+                description: "単位<br>入力形式がテキストフォーム、ロングテキストエリアの場合のみ出力されます。"
+                type: string
+                example: "km"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 10:00:00"

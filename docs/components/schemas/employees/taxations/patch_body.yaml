@@ -1,0 +1,343 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  salary_payment_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "給与支給区分ID<br>0:未選択<br>1:支給する<br>2:支給しない"
+  bonus_payment_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "賞与支給区分ID<br>0:未選択<br>1:支給する<br>2:支給しない"
+  taxation_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "課税区分ID<br>0:未選択<br>1:甲欄<br>2:乙欄<br>3:指定税率<br>4:課税不要"
+  taxation_monthly_designation:
+    type: object
+    properties:
+      classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "月次指定ID<br>1:税率<br>2:税額"
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 9
+        example: "1.1000"
+        description: "月次指定 > 税率"
+      amount:
+        type: string
+        minLength: 0
+        maxLength: 9
+        example: "123456"
+        description: "月次指定 > 税額"
+  taxation_bonus_designation:
+    type: object
+    properties:
+      classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "賞与指定ID<br>1:税率<br>2:税額"
+      rate:
+        type: string
+        minLength: 0
+        maxLength: 9
+        example: "1.1000"
+        description: "賞与指定 > 税率"
+      amount:
+        type: string
+        minLength: 0
+        maxLength: 9
+        example: "123456"
+        description: "賞与指定 > 税額"
+  year_end_adjustment_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "年末調整区分ID<br>0:未選択<br>1:年調する<br>2:年調しない"
+  remarks:
+    type: string
+    minLength: 0
+    maxLength: 255
+    example: "◯◯という備考です。"
+    description: "給与備考"
+  widow_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "寡婦区分ID<br>0:未選択<br>1:対象外<br>2:寡婦<br>4:ひとり親"
+  disability_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "障害者区分ID<br>0:未選択<br>1:対象外<br>2:一般障害者<br>3:特別障害者"
+  working_student_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "勤労学生区分ID<br>0:未選択<br>1:対象外<br>2:勤労学生"
+  minor_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "未成年者区分ID<br>0:未選択<br>1:対象外<br>2:未成年者"
+  disaster_relief_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "災害者区分ID<br>0:未選択<br>1:対象外<br>2:災害者"
+  foreign_nationality_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "外国人区分ID<br>0:未選択<br>1:対象外<br>2:外国人"
+  resident_classification:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "居住者区分ID<br>0:未選択<br>1:居住者<br>2:非居住者"
+  disability_identification:
+    type: object
+    properties:
+      classification:
+        type: object
+        properties:
+          id:
+            type: number
+            minLength: 0
+            maxLength: 1
+            example: 1
+            description: "障害者手帳区分ID<br>0:未選択<br>1:身体障害者手帳<br>2:療育手帳<br>3:精神障害者保健福祉手帳<br>4:戦傷病者手帳"
+      grade:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "3級"
+        description: "障害等級"
+      details:
+        type: string
+        minLength: 0
+        maxLength: 255
+        example: "おや指及びひとさし指を併せ一上肢の4指の用を廃したもの"
+        description: "障害内容"
+      date_of_disability_certification:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "2020-02-02"
+        description: "障害者手帳交付年月日"
+  salary_system:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 10
+        example: 1
+        description: "給与体系ID<br>給与設定＞給与体系にて登録されているマスタのIDが設定可能です。"
+  payment_municipality:
+    type: object
+    properties:
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "納付先市区町村ID<br>人事設定＞納付先情報＞市区町村にて登録されているマスタのIDが設定可能です。"
+  submission_municipality:
+    type: object
+    properties:
+      national_local_government_code:
+        type: string
+        minLength: 0
+        maxLength: 6
+        example: "011011"
+        description: "提出先市区町村ID<br>人事設定＞納付先情報＞市区町村にて登録されているマスタのIDが設定可能です。"
+  payment_company:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "納付元会社ID<br>人事設定＞納付先情報＞納付元会社にて登録されているマスタのIDが設定可能です。"
+  direction_number:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "1234567"
+    description: "宛名番号"
+  resident_tax_collection:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "住民税徴収方法ID<br>0:未選択<br>1:特別徴収<br>2:普通徴収"
+  resident_tax_collection_after_retirement:
+    type: object
+    properties:
+      id:
+        type: number
+        minLength: 0
+        maxLength: 1
+        example: 1
+        description: "退職時住民税徴収方法ID<br>0:未選択<br>1:特別継続継続<br>2:一括徴収<br>3:普通徴収"
+  tax_amount:
+    type: object
+    properties:
+      annual:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1234567"
+        description: "年税額"
+      january:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 1月"
+      february:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1234567"
+        description: "年税額> 2月"
+      march:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 3月"
+      april:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1234567"
+        description: "年税額> 4月"
+      may:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 6月"
+      june:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 6月"
+      july:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 7月"
+      august:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 8月"
+      september:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "1234567"
+        description: "年税額> 9月"
+      october:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 10月"
+      november:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 11月"
+      december:
+        type: string
+        minLength: 0
+        maxLength: 8
+        example: "123456"
+        description: "年税額> 12月"
+  electronic_issuance_agreement:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "電子交付に関する承諾ID<br>1:未回答<br>2:承諾<br>3:未承諾"

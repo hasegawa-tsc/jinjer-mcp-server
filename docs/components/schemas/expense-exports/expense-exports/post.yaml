@@ -1,0 +1,15 @@
+type: object
+properties:
+  journal_type:
+    type: string
+    example: "1"
+    description: "仕訳区分"
+  journals:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "00000001"
+          description: "仕訳No."

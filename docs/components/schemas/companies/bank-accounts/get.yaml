@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "企業銀行ID"
+  payroll_transfer_target:
+    type: boolean
+    example: true
+    description: "支給種別 給与<br>給与の振込元として登録されている場合 true を返します。"
+  bonus_transfer_target:
+    type: boolean
+    example: true
+    description: "支給種別 賞与<br>賞与の振込元として登録されている場合 true を返します。"
+  expenses_transfer_target:
+    type: boolean
+    example: true
+    description: "支給種別 経費<br>経費の振込元として登録されている場合 true を返します。"
+  bank_code:
+    type: string
+    example: "0000"
+    description: "銀行コード"
+  bank_name:
+    type: string
+    example: "日本"
+    description: "銀行名"
+  bank_branch_code:
+    type: string
+    example: "093"
+    description: "支店コード"
+  bank_branch_name:
+    type: string
+    example: "本店"
+    description: "支店名"
+  deposit_type:
+    type: number
+    example: 1
+    description: "預金種目<br>1:普通預金<br>2:当座預金"
+  number:
+    type: string
+    example: "1234567"
+    description: "口座番号"
+  name:
+    type: string
+    example: "神社太郎"
+    description: "口座名義"
+  phonetic:
+    type: string
+    example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+    description: "口座名義（フリガナ）"
+  company_code:
+    type: string
+    example: "0000123456"
+    description: "会社コード（給与・賞与・経費）"
+  company_code_for_tax:
+    type: string
+    example: "0000123456"
+    description: "会社コード（住民税）"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

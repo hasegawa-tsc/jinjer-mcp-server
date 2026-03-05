@@ -1,0 +1,52 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "入力テンプレートID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "ジンジャー会計フォーマット"
+    description: "入力テンプレート名"
+  menu:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "employee"
+        description: "メニュー種別ID<br>employee:従業員管理<br>dept:所属グループ管理<br>payroll_calculation:給与計算<br>bonus_calculation:賞与計算<br>resign_calculation:退職金計算<br>monthly_change:月変算定<br>year_end_adjustment:年末調整<br>setting_company:企業設定<br>setting_hr:人事設定<br>setting_keihi:経費設定<br>project:プロジェクト<br>year_end_withholding:明細管理<br>accounting_information:集計グループ<br><br>`POST /v1/jinji-imports` で利用できる入力テンプレートにはメニュー種別ごとに制限があります。<br>利用できるメニュー種別についてはこちらをご確認ください。<br>https://jinjer-jinji.zendesk.com/hc/ja/articles/360037603472"
+      name:
+        type: string
+        example: "従業員管理"
+        description: "メニュー種別名"
+  menu_detail:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "supplier"
+        description: "メニュー種別詳細ID<br>addresses:従業員管理＞住所<br>residence_addresses:従業員管理＞住民票住所<br>salary_calculation:従業員管理＞給与単価<br>bonus_calculation:従業員管理＞賞与単価<br>main_affiliation:従業員管理＞所属（主務）<br>sub_affiliation:従業員管理＞所属（兼務）<br>educations:従業員管理＞学歴<br>experience:従業員管理＞職歴<br>qualifications:従業員管理＞資格・免許<br>evaluates:従業員管理＞評価<br>training:従業員管理＞研修<br>reward_punishments:従業員管理＞賞罰<br>work_contracts:従業員管理＞労働契約<br>absences:従業員管理＞休職<br>working_time:従業員管理＞勤怠<br>password:従業員管理＞パスワード<br>basic_information:年末調整＞申告書情報<br>calc_information:年末調整＞計算情報<br>supplier:企業設定＞取引先<br>payment_destination:人事設定＞納付先情報<br>attandance_group:人事設定＞打刻グループ<br>accounting_dept:人事設定＞計上部門<br>account:経費設定＞勘定科目<br>auxiliary:経費設定＞補助科目<br>taxes:経費設定＞税区分<br>breakdown:経費設定＞内訳<br>transportation:経費設定＞交通機関<br>flag_business:経費設定＞出張区分<br>area_business:経費設定＞出張エリア<br>withholding_slips:明細管理＞給与所得の源泉徴収票<br>kintai_v2_working_time:従業員管理＞勤怠2<br>accounting_information:集計グループ＞会計データ"
+      name:
+        type: string
+        example: "取引先"
+        description: "メニュー種別詳細名"
+  public_classification:
+    type: string
+    example: "1"
+    description: "公開区分<br>1:全体<br>2:自分のみ"
+  is_default:
+    type: boolean
+    example: true
+    description: "既定値フラグ<br>デフォルトテンプレートの場合、true を返却します。<br>カスタムテンプレートの場合、false を返却します。"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

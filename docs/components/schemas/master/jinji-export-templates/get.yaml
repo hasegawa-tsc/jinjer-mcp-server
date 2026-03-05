@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "出力テンプレートID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "ジンジャー会計フォーマット"
+    description: "出力テンプレート名"
+  type:
+    type: string
+    example: "1"
+    description: "メニュー種別<br>1:従業員情報<br>2:所属グループ情報"
+  public_classification:
+    type: string
+    example: "1"
+    description: "公開区分<br>1:公開<br>2:自分のみ"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

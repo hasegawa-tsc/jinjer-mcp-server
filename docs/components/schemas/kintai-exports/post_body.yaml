@@ -1,0 +1,152 @@
+type: object
+required:
+  - export_format_type
+  - export_format
+  - generic_data
+properties:
+  export_format_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "出力フォーマット種別<br>1:汎用データ<br><br>本エンドポイントに POST することで、リクエストボディで指定された条件でのファイルのエクスポート処理が開始されます。<br>- エクスポート処理の状況及び結果は GET でご確認ください。<br>- 同時に実行できるエクスポート処理は最大1つです。"
+  export_format:
+    type: string
+    minLength: 1
+    maxLength: 24
+    example: "1"
+    description: "出力フォーマット<br>出力フォーマットは `GET /v1/master/kintai-export-formats` で得られる `id` の値で指定します。"
+  executor_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "エクスポート 実行者 社員番号<br>指定された社員番号の従業員を実行者としてエクスポート処理を実行します。<br>実行者には勤怠管理者権限のロールが設定されている必要があります。<br>社員番号が指定されない場合、マスタアカウントが実行者となります。<br>実行者には、エクスポート処理の完了後、通知メールが送信されます。"
+  generic_data:
+    type: object
+    required:
+      - period_type
+      - round_type
+    properties:
+      period_type:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "1"
+        description: "汎用データ 出力期間<br>0:月指定<br>1:期間指定"
+      period_month:
+        type: string
+        minLength: 0
+        maxLength: 7
+        format: date
+        pattern: yyyy-MM
+        example: "2024-04"
+        description: "汎用データ 出力期間 月指定 対象月<br>出力期間が `月指定` の場合、指定は必須です。<br>出力期間が `月指定` 以外の場合、指定できません。"
+      period_started_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "汎用データ 出力期間 期間指定 開始日<br>出力期間が `期間指定` で、年月日が指定されていない場合、もしくは1ヶ月以上の期間が指定されている場合、エラーを返却します。<br>出力期間が `期間指定` 以外の場合、指定できません。"
+      period_ended_on:
+        type: string
+        minLength: 0
+        maxLength: 10
+        format: date
+        pattern: yyyy-MM-dd
+        example: "2024-04-13"
+        description: "汎用データ 出力期間 期間指定 終了日<br>出力期間が `期間指定` で、年月日が指定されていない場合、もしくは1ヶ月以上の期間が指定されている場合、エラーを返却します。<br>出力期間が `期間指定` 以外の場合、指定できません。"
+      departments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "1"
+              description: "汎用データ 所属グループID<br>所属グループIDは `GET /v1/departments` で得られる `id` の値で指定します。"
+      stores:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "汎用データ 打刻グループID<br>打刻グループIDは `GET /v1/stores` で得られる `id` の値で指定します。"
+      closing_date:
+        type: array
+        items:
+          type: object
+          properties:
+            date:
+              type: string
+              minLength: 0
+              maxLength: 2
+              example: "31"
+              description: "汎用データ 締め日<br>締め日は日付の数字（例. 31）で指定します。"
+      employees:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "JIN0001"
+              description: "汎用データ 社員番号<br>社員番号は `GET /v1/employees` で得られる `id` の値で指定します。"
+      employment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 10
+              example: "1"
+              description: "汎用データ 雇用区分ID<br>雇用区分IDは `GET /v1/master/employment-classifications` で得られる `id` の値で指定します。"
+      enrollment_classifications:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "汎用データ 在籍区分ID<br>在籍区分IDは下記のいずれかの値で指定します。<br>0:在籍<br>1:退職<br>2:休職"
+      tag:
+        type: object
+        properties:
+          has_no_tag:
+            type: boolean
+            minLength: 0
+            maxLength: 5
+            example: true
+            description: "汎用データ 管理タグなし<br>true:タグ未設定<br>false:タグ設定済"
+      round_type:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "1"
+        description: "汎用データ 出力データ区分<br>1:まるめ適用後<br>2:実打刻<br>3:まるめ適用前"
+      filters:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              minLength: 0
+              maxLength: 1
+              example: "1"
+              description: "汎用データ 異常値区分<br>0:未打刻<br>1:欠勤<br>2:休日打刻<br>3:休暇打刻<br>4:異常値なし"

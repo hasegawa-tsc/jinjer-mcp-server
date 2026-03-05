@@ -1,0 +1,7 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "スケジュール雛形ID"
+  # POST/PATCHと違いnameがない

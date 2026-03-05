@@ -1,0 +1,38 @@
+type: object
+properties:
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 50
+        example: "JIN0001"
+        description: "インポート 実行者 社員番号<br>指定された社員番号の従業員を実行者としてインポート処理を実行します。<br>実行者には勤怠管理者権限のロールが設定されている必要があります。<br>社員番号が指定されない場合、マスタアカウントが実行者となります。<br>実行者には、インポート処理の完了後、通知メールが送信されます。"
+  type:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "5"
+        description: "インポート種別ID<br>5:汎用データCSVアップロード（新規登録・編集）<br>9:汎用データCSVアップロード（削除）<br><br>本エンドポイントに POST することで、リクエストボディで指定された条件とファイルでのインポート処理が予約されます。<br>- インポート処理の状況及び結果は GET でご確認ください。<br>- 同時に予約できるインポート処理は最大1つです。"
+  input_file:
+    type: object
+    required:
+      - name
+      - encoded_string
+    properties:
+      name:
+        type: string
+        minLength: 1
+        maxLength: 70
+        example: "仕訳データ_800080_20240924.csv"
+        description: "インポートファイル名<br>インポートするファイルのファイル名を指定します。<br>`GET /v1/kintai-imports` で返却されるファイル名、及びインポート処理の完了後に送信される通知メールに記載されるファイル名には、インポート処理中に発行された一意のIDが付与されます。"
+      encoded_string:
+        type: string
+        example: "UE9TVCBQT1NUIFBPU1QgUE9TVA=="
+        description: "インポートファイル<br>インポートするファイルを Base64 エンコード形式で指定します。<br>CSV ファイル、または CSV を圧縮した ZIP ファイルを指定可能です。 <br>複数の CSV ファイルが圧縮された ZIP ファイルの場合、最初の CSV ファイルのみが処理されます。<br><br>本エンドポイントに POST することで、指定された条件とファイルでのインポート処理が予約されます。<br>- インポート処理の状況及び結果は GET でご確認ください。<br>- インポート処理はバッチ処理で実行されます。<br><br>CSV ファイルの文字コードが Shift_JIS でない場合、または行数が5000行を超える場合、エラーが返却されます。<br><br>ファイルサイズが大きい場合、またジンジャーAPIへのアクセスが集中している場合、エラーが返却されることがあります。その場合は時間をおいて再度リクエストしてください。"

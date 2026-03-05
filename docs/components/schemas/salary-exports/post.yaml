@@ -1,0 +1,10 @@
+type: object
+properties:
+  template_type:
+    type: string
+    example: "1"
+    description: "テンプレート種別"
+  template_id:
+    type: string
+    example: "1"
+    description: "テンプレートID"

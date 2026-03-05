@@ -1,0 +1,13 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  bank_accounts:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "銀行振込口座ID"

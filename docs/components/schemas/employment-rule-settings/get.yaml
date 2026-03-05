@@ -1,0 +1,48 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "就業規則設定ID"
+  name:
+    type: string
+    example: "正社員用"
+    description: "就業規則設定名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  closing_date:
+    type: string
+    example: "13"
+    description: "締め日"
+  start_day_of_week:
+    type: number
+    example: 1
+    description: "週の起算日<br>0:日曜日<br>1:月曜日<br>2:火曜日<br>3:水曜日<br>4:木曜日<br>5:金曜日<br>6:土曜日"
+  is_calendar_shown_by_closing_date:
+    type: boolean
+    example: true
+    description: "カレンダー表示形式<br>true:締め日<br>false:通常"
+  is_work_interval_shortage_counted:
+    type: boolean
+    example: true
+    description: "勤務間インターバル不足回数<br>true:設定する<br>false:設定しない"
+  reference_time_of_work_interval_shortage:
+    type: number
+    format: time
+    pattern: hh:mm
+    example: "12:34"
+    description: "勤務間インターバル不足回数の基準時間"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

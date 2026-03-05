@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "グレードID<br>グレード1とグレード2の組み合わせに対して企業ごとに発番されるID（連番）です。"
+  grade_id:
+    type: number
+    example: 1
+    description: "グレード1 ID<br>システム上で自動で発番される一意のIDです。"
+  grade_name:
+    type: string
+    example: "G1"
+    description: "グレード1<br>グレード1の項目の名称です。<br>グレード1のマスタは人事設定＞給与計算＞グレードの横軸として設定することができます。<br>※給与計算に利用するグレードについてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/900000852706"
+  level_id:
+    type: number
+    example: 1
+    description: "グレード2 ID<br>システム上で自動で発番される一意のIDです。"
+  level_name:
+    type: string
+    example: "等級1"
+    description: "グレード2<br>グレード2の項目の名称です。<br>グレード2のマスタは人事設定＞給与計算＞グレードの縦軸として設定することができます。<br>※給与計算に利用するグレードについてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/900000852706 "
+  payroll:
+    type: string
+    example: "1234567"
+    description: "基本給<br>グレード1とグレード2が交差している箇所に入る値です。<br>2024年8月のグレード（給与テーブル）の仕様変更以降に登録されたグレードの場合、常に 0 を返却します。<br>グレードを含む給与テーブルの情報は `GET /v1/master/salary-tables` で取得できます。"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

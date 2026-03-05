@@ -1,0 +1,115 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  employee_holidays:
+    type: array
+    items:
+      type: object
+      properties:
+        remaining_days_of_holiday:
+          type: string
+          example: "20"
+          description: "残日数"
+        is_cancelled:
+          type: boolean
+          example: true
+          description: "キャンセルフラグ<br>true の場合、休暇はキャンセルされています。"
+        special_holiday:
+          type: object
+          properties:
+            stores:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "打刻グループID"
+                  name:
+                    type: string
+                    example: "第一営業部グループ"
+                    description: "打刻グループ名"
+            special_holiday_setting:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "特別休暇設定ID"
+                name:
+                  type: string
+                  example: "夏季休暇"
+                  description: "特別休暇設定名"
+            name:
+              type: string
+              example: "夏季休暇"
+              description: "名称"
+            days_of_holiday:
+              type: string
+              example: "20"
+              description: "付与日数"
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "種別ID<br>0:個人<br>1:正社員<br>2:パートアルバイト<br>3:正社員とパートアルバイト"
+                name:
+                  type: string
+                  example: "正社員"
+                  description: "種別名"
+            period_started_at:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "有効期間 開始年月日"
+            period_ended_at:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "有効期間 終了年月日"
+            expired_at:
+              type: string
+              format: date
+              pattern: yyyy-MM-dd
+              example: "2024-04-13"
+              description: "申請/登録猶予期限 年月日"
+            is_paid_holiday:
+              type: boolean
+              example: true
+              description: "有給休暇<br>true:有給休暇である<br>false:有給休暇でない"
+            active:
+              type: boolean
+              example: true
+              description: "有効ステータス"
+            created_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "作成日時"
+            updated_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "更新日時"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

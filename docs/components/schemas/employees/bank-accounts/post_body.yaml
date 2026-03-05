@@ -1,0 +1,77 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  bank_accounts:
+    required:
+      - payroll_transfer_target
+      - bonus_transfer_target
+      - expenses_transfer_target
+      - bank_code
+      - bank_branch_code
+      - deposit_type
+      - number
+      - name
+      - phonetic
+    type: object
+    properties:
+      payroll_transfer_target:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "支給種別 給与<br>給与の振込先として登録する場合 true を指定します。"
+      bonus_transfer_target:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "支給種別 賞与<br>賞与の振込先として登録する場合 true を指定します。"
+      expenses_transfer_target:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "支給種別 経費<br>経費の振込先として登録する場合 true を指定します。"
+      bank_code:
+        type: string
+        minLength: 4
+        maxLength: 4
+        example: "0000"
+        description: "振込先銀行コード"
+      bank_branch_code:
+        type: string
+        minLength: 3
+        maxLength: 3
+        example: "093"
+        description: "振込先支店コード"
+      deposit_type:
+        type: number
+        minLength: 1
+        maxLength: 1
+        example: 1
+        description: "預金種目<br>1:普通預金<br>2:当座預金"
+      number:
+        type: string
+        minLength: 7
+        maxLength: 7
+        example: "1234567"
+        description: "口座番号"
+      name:
+        type: string
+        minLength: 1
+        maxLength: 255
+        example: "神社太郎"
+        description: "口座名義"
+      phonetic:
+        type: string
+        minLength: 1
+        maxLength: 30
+        example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+        description: "口座名義（フリガナ）"

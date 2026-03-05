@@ -1,0 +1,64 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  work_logs:
+    type: array
+    items:
+      type: object
+      properties:
+        department:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "所属グループID"
+            name:
+              type: string
+              example: "第一営業部"
+              description: "所属グループ名"
+        date:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "対象日付"
+        time_of_entry:
+          type: string
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "入館時刻"
+        time_of_exit:
+          type: string
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "退館時刻"
+        time_of_pc_boot:
+          type: string
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "PC起動時刻"
+        time_of_pc_shutdown:
+          type: string
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "PC停止時刻"
+        created_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "作成日時"
+        updated_at:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "更新日時"

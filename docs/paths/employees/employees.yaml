@@ -1,0 +1,177 @@
+get:
+  tags:
+    - 従業員
+  summary: /v1/employees
+  description: "従業員情報を取得する。"
+  operationId: employeesGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/employee-ids
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at
+    - name: employee-last-name
+      in: query
+      schema:
+        type: string
+        example: "神社"
+        description: "職場氏名（氏）を指定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: employee-first-name
+      in: query
+      schema:
+        type: string
+        example: "太郎"
+        description: "職場氏名（名）を指定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: joined-on-period-start-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "入社年月日の期間指定の開始日を設定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: joined-on-period-end-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-06-01"
+        description: "入社年月日の期間指定の終了日を設定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: retirement-period-start-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-01-01"
+        description: "退職年月日の期間指定の開始日を設定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: retirement-period-end-date
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-06-01"
+        description: "退職年月日の期間指定の開始日を設定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: enrollment-classification-id
+      in: query
+      schema:
+        type: string
+        example: "1"
+        description: "在籍区分<br>下記のいずれかを指定できます。<br>0:在籍<br>1:退職<br>2:休職<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - name: employment-classification-id
+      in: query
+      schema:
+        type: string
+        example: "1"
+        description: "雇用区分<br>雇用区分は `/v1/master/employment-classifications` で得られる `id` の値（雇用区分ID）で指定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/employees/employees/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+post:
+  tags:
+    - 従業員
+  summary: /v1/employees
+  description: "従業員情報を登録する。"
+  operationId: employeesPost
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/employees/post_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/employees/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
+patch:
+  tags:
+    - 従業員
+  summary: /v1/employees
+  description: "従業員情報を更新する。"
+  operationId: employeesPatch
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/contentType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/employees/employees/patch_body.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/employees/post.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

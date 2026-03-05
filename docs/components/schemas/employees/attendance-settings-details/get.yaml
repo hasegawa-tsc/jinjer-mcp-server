@@ -1,0 +1,463 @@
+type: object
+properties:
+  results:
+    type: string
+    example: 'success'
+  data:
+    type: object
+    properties:
+      employee_id: 
+        type: string
+        example: 'JIN0001'
+        description: 社員番号
+      employee_name: 
+        type: string
+        example: '神社 一郎'
+        description: 職場氏名
+      ic_card_id_hex: 
+        type: string
+        example: '012E4CE3500C1234'
+        description: ICカードID（hex）
+      ic_card_id_dec: 
+        type: string
+        example: '85089982150873600'
+        description: ICカードID（dec）
+      chatwork_user_id: 
+        type: string
+        example: '1234567'
+        description: Chatwork アカウントID
+      slack_user_name: 
+        type: string
+        example: 'ichiro.jinjer'
+        description: Slack ユーザ名
+      trial_started_on: 
+        type: string
+        format: date
+        pattern: yyyy-MM-dd 
+        example: '2024-04-13'
+        description: 研修期間 開始年月日
+      trial_ended_on: 
+        type: string
+        format: date
+        pattern: yyyy-MM-dd 
+        example: '2024-04-13'
+        description: 研修期間 終了年月日
+      starting_month: 
+        type: string
+        example: '4'
+        description: 起算月度
+      working_hours_in_rule_per_week: 
+        type: string
+        example: '160'
+        description: 週の所定労働時間
+      working_days_in_rule_per_week: 
+        type: string
+        example: '20'
+        description: 週の所定労働日数
+      working_days_in_rule_per_year: 
+        type: string
+        example: '20'
+        description: 年間所定労働日数
+      joined_on: 
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: '2024-04-13'
+        description: 入社日
+      paid_leave_granted_on: 
+        type: string
+        format: date
+        pattern: yyyy-MM-dd
+        example: '2024-04-13'
+        description: 有休起算日
+      working_type: 
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 勤務形態ID<br>0:通常<br>1:フレックスタイム制<br>2:変形労働時間制<br>3:裁量労働時間制<br>4:管理監督者<br>5:特定高度専門業務・成果型労働制
+          name: 
+            type: string
+            example: 'フレックスタイム制'
+            description: 勤務形態名
+          regular:
+            type: object
+            description: 勤務形態が `通常` の場合の設定を返却します。
+            properties:
+              calculation_type: 
+                type: string
+                example: '1'
+                description: 通常 計算方法<br>0:日かつ週計算<br>1:日計算<br>2:週計算
+              working_hours_per_day_for_day_and_week: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 通常 日かつ週計算 日あたり
+              working_hours_per_week_for_day_and_week: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 通常 日かつ週計算 週あたり
+              working_hours_per_day_for_day: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 通常 日計算 日あたり
+              working_hours_per_week_for_week: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 通常 週計算 週あたり
+          flex:
+            type: object
+            description: 勤務形態が `フレックスタイム制` の場合の設定を返却します。
+            properties:
+              has_core_time:
+                type: boolean
+                example: true
+                description: フレックスタイム制 コアタイムの有無<br>true:あり<br>false:なし
+              standard_working_hours_per_day: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: フレックスタイム制 1日の標準労働時間
+              settlement_period: 
+                type: string
+                example: '1'
+                description: フレックスタイム制 清算期間<br>1:1ヶ月<br>2:2ヶ月<br>3:3ヶ月
+              settlement_unit: 
+                type: string
+                example: '1'
+                description: フレックスタイム制 清算期間における所定労働時間<br>0:標準労働時間✕所定労働日数<br>1:月毎の所定労働時間
+              is_shortage_carried_over: 
+                type: boolean
+                example: true
+                description: フレックスタイム制 不足労働時間の次月もちこし<br>true:もちこす<br>false:給与控除する
+              regular_working_hours: 
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value: 
+                      type: string
+                      example: '160.1'
+                      description: フレックスタイム制 月毎の所定労働時間<br>各月度の所定労働時間を配列で返却します。
+              maximum_regular_working_hours:  
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value: 
+                      type: string
+                      example: '160.1'
+                      description: フレックスタイム制 最大所定労働時間<br>各月度の最大所定労働時間を配列で返却します。
+              fixed_working_time_from: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: フレックスタイム制 未打刻時のみなし時間設定 開始時刻
+              fixed_working_time_to: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: フレックスタイム制 未打刻時のみなし時間設定 終了時刻
+          deformation:
+            type: object
+            description: 勤務形態が `変形労働時間制` の場合の設定を返却します。
+            properties:
+              working_hours_in_rule_for_day: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 変形労働時間制 日計算
+              working_hours_in_rule_for_week: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 変形労働時間制 週計算
+              working_hours_in_rule_for_28_day_month: 
+                type: string
+                example: '160.1'
+                description: 変形労働時間制 月計算 28日の場合
+              working_hours_in_rule_for_29_day_month: 
+                type: string
+                example: '160.1'
+                description: 変形労働時間制 月計算 29日の場合
+              working_hours_in_rule_for_30_day_month: 
+                type: string
+                example: '160.1'
+                description: 変形労働時間制 月計算 30日の場合
+              working_hours_in_rule_for_31_day_month: 
+                type: string
+                example: '160.1'
+                description: 変形労働時間制 月計算 31日の場合
+          discretionary: 
+            type: object
+            description: 勤務形態が `裁量労働時間制` の場合の設定を返却します。
+            properties:
+              fixed_working_hours: 
+                type: string
+                format: time
+                pattern: hh:mm
+                example: '12:34'
+                description: 裁量労働時間制 みなし時間
+          is_set_starting_date_of_month: 
+            type: boolean
+            example: true
+            description: 毎月の起算日設定<br>true:設定する<br>false:設定しない
+          is_set_closing_date_as_starting_date_of_week: 
+            type: boolean
+            example: true
+            description: 起算曜日設定<br>true:就業規則設定＞締め日の翌日を週の起算曜日にする<br>false:就業規則設定＞週の起算日の曜日にする
+          is_set_fixed_working_time_when_not_stamped: 
+            type: boolean
+            example: true
+            description: 未打刻時のみなし時間設定<br>true:設定する<br>false:設定しない
+      employment_type: 
+        type: string
+        example: '1'
+        description: 雇用形態<br>0:正社員<br>1:パート・アルバイト
+      auto_break:
+        type: object
+        properties:
+          is_set_auto_break:
+            type: boolean
+            example: true
+            description: 自動休憩設定<br>true:自動休憩設定<br>false:スケジュール設定
+          auto_break_setting: 
+            type: object
+            properties:
+              id: 
+                type: string
+                example: '1'
+                description: 自動休憩設定ID
+              name: 
+                type: string
+                example: '正社員用'
+                description: 自動休憩設定名
+      tags: 
+        type: array
+        items: 
+          type: object
+          properties:
+            name: 
+              type: string
+              example: '2024年中途採用'
+              description: 管理タグ
+      monthly_salary_amount: 
+        type: string
+        example: '1234567'
+        description: 月給
+      payment_amount_for_overtime: 
+        type: string
+        example: '1234'
+        description: 支給額（残業）
+      deductible_amount_for_shortage: 
+        type: string
+        example: '1234'
+        description: 控除額（遅刻早退）
+      deductible_amount_for_absence: 
+        type: string
+        example: '1234'
+        description: 控除額（欠勤）
+      fixed_overtime:
+        type: object
+        properties:
+          is_set_fixed_overtime: 
+            type: boolean
+            example: true
+            description: みなし残業時間設定<br>true:設定する<br>false:設定しない
+          overtime_hours_in_law: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: 法定内残業時間
+          overtime_hours_ouf_of_law: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: 法定外残業時間
+          working_night_hours: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: 深夜労働時間
+          working_holiday_hours_in_rule: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: 所定休日労働時間
+          working_holiday_hours_in_law: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: 法定休日労働時間
+          fixed_overtime_hours_in_total: 
+            type: string
+            format: time
+            pattern: hh:mm
+            example: '12:34'
+            description: みなし残業合計時間
+      commuting: 
+        type: object
+        properties:
+          round_trip_amount: 
+            type: string
+            example: '1234'
+            description: 交通費 1往復分
+          payment: 
+            type: object
+            properties:
+              minimum_days_required: 
+                type: string
+                example: '13'
+                description: 交通費 定期代 出勤日数の下限
+              total: 
+                type: string
+                example: '123456'
+                description: 交通費 定期代 支給額
+              interval:
+                type: object
+                properties:
+                  id: 
+                    type: string
+                    example: '1'
+                    description: 交通費 支給間隔ID<br>0:未選択<br>1:毎月<br>2:3ヶ月<br>3:6ヶ月<br>4:毎日
+                  name: 
+                    type: string
+                    example: '毎月'
+                    description: 支給間隔
+      departments: 
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 所属グループID<br>現在の所属の情報を返却します。<br>過去または未来の所属の情報は `GET /v1/employees/affiliations` で取得できます。
+          name: 
+            type: string
+            example: '第一営業部'
+            description: 所属グループ名
+      stores: 
+        type: array
+        items: 
+          type: object
+          properties:
+            id: 
+              type: string
+              example: '1'
+              description: 打刻グループID<br>現在の所属の情報を返却します。<br>過去または未来の所属の情報は `GET /v1/employees/affiliations` で取得できます。
+            name: 
+              type: string
+              example: '第一営業部グループ'
+              description: 打刻グループ名
+            is_main: 
+              type: boolean
+              example: true
+              description: 打刻グループ種別<br>true:メイン打刻グループ<br>false:サブ打刻グループ
+            role: 
+              type: object
+              properties:
+                id: 
+                  type: string
+                  example: '1'
+                  description: ロール設定ID
+                name: 
+                  type: string
+                  example: '管理者権限'
+                  description: ロール設定名
+      employment_rule_setting:
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 就業規則設定ID
+          name: 
+            type: string
+            example: '正社員用'
+            description: 就業規則設定名
+      article_36_agreement_setting: 
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 36協定設定ID
+          name: 
+            type: string
+            example: '正社員用'
+            description: 36協定設定名
+      annual_paid_leave_setting:
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 年次有給休暇設定ID
+          name: 
+            type: string
+            example: '正社員用'
+            description: 年次有給休暇設定名
+      conversion_leave_setting:
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 振休設定ID
+          name: 
+            type: string
+            example: '正社員用'
+            description: 振休設定名
+      compensation_leave_setting: 
+        type: object
+        properties:
+          id: 
+            type: string
+            example: '1'
+            description: 代休設定ID
+          name: 
+            type: string
+            example: '正社員用'
+            description: 代休設定名
+      schedule_templates: 
+        type: array
+        items:
+          type: object
+          properties:
+            id: 
+              type: string
+              example: '1'
+              description: スケジュール雛形ID
+            name: 
+              type: string
+              example: '正社員用'
+              description: スケジュール雛形名
+      created_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: '2024-04-13 12:34:56'
+        description: 作成日時
+      updated_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: '2024-04-13 12:34:56'
+        description: 更新日時

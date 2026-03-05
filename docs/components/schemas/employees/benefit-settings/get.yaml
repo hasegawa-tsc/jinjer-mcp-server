@@ -1,0 +1,44 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  benefit_employee_key:
+    type: string
+    example: "JIN0001"
+    description: "福利厚生連携用社員キー"
+  is_benefit_linked:
+    type: boolean
+    example: true
+    description: "福利厚生連携状態<br>true:利用する<br>false:利用しない<br>ご利用にはジンジャー福利厚生の契約が必要です。"
+  benefit_last_name:
+    type: string
+    example: "神社"
+    description: "福利厚生連携用氏名（氏）"
+  benefit_first_name:
+    type: string
+    example: "一郎"
+    description: "福利厚生連携用氏名（名）"
+  benefit_email:
+    type: string
+    example: "jinjer_customer@jinjer.co.jp"
+    description: "福利厚生連携用メールアドレス"
+  benefit_modified_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "福利厚生連携日時"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

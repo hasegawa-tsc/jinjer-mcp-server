@@ -1,0 +1,48 @@
+type: object
+properties:
+  journal_type:
+    type: number
+    example: 1
+    description: "仕訳区分<br>1:計上仕訳<br>3:支払仕訳"
+  journal_id:
+    type: string
+    example: "00000001"
+    description: "仕訳No.<br>この値を `POST /v1/expense-exports` の `journals.id` の値で指定することにより、当該の仕訳をファイル形式でダウンロードすることができます。"
+  export_status:
+    type: number
+    example: 1
+    description: "ステータス<br>0:未出力<br>1:出力済"
+  posted_at:
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+    description: "計上日"
+  journal_created_at:
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+    description: "仕訳作成日"
+  last_approved_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "最終承認完了日時"
+  remarks:
+    type: string
+    example: "◯◯という備考です。"
+    description: "備考"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

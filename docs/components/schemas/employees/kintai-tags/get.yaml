@@ -1,0 +1,31 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  kintai_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "勤怠タグに貼付けされたタグのID<br>人事設定＞タグ＞勤怠タグにて登録されているマスタのIDが出力されます。"
+          type: string
+          example: "1"
+        name:
+          description: "勤怠タグに貼付けされたタグの名称"
+          type: string
+          example: "フルタイム"
+        created_at:
+          description: "勤怠タグに貼付けされたタグの作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"
+        updated_at:
+          description: "勤怠タグに貼付けされたタグの更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2024-04-13 12:34:56"

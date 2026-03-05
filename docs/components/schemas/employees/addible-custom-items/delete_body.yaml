@@ -1,0 +1,26 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  customize_menu:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "カスタム項目ID"
+      customize_data:
+        type: object
+        required:
+          - id
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "項目追加のデータID"

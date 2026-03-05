@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "都道府県ID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "北海道"
+    description: "都道府県名"
+  name_phonetic:
+    type: string
+    example: "ホッカイドウ"
+    description: "都道府県名（フリガナ）"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

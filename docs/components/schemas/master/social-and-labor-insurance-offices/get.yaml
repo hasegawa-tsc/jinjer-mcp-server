@@ -1,0 +1,112 @@
+type: object
+properties:
+  id:
+    description: "事業所コード<br>企業が任意に登録できるIDです。"
+    type: string
+    example: "1"
+  name:
+    description: "事業所名称"
+    type: string
+    example: "○○事業所"
+  active:
+    description: "有効ステータス"
+    type: boolean
+    example: TRUE
+  social_office:
+    type: object
+    properties:
+      id:
+        description: "社保事業所ID<br>人事設定＞社保・労保＞社保事業所にて登録されているマスタのIDです。"
+        type: string
+        example: "1"
+      name:
+        description: "社保事業所名称<br>人事設定＞社保・労保＞社保事業所にて登録されているマスタの、事業所マスタ登録時点の名称です。"
+        type: string
+        example: "○○社保事業所"
+  labor_office:
+    type: object
+    properties:
+      id:
+        description: "労保事業所ID<br>人事設定＞社保・労保＞労保事業所にて登録されているマスタのIDです。"
+        type: string
+        example: "1"
+      name:
+        description: "労保事業所名称<br>人事設定＞社保・労保＞労保事業所にて登録されているマスタの、事業所マスタ登録時点の名称です。"
+        type: string
+        example: "○○労保事業所"
+  remarks:
+    description: "備考"
+    type: string
+    example: "備考です。"
+  business_owner:
+    type: object
+    properties:
+      name:
+        description: "事業主氏名"
+        type: string
+        example: "テスト太郎"
+      phonetic:
+        description: "事業主氏名（フリガナ）"
+        type: string
+        example: "テストタロウ"
+      title:
+        description: "事業主役職名"
+        type: string
+        example: "代表取締役社長"
+  address:
+    type: object
+    properties:
+      zip_code:
+        description: "郵便番号"
+        type: string
+        example: "123-0071"
+      prefecture:
+        type: object
+        properties:
+          id:
+            description: "都道府県ID"
+            type: string
+            example: "13"
+          name:
+            description: "都道府県"
+            type: string
+            example: "東京都"
+      municipality:
+        type: object
+        properties:
+          id:
+            description: "市区町村ID"
+            type: string
+            example: "673"
+          name:
+            description: "市区町村"
+            type: string
+            example: "中野区中野"
+      street_building:
+        description: "丁目・番地・建物名・部屋番号"
+        type: string
+        example: "4-1-1"
+      phonetic:
+        description: "住所（フリガナ）"
+        type: string
+        example: "トウキョウトナカノクナカノ"
+  phone_number:
+    description: "電話番号"
+    type: string
+    example: "03-1111-1111"
+  social_worker_name:
+    description: "社労士氏名"
+    type: string
+    example: "社労太郎"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2018–10–26 21:32:52"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2018–10–26 21:32:52"

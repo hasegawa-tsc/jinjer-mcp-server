@@ -1,0 +1,37 @@
+get:
+  tags:
+    - ワークフロー 申請書 異動申請（主務）
+  summary: /v1/workflow-requests/affiliation-changes/{id}
+  description: "申請書 異動申請（主務）を取得する。"
+  operationId: get_id-affiliation-changes
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/path/workflow-request-id
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                allOf:
+                  - $ref: ../../components/schemas/workflow-requests/base.yaml
+                  - $ref: ../../components/schemas/workflow-requests/affiliation-changes-details/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

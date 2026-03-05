@@ -1,0 +1,17 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  labor_contracts:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "労働契約ID<br>労働契約IDは `GET /v1/employees/labor-contracts` で得られる `labor_contracts.id` の値で指定します。"

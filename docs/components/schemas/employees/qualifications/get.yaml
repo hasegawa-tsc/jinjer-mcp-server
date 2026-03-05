@@ -1,0 +1,68 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: "社員番号"
+    example: "JIN0001"
+  qualifications:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "資格・免許ID"
+          type: string
+          example: "1"
+        classification:
+          type: object
+          properties:
+            id:
+              description: "資格免許区分ID<br>人事設定＞資格・免許＞免許資格区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "2"
+            name:
+              description: "資格免許区分"
+              type: string
+              example: "免許"
+        qualified_on:
+          description: "取得年月日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2021-10-01"
+        expiration_on:
+          description: "有効期限"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2021-10-01"
+        renewal_on:
+          description: "更新年月日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2021-10-01"
+        title:
+          description: "資格免許名称"
+          type: string
+          example: "免許A"
+        certification_number:
+          description: "認定番号"
+          type: string
+          example: "4211431"
+        remarks:
+          description: "備考"
+          type: string
+          example: "免許Aの備考です"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2021-10-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2022-10-01 10:00:00"

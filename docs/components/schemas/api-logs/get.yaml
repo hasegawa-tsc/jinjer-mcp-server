@@ -1,0 +1,68 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "企業ID"
+  request_id:
+    type: string
+    example: "abcdefg-000-000-0000-abcdefg"
+    description: "リクエストID<br>リクエストごとに自動で発番される一意のIDです。"
+  request_date_time:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "リクエスト日時"
+  request_ip_address:
+    type: string
+    example: "13.225.183.17"
+    description: "リクエスト元IPアドレス"
+  request_user_agent:
+    type: string
+    example: "curl/7.84.0"
+    description: "リクエスト元ユーザーエージェント"
+  request_api_key:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: 'リクエスト元APIキーID<br>追加キーの場合、設定されたIDを返却します。<br>追加キー以外の場合、"0" を返却します。'
+      name:
+        type: string
+        example: "管理者権限"
+        description: "リクエスト元APIキー名<br>追加キーの場合、設定された名称を返却します。<br>追加キー以外の場合、空白を返却します。"
+  method:
+    type: string
+    example: "GET"
+    description: "メソッド"
+  resource:
+    type: string
+    example: "/v1/employees"
+    description: "エンドポイント"
+  path:
+    type: string
+    example: "api.jinjer.biz/v1/employees"
+    description: "パス"
+  status_code:
+    type: number
+    example: 429
+    description: "ステータスコード"
+  errors:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "E429C0001"
+          description: "コード"
+        reason:
+          type: string
+          example: "Too Many Requests."
+          description: "理由"
+        message:
+          type: string
+          example: "Please check the documentation for limit values."
+          description: "メッセージ"

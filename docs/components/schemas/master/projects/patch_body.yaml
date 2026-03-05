@@ -1,0 +1,129 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 20
+    example: "1"
+    description: "プロジェクトID<br>マスタにて任意に登録されるIDです。<br>APIではIDの変更はできません。IDを変更したい場合はUI（プロジェクト設定）から変更してください。"
+  name:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "人的資本経営PJ"
+    description: "プロジェクト名"
+  started_on:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "開始日"
+  ended_on:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "終了日"
+  category:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 20
+        example: "1"
+        description: "カテゴリID<br>カテゴリIDは `GET /v1/master/project-categories` で得られる `id` の値で指定します。"
+  remarks:
+    type: string
+    minLength: 0
+    maxLength: 50
+    example: "◯◯という備考です。"
+    description: "説明"
+  active:
+    type: boolean
+    minLength: 4
+    maxLength: 5
+    example: true
+    description: "有効ステータス<br>true:有効<br>false:無効"
+  display_order:
+    type: number
+    minLength: 1
+    maxLength: 6
+    example: 2
+    description: "表示順"
+  access_control:
+    type: object
+    properties:
+      public_classification:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "公開範囲<br>1:全体公開<br>2:限定公開<br><br>公開範囲に関する設定を変更する場合、公開範囲の指定は必須です。"
+      employees:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 50
+              example: "JIN0001"
+              description: "公開範囲 社員番号<br>社員番号は `GET /v1/employees` で得られる `id` の値で指定します。"
+      accounting_departments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 20
+              example: "1"
+              description: "公開範囲 計上部門ID<br>計上部門IDは `GET /v1/master/accounting-departments` で得られる `id` の値で指定します。"
+      depts_and_posts:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 0
+              maxLength: 20
+              example: "1234567"
+              description: "公開範囲 所属グループ・役職行ID<br>システム上で自動で発番される一意のIDです。<br>所属グループ・役職行IDは `GET /v1/master/projects` で得られる `access_control.depts_and_posts.id` の値で指定します。<br>所属グループ・役職行を追加する場合は、このIDを指定せずに所属グループID及び役職IDを指定してください。<br>特定の所属グループ・役職行を削除する場合は、このIDを指定してください。<br>特定の所属グループ・役職行を編集する場合は、一度このIDを指定して行を削除してから、再度新しい行として追加してください。"
+            applies_to_all_lower_depts:
+              type: boolean
+              minLength: 0
+              maxLength: 5
+              example: true
+              description: "公開範囲 下位所属グループへの適用<br>true:適用する<br>false:適用しない<br><br>所属グループ・役職行IDを指定して所属グループ・役職行を削除する場合、指定できません。"
+            departments:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 0
+                    maxLength: 50
+                    example: "1"
+                    description: "公開範囲 所属グループID<br>所属グループIDは `GET /v1/departments` で得られる `id` の値で指定します。<br>所属グループ・役職行IDを指定して所属グループ・役職行を削除する場合、指定できません。"
+            employee_posts:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 0
+                    maxLength: 10
+                    example: "1"
+                    description: "公開範囲 役職ID<br>役職IDは `GET /v1/master/employee-posts` で得られる `id` の値で指定します。<br>所属グループ・役職行IDを指定して所属グループ・役職行を削除する場合、指定できません。"

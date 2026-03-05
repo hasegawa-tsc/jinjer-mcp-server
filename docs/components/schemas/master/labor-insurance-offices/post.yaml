@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "労働保険事業所コード"
+  name:
+    type: string
+    example: "◯◯社会保険事業所"
+    description: "労働保険事業所名"
+  activate_date:
+    type: string
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "適用開始日"

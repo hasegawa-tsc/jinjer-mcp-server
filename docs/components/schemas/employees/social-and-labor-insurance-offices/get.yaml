@@ -1,0 +1,51 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  master_office:
+    type: object
+    properties:
+      id:
+        description: "事業所マスタID<br>人事設定＞社保・労保＞事業所マスタにて登録されているマスタのIDが出力されます。"
+        type: string
+        example: "11"
+      name:
+        description: "事業所マスタ名"
+        type: string
+        example: "株式会社ａａ"
+  social_office:
+    type: object
+    properties:
+      id:
+        description: "社保事業所ID<br>人事設定＞社保・労保＞社保事業所にて登録されているマスタのIDが出力されます。"
+        type: string
+        example: "11"
+      name:
+        description: "社保事業所名"
+        type: string
+        example: "株式会社ａａ"
+  labor_office:
+    type: object
+    properties:
+      id:
+        description: "労保事業所ID<br>人事設定＞社保・労保＞労保事業所にて登録されているマスタのIDが出力されます。"
+        type: string
+        example: "11"
+      name:
+        description: "労保事業所名"
+        type: string
+        example: "株式会社ａａ"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2021-10-01 10:00:00"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2021-10-01 10:00:00"

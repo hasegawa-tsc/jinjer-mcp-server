@@ -1,0 +1,126 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "JN0000000001AA"
+    description: "申請書No."
+  request_category:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "申請区分ID"
+      name:
+        type: string
+        example: "人事"
+        description: "申請区分名"
+  request_form:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "申請フォームID"
+      name:
+        type: string
+        example: "入社申請"
+        description: "申請フォーム名"
+  status:
+    type: object
+    properties:
+      id:
+        type: number
+        example: 1
+        description: "ステータスID<br>1:承認完了<br>2:進行中<br>3:否認<br>4:取下げ<br>7:差し戻し"
+      name:
+        type: string
+        example: "承認完了"
+        description: "ステータス"
+  requester:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "申請者 > 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "申請者 > 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "申請者 > 職場氏名（名）"
+      department:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "申請者 > 所属グループID"
+          name:
+            type: string
+            example: "第一営業部"
+            description: "申請者 > 所属グループ名"
+  last_approver:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "JIN0002"
+          description: "最終承認者または否認者 > 社員番号"
+        last_name:
+          type: string
+          example: "神社"
+          description: "最終承認者または否認者 > 職場氏名（氏）"
+        first_name:
+          type: string
+          example: "二郎"
+          description: "最終承認者または否認者 > 職場氏名（名）"
+        comment:
+          type: string
+          example: "承認しました。"
+          description: "最終承認者または否認者 > コメント"
+  title:
+    type: string
+    example: "【2024年4月】中途採用者入社申請"
+    description: "件名"
+  remarks:
+    type: string
+    example: "◯◯という備考です。"
+    description: "備考"
+  reason:
+    type: string
+    example: "◯◯という理由です。"
+    description: "理由"
+  request_url:
+    type: string
+    example: "https://employee.jinjer.biz/request/confirm/12345/12345"
+    description: "申請書URL"
+  requested_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "申請日時"
+  last_approved_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "最終承認（差し戻しを含む）日時または否認日時"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

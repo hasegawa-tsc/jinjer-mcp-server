@@ -1,0 +1,314 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  affiliations:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "主務 所属ID"
+          type: string
+          example: "361493"
+        date_of_issue:
+          description: "主務 発令年月日"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2018-02-01"
+        change_classification:
+          type: object
+          properties:
+            id:
+              description: "主務 異動区分ID<br>人事設定＞所属＞異動区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "6"
+            name:
+              description: "主務 異動区分"
+              type: string
+              example: "配属"
+        department:
+          type: object
+          properties:
+            id:
+              description: "主務 所属グループID"
+              type: string
+              example: "1"
+            name:
+              description: "主務 所属グループ"
+              type: string
+              example: "JinjerAPI検証株式会社"
+        employee_post:
+          type: object
+          properties:
+            id:
+              description: "主務 役職ID<br>人事設定＞所属＞役職にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "主務 役職"
+              type: string
+              example: "マネージャー"
+        work_location:
+          type: object
+          properties:
+            id:
+              description: "主務 勤務地ID<br>人事設定＞所属＞勤務地にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "主務 勤務地"
+              type: string
+              example: "本社"
+        job_classification:
+          type: object
+          properties:
+            id:
+              description: "主務 職種ID<br>人事設定＞所属＞職種にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "4"
+            name:
+              description: "主務 職種"
+              type: string
+              example: "技術職"
+        duty_classification:
+          type: object
+          properties:
+            id:
+              description: "主務 職務ID<br>人事設定＞所属＞職務にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "主務 職務"
+              type: string
+              example: "QC"
+        employee_grade:
+          type: object
+          properties:
+            id:
+              description: "主務 グレードID"
+              type: string
+              example: "826"
+            name:
+              description: "主務 グレード 1<br>従業員管理＞所属＞主務で登録することができます。<br>グレード1のマスタは人事設定＞給与計算＞グレードで設定することができます。"
+              type: string
+              example: "D"
+            grade_level:
+              type: object
+              properties:
+                name:
+                  description: "主務 グレード 2<br>従業員管理＞所属＞主務で登録することができます。<br>グレード2のマスタは人事設定＞給与計算＞グレードで設定することができます。"
+                  type: string
+                  example: "1等級"
+        boss:
+          type: object
+          properties:
+            employee_id:
+              description: "主務 上司 社員番号"
+              type: string
+              example: "1"
+            last_name:
+              description: "主務 上司（氏）"
+              type: string
+              example: "神社"
+            first_name:
+              description: "主務 上司（名）"
+              type: string
+              example: "太郎"
+        roles:
+          type: object
+          properties:
+            jinji:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（人事）ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（人事）"
+                  type: string
+                  example: "システム管理者権限"
+            payroll:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（給与）ID<br>ご利用にはジンジャー給与の契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（給与）"
+                  type: string
+                  example: "給与管理者権限"
+            labor:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（労務）ID<br>ご利用には社保手続きオプションの契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（労務）"
+                  type: string
+                  example: "労務管理者権限"
+            expenses:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（経費）ID<br>ご利用にはジンジャー経費の契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（経費）"
+                  type: string
+                  example: "経費管理者権限"
+            survey:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（ワーク・バイタル）ID<br>ご利用にはワーク・バイタルのオプションの契約が必要です。"
+                  type: string
+                  example: "3"
+                name:
+                  description: "主務 ロール(ワーク・バイタル)"
+                  type: string
+                  example: "ワーク・バイタル管理者権限"
+            mynumber:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（マイナンバー）ID<br>ご利用にはマイナンバーオプションの契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（マイナンバー）"
+                  type: string
+                  example: "事務取扱責任者権限"
+            workflow:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（ワークフロー）ID<br>ご利用にはジンジャーワークフローの契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（ワークフロー）"
+                  type: string
+                  example: "ワークフロー管理者権限"
+            sign:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（サイン）ID<br>ご利用にはジンジャーサインの契約が必要です。"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（サイン）"
+                  type: string
+                  example: "サイン管理者権限"
+            hr_data_analysis:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 ロール（人事データ分析）ID"
+                name:
+                  type: string
+                  example: "管理者権限"
+                  description: "主務 ロール（人事データ分析）<br>ご利用にはジンジャー人事データ分析の契約が必要です。"
+            organizational_survey:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "主務 ロール（サーベイ）ID"
+                name:
+                  type: string
+                  example: "管理者権限"
+                  description: "主務 ロール（サーベイ）<br>ご利用にはジンジャーサーベイの契約が必要です。"
+            attendance_group:
+              type: object
+              properties:
+                id:
+                  description: "主務 ロール（メイン打刻グループ）ID"
+                  type: string
+                  example: "1"
+                name:
+                  description: "主務 ロール（メイン打刻グループ）名"
+                  type: string
+                  example: "勤怠管理者権限"
+            sub_attendance_groups:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    description: "主務 ロール（サブ打刻グループ）ID"
+                    type: string
+                    example: "2"
+                  name:
+                    description: "主務 ロール（サブ打刻グループ）名"
+                    type: string
+                    example: "グループ管理者権限"
+        optional_classifications:
+          type: array
+          items:
+            type: object
+            properties:
+              number:
+                description: "主務 任意項目番号<br>任意項目の1-3に対応します。"
+                type: integer
+                example: 1
+              label:
+                description: "主務 任意項目名称"
+                type: string
+                example: "所属任意項目1"
+              id:
+                description: "主務 任意項目ID<br>人事設定＞所属＞任意項目1~3にて登録されているマスタのIDが出力されます。"
+                type: string
+                example: "1"
+              value:
+                description: "主務 任意項目の選択肢"
+                type: string
+                example: "所属任意項目1_1"
+        attendance_group:
+          type: object
+          properties:
+            id:
+              description: "主務 メイン打刻グループID"
+              type: string
+              example: "A01"
+            name:
+              description: "主務 メイン打刻グループ"
+              type: string
+              example: "打刻グループA01"
+        sub_attendance_groups:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: "主務 サブ打刻グループID"
+                type: string
+                example: "A02"
+              name:
+                description: "主務 サブ打刻グループ"
+                type: string
+                example: "打刻グループA02"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2020-01-01 10:00:00"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018-01-01 10:00:00"

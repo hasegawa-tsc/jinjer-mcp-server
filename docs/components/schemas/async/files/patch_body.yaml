@@ -1,0 +1,61 @@
+type: object
+required:
+  - employee_id
+properties:
+  type:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 2
+        example: "8"
+        description: "ファイル種別ID<br>添付するファイルの用途・目的を指定します。<br>1:職歴＞前職源泉徴収票<br>2:職歴＞職務経歴書<br>3:採用＞履歴書<br>4:採用＞卒業証明書<br>5:資格・免許＞資格証明書<br>6:研修＞研修添付ファイル<br>7:労働契約＞労働契約書<br>8:カスタム項目＞詳細項目（入力形式=3:ファイル）<br>9:プロフィール写真<br>10:社保・労保＞社会保険＞年金手帳<br>11:社保・労保＞労働保険＞雇用保険被保険者証<br>12:社保・労保＞労働保険＞在留カード<br>13:社保・労保＞労働保険＞就労資格証明書<br>14:社保・労保＞労働保険＞就労ビザ"
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号<br>ファイルを添付する社員を特定するキー（社員番号）を指定します。"
+  customize_menu:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 10
+        example: "1"
+        description: "ファイル添付先カスタムメニューID<br>ファイルを添付するカスタム項目を特定するキー（カスタム項目のメニューID）を指定します。<br><br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` の場合、指定は必須です。<br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` 以外の場合、指定できません。"
+      customize_item:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 1
+            maxLength: 10
+            example: "1"
+            description: "ファイル添付先カスタム項目ID<br>ファイルを添付するカスタム項目を特定するキー（カスタム項目の項目ID）を指定します。<br><br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` の場合、指定は必須です。<br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` 以外の場合、指定できません。"
+  record_code:
+    type: string
+    minLength: 1
+    maxLength: 10
+    example: "1"
+    description: "ファイル添付先レコード番号<br>ファイルを添付するレコードを特定するキー（ID または No）を指定します。<br><br>ファイル種別が以下のいずれかの場合、指定は必須です。<br>ファイル種別が 以下のいずれか以外の場合、指定できません。<br>- `5:資格・免許＞資格証明書`<br>- `6:研修＞研修添付ファイル`<br>- `7:労働契約＞労働契約書`<br><br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` の場合、かつ対象のカスタム項目が「項目追加（横）」の場合、指定は必須です。<br>ファイル種別が `8:カスタム項目＞詳細項目（入力形式=3:ファイル）` の場合、かつ対象のカスタム項目が「項目羅列」の場合、指定できません。"
+  file:
+    type: object
+    required:
+      - name
+      - encoded_string
+    properties:
+      name:
+        type: string
+        minLength: 1
+        maxLength: 255
+        example: "file.jpg"
+        description: "ファイル名<br>添付するファイルのファイル名を指定します。"
+      encoded_string:
+        type: string
+        example: "UE9TVCBQT1NUIFBPU1QgUE9TVA=="
+        description: "ファイル<br>添付するファイルを Base64 エンコード形式で指定します。<br><br>本エンドポイントへのリクエストが正常なレスポンス (200) を返した後、<br>- ファイル登録の成功または失敗は登録先の各情報のエンドポイントでご確認ください。<br>- 15分経過しても登録先の各情報のエンドポイントでファイルが確認できない場合、ファイル登録に失敗しているため、再度本エンドポイントからファイル登録をお試しください。"

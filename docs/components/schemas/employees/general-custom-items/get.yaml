@@ -1,0 +1,65 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  customize_menu:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "カスタム項目ID"
+      name:
+        type: string
+        example: "カスタム項目(羅列)"
+        description: "カスタム項目名<br>項目名は項目カスタマイズ＞項目一覧画面にて設定可能です。"
+      customize_item:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "項目羅列の項目ID"
+            title:
+              type: string
+              example: "プルダウン項目"
+              description: "項目羅列の項目名"
+            value:
+              type: array or string
+              example: "1"
+              description: "項目羅列の項目登録値<br>チェックボックスの場合は配列で返却します。<br>その他の項目の場合はオブジェクトで返却します。"
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "入力形式ID"
+                name:
+                  type: string
+                  example: "テキストフォーム"
+                  description: "入力形式<br>1:テキストフォーム<br>2:カレンダー<br>3:ファイル<br>4:プルダウン<br>5:ラジオボタン<br>6:チェックボックス<br>7:テキストエリア<br>8:URL"
+            unit:
+              type: string
+              example: "km"
+              description: "単位<br>入力形式がテキストフォーム、ロングテキストエリアの場合のみ出力されます。"
+            label:
+              type: array or string
+              example: 選択肢1
+              description: "選択値の名称<br>入力形式がプルダウン、ラジオボタン、チェックボックスの場合のみ出力されます。"
+            created_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "作成日時"
+            updated_at:
+              type: string
+              format: datetime
+              pattern: yyyy-MM-dd hh:mm:ss
+              example: "2024-04-13 12:34:56"
+              description: "更新日時"

@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "エクスポートID<br>システム上で自動で発番される一意のIDです。<br><br>`POST /v1/kintai-exports` で受け付けたエクスポート処理が、何らかの理由で失敗した等の理由により本エンドポイントでレスポンスされない場合があります。<br>出力処理の状況は、実行者に送信される通知メールまたは UI のデータ出力＞レポート処理結果一覧にてご確認ください。<br><br>エクスポート処理結果の保存期間は最大7日間です。"
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "エクスポート 実行者 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "エクスポート 実行者 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "エクスポート 実行者 職場氏名（名）"
+  output_file:
+    type: object
+    properties:
+      type:
+        type: string
+        example: "text/plain"
+        description: "エクスポート ファイルタイプ"
+      temporary_url:
+        type: string
+        example: "https://example.com/file.csv"
+        description: "エクスポート ファイルURL<br>ファイルURLの有効期限は2分間です。"

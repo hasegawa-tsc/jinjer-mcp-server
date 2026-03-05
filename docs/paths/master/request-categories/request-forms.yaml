@@ -1,0 +1,45 @@
+get:
+  tags:
+    - ワークフロー 申請区分/申請フォーム
+  summary: /v1/master/request-categories/request-forms
+  description: "申請区分/申請フォームを取得する。"
+  operationId: masterRequestCategoriesRequestFormsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../../components/parameters/common.yaml#/components/parameters/page
+    - name: request-category-id
+      in: query
+      schema:
+        type: string
+        example: "1"
+        description: "指定された申請区分のデータを返却します。<br>申請区分はワークフロー＞申請フォーム＞申請区分IDの値で指定します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - $ref: ../../../components/parameters/common.yaml#/components/parameters/status
+    - $ref: ../../../components/parameters/common.yaml#/components/parameters/has-since-changed-at
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../../components/schemas/master/request-categories/request-forms/get.yaml
+    '400':
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../../components/responses/common.yaml#/components/responses/commonResponse405

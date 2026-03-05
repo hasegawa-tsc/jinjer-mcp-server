@@ -1,0 +1,371 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  payment_method_classification:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "支払方法ID<br>0:未選択<br>1:口座1全額<br>2:口座1固定額/口座2残額<br>3:口座1固定額/現金残額<br>4:口座1・口座2固定額/現金残額<br>5:口座1・現金固定額/口座2残額<br>6:現金全額<br>7:現金固定額/口座1残額<br>8:口座1・口座2固定額/口座3残額"
+      name:
+        type: string
+        example: "口座1全額"
+        description: "支払方法"
+  transfer_source_bank_account_1:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "口座1振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが出力されます。"
+      code:
+        type: string
+        example: "0000"
+        description: "口座1振込元銀行コード<br>企業設定＞企業銀行にて登録されているマスタの銀行コードが出力されます。"
+      name:
+        type: string
+        example: "日本"
+        description: "口座1振込元銀行名<br>企業設定＞企業銀行にて登録されているマスタの銀行名が出力されます。"
+      phonetic:
+        type: string
+        example: "ﾆﾎﾝ"
+        description: "口座1振込元銀行名カナ<br>企業設定＞企業銀行にて登録されているマスタの銀行名フリガナが出力されます。"
+      branch:
+        type: object
+        properties:
+          code:
+            type: string
+            example: "093"
+            description: "口座1振込元支店コード<br>企業設定＞企業銀行にて登録されているマスタの支店コードが出力されます。"
+          name:
+            type: string
+            example: "本店"
+            description: "口座1振込元支店名<br>企業設定＞企業銀行にて登録されているマスタの支店名が出力されます。"
+          phonetic:
+            type: string
+            example: "ﾎﾝﾃﾝ"
+            description: "口座1振込元支店名カナ<br>企業設定＞企業銀行にて登録されているマスタの支店名フリガナが出力されます。"
+      deposit_type:
+        type: string
+        example: "1"
+        description: "口座1振込元預金種目<br>企業設定＞企業銀行にて登録されているマスタの預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+      number:
+        type: string
+        example: "1234567"
+        description: "口座1振込元口座番号<br>企業設定＞企業銀行にて登録されているマスタの口座番号が出力されます。"
+      holder:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "神社太郎"
+            description: "口座1振込元口座名義<br>企業設定＞企業銀行にて登録されているマスタの口座名義が出力されます。"
+          phonetic:
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+            description: "口座1振込元口座名義（フリガナ）<br>企業設定＞企業銀行にて登録されているマスタの口座名義（フリガナ）が出力されます。"
+      company_code:
+        type: string
+        example: "0000000456"
+        description: "口座1振込元口座会社コード（給与・賞与・経費）<br>企業設定＞企業銀行にて登録されているマスタの会社コード（給与・賞与・経費）が出力されます。"
+  transfer_bank_account_1:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "口座1振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが出力されます。"
+      code:
+        type: string
+        example: "0000"
+        description: "口座1振込先銀行コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の銀行コードが出力されます。"
+      name:
+        type: string
+        example: "日本"
+        description: "口座1振込先銀行名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の名称が出力されます。"
+      phonetic:
+        type: string
+        example: "ﾆﾎﾝ"
+        description: "口座1振込先銀行名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行のカタカナ名称が出力されます。"
+      branch:
+        type: object
+        properties:
+          code:
+            type: string
+            example: "093"
+            description: "口座1振込先支店コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店コードが出力されます。"
+          name:
+            type: string
+            example: "本店"
+            description: "口座1振込先支店名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店名が出力されます。"
+          phonetic:
+            type: string
+            example: "ﾎﾝﾃﾝ"
+            description: "口座1振込先支店名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店のカタカナ名称が出力されます。"
+      deposit_type:
+        type: string
+        example: "1"
+        description: "口座1振込先預金種目<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+      number:
+        type: string
+        example: "1234567"
+        description: "口座1振込先口座番号<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座番号が出力されます。"
+      holder:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "神社太郎"
+            description: "口座1振込先口座名義<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義が出力されます。"
+          phonetic:
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+            description: "口座1振込先口座名義（フリガナ）<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義（フリガナ）が出力されます。"
+      fixed_amount:
+        type: string
+        example: "100000.000"
+        description: "口座1固定額"
+  transfer_source_bank_account_2:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "口座2振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが出力されます。"
+      code:
+        type: string
+        example: "0000"
+        description: "口座2振込元銀行コード<br>企業設定＞企業銀行にて登録されているマスタの銀行コードが出力されます。"
+      name:
+        type: string
+        example: "日本"
+        description: "口座2振込元銀行名<br>企業設定＞企業銀行にて登録されているマスタの銀行名が出力されます。"
+      phonetic:
+        type: string
+        example: "ﾆﾎﾝ"
+        description: "口座2振込元銀行名カナ<br>企業設定＞企業銀行にて登録されているマスタの銀行名フリガナが出力されます。"
+      branch:
+        type: object
+        properties:
+          code:
+            type: string
+            example: "093"
+            description: "口座2振込元支店コード<br>企業設定＞企業銀行にて登録されているマスタの支店コードが出力されます。"
+          name:
+            type: string
+            example: "本店"
+            description: "口座2振込元支店名<br>企業設定＞企業銀行にて登録されているマスタの支店名が出力されます。"
+          phonetic:
+            type: string
+            example: "ﾎﾝﾃﾝ"
+            description: "口座2振込元支店名カナ<br>企業設定＞企業銀行にて登録されているマスタの支店名フリガナが出力されます。"
+      deposit_type:
+        type: string
+        example: "1"
+        description: "口座2振込元預金種目<br>企業設定＞企業銀行にて登録されているマスタの預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+      number:
+        type: string
+        example: "1234567"
+        description: "口座2振込元口座番号<br>企業設定＞企業銀行にて登録されているマスタの口座番号が出力されます。"
+      holder:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "神社太郎"
+            description: "口座2振込元口座名義<br>企業設定＞企業銀行にて登録されているマスタの口座名義が出力されます。"
+          phonetic:
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+            description: "口座2振込元口座名義（フリガナ）<br>企業設定＞企業銀行にて登録されているマスタの口座名義（フリガナ）が出力されます。"
+      company_code:
+        type: string
+        example: "0000000456"
+        description: "口座2振込元口座会社コード（給与・賞与・経費）<br>企業設定＞企業銀行にて登録されているマスタの会社コード（給与・賞与・経費）が出力されます。"
+  transfer_bank_account_2:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "口座2振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが出力されます。"
+      code:
+        type: string
+        example: "0000"
+        description: "口座2振込先銀行コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の銀行コードが出力されます。"
+      name:
+        type: string
+        example: "日本"
+        description: "口座2振込先銀行名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の名称が出力されます。"
+      phonetic:
+        type: string
+        example: "ﾆﾎﾝ"
+        description: "口座2振込先銀行名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行のカタカナ名称が出力されます。"
+      branch:
+        type: object
+        properties:
+          code:
+            type: string
+            example: "093"
+            description: "口座2振込先支店コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店コードが出力されます。"
+          name:
+            type: string
+            example: "本店"
+            description: "口座2振込先支店名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店名が出力されます。"
+          phonetic:
+            type: string
+            example: "ﾎﾝﾃﾝ"
+            description: "口座2振込先支店名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店のカタカナ名称が出力されます。"
+      deposit_type:
+        type: string
+        example: "1"
+        description: "口座2振込先預金種目<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+      number:
+        type: string
+        example: "1234567"
+        description: "口座2振込先口座番号<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座番号が出力されます。"
+      holder:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "神社太郎"
+            description: "口座2振込先口座名義<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義が出力されます。"
+          phonetic:
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+            description: "口座2振込先口座名義（フリガナ）<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義（フリガナ）が出力されます。"
+      fixed_amount:
+        type: string
+        example: "100000.000"
+        description: "口座2固定額"
+  transfer_source_bank_account_3:
+    type: object
+    properties:
+      id:
+        description: "口座3振込元銀行ID<br>企業設定＞企業銀行にて登録されているマスタのIDが出力されます。"
+        type: string
+        example: "1"
+      code:
+        description: "口座3振込元銀行コード<br>企業設定＞企業銀行にて登録されているマスタの銀行コードが出力されます。"
+        type: string
+        example: "0000"
+      name:
+        description: "口座3振込元銀行名<br>企業設定＞企業銀行にて登録されているマスタの銀行名が出力されます。"
+        type: string
+        example: "日本"
+      phonetic:
+        description: "口座3振込元銀行名カナ<br>企業設定＞企業銀行にて登録されているマスタの銀行名フリガナが出力されます。"
+        type: string
+        example: "ﾆﾎﾝ"
+      branch:
+        type: object
+        properties:
+          code:
+            description: "口座3振込元支店コード<br>企業設定＞企業銀行にて登録されているマスタの支店コードが出力されます。"
+            type: string
+            example: "093"
+          name:
+            description: "口座3振込元支店名<br>企業設定＞企業銀行にて登録されているマスタの支店名が出力されます。"
+            type: string
+            example: "本店"
+          phonetic:
+            description: "口座3振込元支店名カナ<br>企業設定＞企業銀行にて登録されているマスタの支店名フリガナが出力されます。"
+            type: string
+            example: "ﾎﾝﾃﾝ"
+      deposit_type:
+        description: "口座3振込元預金種目<br>企業設定＞企業銀行にて登録されているマスタの預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+        type: string
+        example: "1"
+      number:
+        description: "口座3振込元口座番号<br>企業設定＞企業銀行にて登録されているマスタの口座番号が出力されます。"
+        type: string
+        example: "1234567"
+      holder:
+        type: object
+        properties:
+          name:
+            description: "口座3振込元口座名義<br>企業設定＞企業銀行にて登録されているマスタの口座名義が出力されます。"
+            type: string
+            example: "神社太郎"
+          phonetic:
+            description: "口座3振込元口座名義（フリガナ）<br>企業設定＞企業銀行にて登録されているマスタの口座名義（フリガナ）が出力されます。"
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+      company_code:
+        description: "口座3振込元口座会社コード（給与・賞与・経費）<br>企業設定＞企業銀行にて登録されているマスタの会社コード（給与・賞与・経費）が出力されます。"
+        type: string
+        example: "0000000456"
+  transfer_bank_account_3:
+    type: object
+    properties:
+      id:
+        description: "口座3振込先銀行ID<br>従業員管理＞給与計算＞銀行振込口座にて登録されているIDが出力されます。"
+        type: string
+        example: "1"
+      code:
+        description: "口座3振込先銀行コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の銀行コードが出力されます。"
+        type: string
+        example: "0000"
+      name:
+        description: "口座3振込先銀行名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行の名称が出力されます。"
+        type: string
+        example: "日本"
+      phonetic:
+        description: "口座3振込先銀行名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先銀行のカタカナ名称が出力されます。"
+        type: string
+        example: "ﾆﾎﾝ"
+      branch:
+        type: object
+        properties:
+          code:
+            description: "口座3振込先支店コード<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店コードが出力されます。"
+            type: string
+            example: "093"
+          name:
+            description: "口座3振込先支店名<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の支店名が出力されます。"
+            type: string
+            example: "本店"
+          phonetic:
+            description: "口座3振込先支店名カナ<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店のカタカナ名称が出力されます。"
+            type: string
+            example: "ﾎﾝﾃﾝ"
+      deposit_type:
+        description: "口座3振込先預金種目<br>従業員管理＞給与計算＞銀行振込口座にて登録されている振込先支店の預金種目IDが出力されます。<br>1:普通預金<br>2:当座預金"
+        type: string
+        example: "1"
+      number:
+        description: "口座3振込先口座番号"
+        type: string
+        example: "1234567"
+      holder:
+        type: object
+        properties:
+          name:
+            description: "口座3振込先口座名義<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義が出力されます。"
+            type: string
+            example: "神社太郎"
+          phonetic:
+            description: "口座3振込先口座名義（フリガナ）<br>従業員管理＞給与計算＞銀行振込口座にて登録されている口座名義（フリガナ）が出力されます。"
+            type: string
+            example: "ｼﾞﾝｼﾞﾔ-ﾀﾛｳ"
+  fixed_cash_amount:
+    type: string
+    example: "100000.000"
+    description: "現金固定額"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,136 @@
+type: object
+required:
+  - id
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 10
+    example: '1'
+    description: '打刻グループID'
+  name:
+    type: string
+    minLength: 1
+    maxLength: 100
+    example: '第一営業部グループ'
+    description: '打刻グループ名'
+  phonetic:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: 'ダイイチエイギョウブグループ'
+    description: '打刻グループ名（フリガナ）'
+  abbreviation:
+    type: string
+    minLength: 1
+    maxLength: 15
+    example: '一営G'
+    description: '打刻グループ略称'
+  display_order:
+    type: number
+    minLength: 0
+    maxLength: 9
+    example: 2
+    description: '表示順'
+  active:
+    type: boolean
+    minLength: 0
+    maxLength: 5
+    example: true
+    description: '有効ステータス<br>true の場合、従業員の打刻グループとして選択可能になります。<br>false の場合、従業員の打刻グループとして選択不可になります。'
+  zip_code:
+    type: string
+    minLength: 0
+    maxLength: 8
+    example: '060-0001'
+    description: '郵便番号'
+  full_address:
+    type: string
+    minLength: 0
+    maxLength: 255
+    example: '北海道札幌市中央区北１条西２丁目'
+    description: '住所'
+  phone_number:
+    type: string
+    minLength: 0
+    maxLength: 11
+    example: '03-5908-8291'
+    description: '電話番号'
+  gps_attendance_function:
+    type: object
+    properties:
+      active:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: 'GPS打刻 有効ステータス<br>true の場合、GPS打刻機能が有効になります。<br>false の場合、GPS打刻機能が無効になります。'
+      latitude:
+        type: number
+        minLength: 0
+        maxLength: 19
+        example: 35.69497633
+        description: 'GPS打刻 グループ座標（緯度）'
+      longitude:
+        type: number
+        minLength: 0
+        maxLength: 20
+        example: 35.69497633
+        description: 'GPS打刻 グループ座標（経度）'
+      available_meter:
+        type: number
+        minLength: 0
+        maxLength: 3
+        example: 2
+        description: 'GPS打刻 許容範囲（半径）'
+  smile_attendance_function:
+    type: object
+    properties:
+      active:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: '笑顔判定 有効ステータス<br>true の場合、笑顔判定機能が有効になります。<br>false の場合、笑顔判定機能が無効になります。'
+  chatwork_room:
+    type: string
+    minLength: 0
+    maxLength: 9
+    example: '123456789'
+    description: 'Chatwork Room'
+  slack_team_domain:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: 'jinjer'
+    description: 'Slack チームドメイン'
+  slack_channel_name:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: 'Slack打刻専用チャンネル'
+    description: 'Slack チャンネル'
+  slack_incomming_url:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: 'https://hooks.slack.com/services/ABCDE'
+    description: 'Slack Webhook URL'
+  ibeacon_uuid:
+    type: string
+    minLength: 0
+    maxLength: 255
+    example: '39ED98FF-2900-441A-802F-9C398FC199D2'
+    description: 'ビーコンのUUID'
+  ibeacon_major:
+    type: string
+    minLength: 0
+    maxLength: 255
+    example: '100'
+    description: 'ビーコンのmajor 値'
+  ibeacon_minor:
+    type: string
+    minLength: 0
+    maxLength: 255
+    example: '1'
+    description: 'ビーコンのminor 値'

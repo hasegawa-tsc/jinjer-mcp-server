@@ -1,0 +1,38 @@
+type: object
+required:
+  - journal_type
+  - journals
+  - export_format
+  - export_type
+properties:
+  journal_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "仕訳区分<br>1:計上仕訳<br>3:支払仕訳<br><br>本エンドポイントに POST することで、リクエストボディで指定された条件でのファイルのエクスポート処理が開始されます。エクスポート処理の状況及び結果は GET でご確認ください。"
+  journals:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          minLength: 1
+          maxLength: 8
+          example: "00000001"
+          description: "仕訳No.<br>仕訳No.は `GET /v1/expense-journals` で得られる `journal_id` の値で指定します。<br>指定された仕訳区分（計上仕訳または支払仕訳）に存在する仕訳No.である必要があります。<br>指定された仕訳No.のステータス（未出力または出力済）が混在する場合、エラーを返却します。"
+  export_format:
+    type: string
+    minLength: 1
+    maxLength: 20
+    example: "1"
+    description: "出力フォーマット<br>出力フォーマットは `GET /v1/master/expense-export-formats` で得られる `id` の値で指定します。"
+  export_type:
+    type: string
+    minLength: 1
+    maxLength: 1
+    example: "1"
+    description: "出力形式<br>1:CSV<br>2:EXCEL"

@@ -1,0 +1,15 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  labor_hour_settings:
+    type: object
+    properties:
+      year:
+        type: number
+        format: date
+        pattern: yyyy
+        example: 2024
+        description: "対象年"

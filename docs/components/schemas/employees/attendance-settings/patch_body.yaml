@@ -1,0 +1,421 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  ic_card_id_hex:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: "012E4CE3500C1234"
+    description: "ICカードID（hex）"
+  ic_card_id_dec:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: "85089982150873650"
+    description: "ICカードID（dec）"
+  chatwork_user_id:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: "1234567"
+    description: "Chatwork アカウントID"
+  slack_user_name:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: "ichiro.jinjer"
+    description: "Slack ユーザ名"
+  trial_started_on:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "研修期間 開始年月日"
+  trial_ended_on:
+    type: string
+    minLength: 0
+    maxLength: 10
+    format: date
+    pattern: yyyy-MM-dd
+    example: "2024-04-13"
+    description: "研修期間 終了年月日"
+  starting_month:
+    type: string
+    minLength: 0
+    maxLength: 2
+    example: "4"
+    description: "起算月度"
+  working_hours_in_rule_per_week:
+    type: string
+    minLength: 0
+    maxLength: 19
+    example: "40"
+    description: "週の所定労働時間"
+  working_days_in_rule_per_week:
+    type: string
+    minLength: 0
+    maxLength: 1
+    example: "5"
+    description: "週の所定労働日数"
+  working_days_in_rule_per_year:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "20"
+    description: "年間所定労働日数"
+  working_type:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 1
+        example: "1"
+        description: "勤務形態ID<br>0:通常<br>1:フレックスタイム制<br>2:変形労働時間制<br>3:裁量労働時間制<br>4:管理監督者<br>5:特定高度専門業務・成果型労働制"
+      regular:
+        type: object
+        properties:
+          calculation_type:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "通常 計算方法<br>0:日かつ週計算<br>1:日計算<br>2:週計算"
+          working_hours_per_day_for_day_and_week:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "通常 日かつ週計算 日あたり"
+          working_hours_per_week_for_day_and_week:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "通常 日かつ週計算 週あたり"
+          working_hours_per_day_for_day:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "通常 日計算 日あたり"
+          working_hours_per_week_for_week:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "通常 週計算 週あたり"
+      flex:
+        type: object
+        properties:
+          has_core_time:
+            type: boolean
+            minLength: 0
+            maxLength: 5
+            example: true
+            description: "フレックスタイム制 コアタイムの有無<br>true:あり<br>false:なし"
+          standard_working_hours_per_day:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "フレックスタイム制 1日の標準労働時間"
+          settlement_period:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "フレックスタイム制 清算期間<br>1:1ヶ月<br>2:2ヶ月<br>3:3ヶ月"
+          settlement_unit:
+            type: string
+            minLength: 0
+            maxLength: 1
+            example: "1"
+            description: "フレックスタイム制 清算期間における所定労働時間<br>0:標準労働時間✕所定労働日数<br>1:月毎の所定労働時間"
+          is_shortage_carried_over:
+            type: boolean
+            minLength: 0
+            maxLength: 5
+            example: true
+            description: "フレックスタイム制 不足労働時間の次月もちこし<br>true:もちこす<br>false:給与控除する"
+          regular_working_hours:
+            type: array
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                  minLength: 0
+                  maxLength: 5
+                  example: "160.1"
+                  description: "フレックスタイム制 月毎の所定労働時間<br>各月度の所定労働時間を配列で指定します。<br>指定する場合は12ヶ月分が指定される必要があるため、データ数が0もしくは12でない場合、エラーを返却します。"
+          maximum_regular_working_hours:
+            type: array
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                  minLength: 0
+                  maxLength: 5
+                  example: "160.1"
+                  description: "フレックスタイム制 最大所定労働時間<br>各月度の最大所定労働時間を配列で指定します。<br>指定する場合は12ヶ月分が指定される必要があるため、データ数が0もしくは12でない場合、エラーを返却します。"
+          fixed_working_time_from:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "フレックスタイム制 未打刻時のみなし時間設定 開始時刻"
+          fixed_working_time_to:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "フレックスタイム制 未打刻時のみなし時間設定 終了時刻"
+      deformation:
+        type: object
+        properties:
+          working_hours_in_rule_for_day:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "変形労働時間制 日計算"
+          working_hours_in_rule_for_week:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "変形労働時間制 週計算"
+          working_hours_in_rule_for_28_day_month:
+            type: string
+            minLength: 0
+            maxLength: 5
+            example: "160.1"
+            description: "変形労働時間制 月計算 28日の場合"
+          working_hours_in_rule_for_29_day_month:
+            type: string
+            minLength: 0
+            maxLength: 5
+            example: "160.1"
+            description: "変形労働時間制 月計算 29日の場合"
+          working_hours_in_rule_for_30_day_month:
+            type: string
+            minLength: 0
+            maxLength: 5
+            example: "160.1"
+            description: "変形労働時間制 月計算 30日の場合"
+          working_hours_in_rule_for_31_day_month:
+            type: string
+            minLength: 0
+            maxLength: 5
+            example: "160.1"
+            description: "変形労働時間制 月計算 31日の場合"
+      discretionary:
+        type: object
+        properties:
+          fixed_working_hours:
+            type: string
+            minLength: 0
+            maxLength: 5
+            format: time
+            pattern: hh:mm
+            example: "12:34"
+            description: "裁量労働時間制 みなし時間"
+      is_set_starting_date_of_month:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "毎月の起算日設定<br>true:設定する<br>false:設定しない"
+      is_set_closing_date_as_starting_date_of_week:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "起算曜日設定<br>true:就業規則設定＞締め日の翌日を週の起算曜日にする<br>false:就業規則設定＞週の起算日の曜日にする"
+      is_set_fixed_working_time_when_not_stamped:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "未打刻時のみなし時間設定<br>true:設定する<br>false:設定しない"
+  auto_break:
+    type: object
+    properties:
+      is_set_auto_break:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "自動休憩設定<br>true:自動休憩設定<br>false:スケジュール設定"
+      auto_break_setting:
+        type: object
+        properties:
+          id:
+            type: string
+            minLength: 0
+            maxLength: 10
+            example: "1"
+            description: "自動休憩設定ID<br>自動休憩設定IDは `GET /v1/auto-break-settings` で得られる `id` の値で指定します。"
+  tags:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 0
+          maxLength: 50
+          example: "2024年中途採用"
+          description: "管理タグ<br><br>以下の文字列は指定できません。<br>- 半角スペース、全角スペース<br>- 半角カンマ<br>- すでに指定されている文字列"
+  fixed_overtime:
+    type: object
+    properties:
+      is_set_fixed_overtime:
+        type: boolean
+        minLength: 0
+        maxLength: 5
+        example: true
+        description: "みなし残業時間設定<br>true:設定する<br>false:設定しない"
+      overtime_hours_in_law:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "法定内残業時間"
+      overtime_hours_ouf_of_law:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "法定外残業時間"
+      working_night_hours:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "深夜労働時間"
+      working_holiday_hours_in_rule:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "所定休日労働時間"
+      working_holiday_hours_in_law:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "法定休日労働時間"
+  commuting:
+    type: object
+    properties:
+      payment:
+        type: object
+        properties:
+          minimum_days_required:
+            type: string
+            minLength: 0
+            maxLength: 2
+            example: "13"
+            description: "交通費 定期代 出勤日数の下限"
+          total:
+            type: string
+            minLength: 0
+            maxLength: 1000
+            example: "123456"
+            description: "交通費 定期代 支給額<br>支給間隔が `毎日` 以外の場合、指定できません。<br>支給間隔はUI（従業員管理＞通勤）または `POST/PATCH /v1/employees/commuting-information` で設定できます。"
+  employment_rule_setting:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "就業規則設定ID<br>就業規則設定IDは `GET /v1/employment-rule-settings` で得られる `id` の値で指定します。"
+  article_36_agreement_setting:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "36協定設定ID<br>36協定設定IDは `GET /v1/article-36-agreement-settings` で得られる `id` の値で指定します。"
+  annual_paid_leave_setting:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "年次有給休暇設定ID<br>年次有給休暇設定IDは `GET /v1/annual-paid-leave-settings` で得られる `id` の値で指定します。"
+  conversion_leave_setting:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "振休設定ID<br>振休設定IDは `GET /v1/conversion-leave-settings` で得られる `id` の値で指定します。"
+  compensation_leave_setting:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "代休設定ID<br>代休設定IDは `GET /v1/compensation-leave-settings` で得られる `id` の値で指定します。"
+  schedule_templates:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "スケジュール雛形ID<br>スケジュール雛形IDは `GET /v1/schedule-templates` で得られる `id` の値で指定します。"

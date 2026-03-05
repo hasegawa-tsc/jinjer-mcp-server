@@ -1,0 +1,58 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  adoption:
+    type: object
+    properties:
+      classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "採用区分ID<br>人事設定＞採用＞採用区分にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "新卒採用"
+            description: "採用区分"
+      route_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "採用経路ID<br>人事設定＞採用＞採用経路にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "エージェント"
+            description: "採用経路"
+      region_classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "採用地ID<br>人事設定＞採用＞採用地にて登録されているマスタのIDが出力されます。"
+          name:
+            type: string
+            example: "本社"
+            description: "採用地"
+      remarks:
+        type: string
+        example: "◯◯という備考です。"
+        description: "採用詳細"
+      created_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "作成日時"
+      updated_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "2024-04-13 12:34:56"
+        description: "更新日時"

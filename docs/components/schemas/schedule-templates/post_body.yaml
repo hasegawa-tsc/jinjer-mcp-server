@@ -1,0 +1,108 @@
+type: object
+required:
+  - id
+  - name
+  - display_order
+  - work_schedule
+properties:
+  id:
+    type: string
+    minLength: 0
+    maxLength: 10
+    example: "1"
+    description: "スケジュール雛形ID"
+  name:
+    type: string
+    minLength: 0
+    maxLength: 1000
+    example: "通常日勤スケジュール"
+    description: "スケジュール雛形名"
+  abbreviation:
+    type: string
+    minLength: 0
+    maxLength: 3
+    example: "通常"
+    description: "スケジュール雛形略称"
+  display_order:
+    type: number
+    minLength: 0
+    maxLength: 9
+    example: 2
+    description: "表示順"
+  work_schedule:
+    type: object
+    required:
+      - start
+      - end
+    properties:
+      start:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "出勤時刻"
+      end:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "退勤時刻"
+  break_schedules:
+    type: array
+    items:
+      type: object
+      properties:
+        number:
+          type: number
+          minLength: 0
+          maxLength: 1
+          example: 2
+          description: "休憩No.<br>休憩の1-5に対応します。"
+        start:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "休憩時刻"
+        end:
+          type: string
+          minLength: 0
+          maxLength: 5
+          format: time
+          pattern: hh:mm
+          example: "12:34"
+          description: "復帰時刻"
+  overtime_break_schedule:
+    type: object
+    properties:
+      start:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "スケジュール外休憩予定時刻"
+      end:
+        type: string
+        minLength: 0
+        maxLength: 5
+        format: time
+        pattern: hh:mm
+        example: "12:34"
+        description: "スケジュール外復帰予定時刻"
+  half_day_off:
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 0
+        maxLength: 10
+        example: "1"
+        description: "半休設定ID<br>半休設定IDは `GET /v1/half-day-off-settings` で得られる `id` の値（半休ID）で指定します。"

@@ -1,0 +1,54 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "特別休暇設定ID"
+  name:
+    type: string
+    example: "夏季休暇"
+    description: "特別休暇設定名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  is_half_day_off_available:
+    type: boolean
+    example: true
+    description: "半休申請<br>true:利用できる<br>false:利用できない"
+  is_time_off_available:
+    type: boolean
+    example: true
+    description: "時間休申請<br>true:利用できる<br>false:利用できない"
+  payment_classification:
+    type: number
+    example: 1
+    description: "有給無給区分<br>0:有給<br>1:無給"
+  is_auto_granted:
+    type: boolean
+    example: true
+    description: "自動付与設定<br>true:設定する<br>false:設定しない"
+  is_included_in_individual_attendance_rate:
+    type: boolean
+    example: true
+    description: "出勤率算定 出勤日数<br>true:含める<br>false:含めない"
+  is_included_in_whole_company_attendance_rate:
+    type: boolean
+    example: true
+    description: "出勤率算定 全労働日<br>true:含める<br>false:含めない"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

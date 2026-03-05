@@ -1,0 +1,39 @@
+get:
+  tags:
+    - アクセストークン
+  security: []
+  summary: /v1/token
+  description: "アクセストークンを取得する。"
+  operationId: tokenGet
+  parameters:
+    - name: X-API-KEY
+      in: header
+      schema:
+        type: string
+        example: abcd00000000000000000000
+        description: "ジンジャーAPIの設定で生成・取得された API キーを指定します。 "
+      required: true
+    - name: X-SECRET-KEY
+      in: header
+      schema:
+        type: string
+        example: abcd00000000000000000000
+        description: "ジンジャーAPIの設定で生成・取得された API シークレットキーを指定します。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/token/get_token_success.yaml
+    "400":
+      $ref: ../components/responses/common.yaml#/components/responses/commonResponse400
+    "403":
+      $ref: ../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../components/responses/common.yaml#/components/responses/commonResponse405

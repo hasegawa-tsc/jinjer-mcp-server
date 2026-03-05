@@ -1,0 +1,39 @@
+type: object
+properties:
+  number:
+    type: number
+    example: 1
+    description: "任意項目番号（1-3に対応）"
+  label:
+    type: string
+    example: "任意項目"
+    description: "項目名称"
+  options:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+          description: "任意項目ID<br>マスタにて任意に登録されるIDです。"
+        value:
+          type: string
+          example: "選択肢1"
+          description: "任意項目名称"
+        active:
+          type: boolean
+          example: true
+          description: "有効ステータス"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"

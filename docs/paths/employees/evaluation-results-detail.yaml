@@ -1,0 +1,42 @@
+get:
+  tags:
+    - 従業員 評価結果
+  summary: /v1/employees/evaluation-results/{id}
+  description: "従業員に紐づく評価結果詳細を取得する。"
+  operationId: get_id-evaluation-results
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/path/employee-id
+    - name: integrate-id
+      in: query
+      required: true
+      schema:
+        type: string
+        example: "1"
+        description: "指定された評価結果項目IDに属するデータを返却します。<br>評価結果項目IDは `GET /v1/master/evaluation-integrates` で得られる `id` の値で指定します。<br>評価結果項目IDが指定されていない場合、エラーを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/employees/evaluation-results-detail/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

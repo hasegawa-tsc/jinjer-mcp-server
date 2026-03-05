@@ -1,0 +1,51 @@
+get:
+  tags:
+    - APIリクエストログ
+  summary: /v1/api-logs
+  description: "APIリクエストログを取得する。"
+  operationId: apiLogsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2023-01-01"
+        description: "指定された対象日のログデータを返却します。<br/>取得可能なログデータは、本エンドポイントの公開（2025年1月）以降に受け付けたリクエストのログ、かつリクエスト日時から1年以内のログのみです。<br/>対象日が指定されていない場合、もしくは1年以上前の日付が指定されている場合、エラーを返却します。"
+    - name: method
+      in: query
+      schema:
+        type: string
+        example: "GET"
+        description: "指定されたメソッドのログデータを返却します。<br/>メソッドが指定されていない場合、全データを返却します。<br/>レスポンスに時間が掛かる場合、メソッドを指定することで時間が短縮される可能性があります。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/api-logs/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

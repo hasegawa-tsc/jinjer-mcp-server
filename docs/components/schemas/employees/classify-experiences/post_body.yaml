@@ -1,0 +1,39 @@
+type: object
+required:
+  - employee_id
+properties:
+  employee_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "社員番号"
+  middle_classification:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 1
+        example: "1"
+        description: "中途区分ID<br>0:中途入社以外<br>1:中途入社"
+  midway_income_amount:
+    type: number
+    minLength: 0
+    maxLength: 8
+    example: 1234567
+    description: "中途収入金額"
+  middle_social_insurance:
+    type: number
+    minLength: 0
+    maxLength: 8
+    example: 123456
+    description: "中途社会保険"
+  middle_income_tax:
+    type: number
+    minLength: 0
+    maxLength: 8
+    example: 123456
+    description: "中途所得税"

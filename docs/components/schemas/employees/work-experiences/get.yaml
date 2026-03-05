@@ -1,0 +1,130 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: 社員番号
+    example: "JIN0001"
+  classify_experiences:
+    type: object
+    properties:
+      middle_class:
+        type: object
+        properties:
+          id:
+            description: "中途区分ID (0:中途入社以外, 1: 中途入社)"
+            type: string
+            example: "1"
+          name:
+            description: "中途区分"
+            type: string
+            example: "中途入社"
+      midway_income_amount:
+        description: "中途収入金額"
+        type: integer
+        example: 3000000
+      middle_social_insurance:
+        description: "中途社会保険"
+        type: integer
+        example: 1000
+      middle_income_tax:
+        description: "中途所得税"
+        type: integer
+        example: 100
+  experiences:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "職歴ID"
+          type: string
+          example: "123"
+        joined_on:
+          description: "入社年月"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2012-04-01"
+        retired_on:
+          description: "退職年月"
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd"
+          example: "2012-04-01"
+        service_period:
+          description: "勤続期間"
+          type: string
+          example: "5年3カ月"
+        company_name:
+          description: "会社名"
+          type: string
+          example: "株式会社AAA"
+        postcode:
+          description: "郵便番号"
+          type: string
+          example: "160-0023"
+        address:
+          description: "住所"
+          type: string
+          example: "東京都新宿区西新宿6-11-3 WeWork Dタワー西新宿"
+        retirement_classification:
+          type: object
+          properties:
+            id:
+              description: "退職区分ID 人事設定＞基本情報＞退職区分にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "1"
+            name:
+              description: "退職区分"
+              type: string
+              example: "自己都合退職"
+        retirement_reason_details:
+          description: "退職理由詳細"
+          type: string
+          example: "転職のため"
+        industry:
+          type: object
+          properties:
+            id:
+              description: "業種ID人事設定＞職歴＞業種にて登録されているマスタのIDが出力されます。"
+              type: string
+              example: "53"
+            name:
+              description: "業種"
+              type: string
+              example: "その他の各種事業"
+        domestic:
+          type: object
+          properties:
+            id:
+              description: "国内外区分ID (1:国内, 2:国外)"
+              type: string
+              example: "1"
+            name:
+              description: "国内外区分"
+              type: string
+              example: "国内"
+        dept_name:
+          description: "所属部門"
+          type: string
+          example: "広告部門"
+        job_category:
+          description: "職種"
+          type: string
+          example: "広告企画"
+        position:
+          description: "役職"
+          type: string
+          example: "一般"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2023/07/10 11:53:46"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2023/07/11 12:59:32"

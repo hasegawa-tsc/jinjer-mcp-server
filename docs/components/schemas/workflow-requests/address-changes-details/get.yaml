@@ -1,0 +1,507 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "JN0000000001AA"
+    description: "申請書No."
+  request_category:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "申請区分ID"
+      name:
+        type: string
+        example: "人事"
+        description: "申請区分名"
+  request_form:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "6"
+        description: "申請フォームID"
+      name:
+        type: string
+        example: "住所・通勤費変更申請"
+        description: "申請フォーム名"
+  status:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "ステータスID<br>1:承認完了<br>2:進行中<br>3:否認<br>4:取下げ<br>7:差し戻し"
+      name:
+        type: string
+        example: "承認完了"
+        description: "ステータス"
+  requester:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "申請者 > 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "申請者 > 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "申請者 > 職場氏名（名）"
+      department:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "申請者 > 所属グループID"
+          name:
+            type: string
+            example: "第一営業部"
+            description: "申請者 > 所属グループ名"
+  last_approver:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0002"
+        description: "最終承認者 > 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "最終承認者 > 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "二郎"
+        description: "最終承認者 > 職場氏名（名）"
+      comment:
+        type: string
+        example: "承認しました。"
+        description: "最終承認者 > コメント"
+  title:
+    type: string
+    example: "【2024年4月】中途採用者入社申請"
+    description: "件名"
+  remarks:
+    type: string
+    example: "◯◯という備考です。"
+    description: "備考"
+  reason:
+    type: string
+    example: "◯◯という理由です。"
+    description: "理由"
+  request_url:
+    type: string
+    example: "https://employee.jinjer.biz/request/confirm/12345/12345"
+    description: "申請書URL"
+  requested_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "申請日時"
+  last_approved_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "最終承認（差し戻しを含む）日時または否認日時 "
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"
+  approval_histories:
+    type: array
+    items:
+      type: object
+      properties:
+        step:
+          type: string
+          example: "1"
+          description: "承認履歴 > Step"
+        approver:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "JIN0002"
+              description: "承認履歴 > 対応者 > 社員番号"
+            last_name:
+              type: string
+              example: "神社"
+              description: "承認履歴 > 対応者 > 職場氏名（氏）"
+            first_name:
+              type: string
+              example: "二郎"
+              description: "承認履歴 > 対応者 > 職場氏名（名）"
+        status_afterward:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "承認履歴 > 対応内容ID<br>1:承認なし<br>2:申請<br>3:承認<br>4:差し戻し<br>5:否認"
+            name:
+              type: string
+              example: "承認"
+              description: "承認履歴 > 対応内容"
+        approved_date:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "承認履歴 > 対応日時"
+        comment:
+          type: string
+          example: "承認しました。"
+          description: "承認履歴 > コメント"
+  viewing_histories:
+    type: array
+    items:
+      type: object
+      properties:
+        viewer:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "JIN0002"
+              description: "回覧者確認 > 回覧者 > 社員番号"
+            last_name:
+              type: string
+              example: "神社"
+              description: "回覧者確認 > 回覧者 > 職場氏名（氏）"
+            first_name:
+              type: string
+              example: "二郎"
+              description: "回覧者確認 > 回覧者 > 職場氏名（名）"
+        status:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "回覧者確認 > ステータスID<br>0:未対応 (回覧依頼未済)<br>1:未対応 (回覧依頼済)<br>2:回覧済み"
+            name:
+              type: string
+              example: "未対応 (回覧依頼済)"
+              description: "回覧者確認 > ステータス"
+        viewed_date:
+          type: string
+          format: datetime
+          pattern: yyyy-MM-dd hh:mm:ss
+          example: "2024-04-13 12:34:56"
+          description: "回覧者確認 > 回覧日時"
+  address_change:
+    type: object
+    properties:
+      employee:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "JIN0001"
+            description: "住所・通勤費変更申請 > 住所情報 > 社員番号"
+          last_name:
+            type: string
+            example: "神社"
+            description: "住所・通勤費変更申請 > 住所情報 > 職場氏名（氏）"
+          first_name:
+            type: string
+            example: "一郎"
+            description: "住所・通勤費変更申請 > 住所情報 > 職場氏名（名）"
+      address:
+        type: object
+        properties:
+          change_type:
+            type: string
+            example: "1"
+            description: "住所・通勤費変更申請 > 住所変更有無<br>1:住所・通勤費変更<br>2:住所変更のみ<br>3:通勤費変更のみ"
+          date_of_moving:
+            type: string
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "住所・通勤費変更申請 > 住所情報 > 転居年月日"
+          residential_classification:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "住所・通勤費変更申請 > 住所情報 > 住居区分ID<br>人事設定＞基本情報＞住居区分にて登録されているマスタのIDが出力されます。"
+              name:
+                type: string
+                example: "持ち家（自己名義）"
+                description: "住所・通勤費変更申請 > 住所情報 > 住居区分"
+          zip_code:
+            type: string
+            example: "060-0001"
+            description: "住所・通勤費変更申請 > 住所情報 > 郵便番号"
+          phonetic:
+            type: string
+            example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+            description: "住所・通勤費変更申請 > 住所情報 > 住所（フリガナ）"
+          prefecture:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "住所・通勤費変更申請 > 住所情報 > 都道府県ID"
+              name:
+                type: string
+                example: "北海道"
+                description: "住所・通勤費変更申請 > 住所情報 > 都道府県"
+          municipality:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "2"
+                description: "住所・通勤費変更申請 > 住所情報 > 市区町村ID"
+              name:
+                type: string
+                example: "札幌市中央区"
+                description: "住所・通勤費変更申請 > 住所情報 > 市区町村"
+          street:
+            type: string
+            example: "北１条西２丁目"
+            description: "住所・通勤費変更申請 > 住所情報 > 丁目・番地"
+          building:
+            type: string
+            example: "札幌ビル"
+            description: "住所・通勤費変更申請 > 住所情報 > 建物名・部屋番号"
+      residence_address:
+        type: object
+        properties:
+          date_of_moving:
+            type: string
+            format: date
+            pattern: yyyy-MM-dd
+            example: "2024-04-13"
+            description: "住所・通勤費変更申請 > 住民票住所 > 転居年月日"
+          residential_classification:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "住所・通勤費変更申請 > 住民票住所 > 住居区分ID<br>人事設定＞基本情報＞住居区分にて登録されているマスタのIDが出力されます。"
+              name:
+                type: string
+                example: "持ち家（自己名義）"
+                description: "住所・通勤費変更申請 > 住民票住所 > 住居区分"
+          zip_code:
+            type: string
+            example: "060-0001"
+            description: "住所・通勤費変更申請 > 住民票住所 > 郵便番号"
+          phonetic:
+            type: string
+            example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+            description: "住所・通勤費変更申請 > 住民票住所 > 住所（フリガナ）"
+          prefecture:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "1"
+                description: "住所・通勤費変更申請 > 住民票住所 > 都道府県ID"
+              name:
+                type: string
+                example: "北海道"
+                description: "住所・通勤費変更申請 > 住民票住所 > 都道府県"
+          municipality:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "2"
+                description: "住所・通勤費変更申請 > 住民票住所 > 市区町村ID"
+              name:
+                type: string
+                example: "札幌市中央区"
+                description: "住所・通勤費変更申請 > 住民票住所 > 市区町村"
+          street:
+            type: string
+            example: "北１条西２丁目"
+            description: "住所・通勤費変更申請 > 住民票住所 > 丁目・番地"
+          building:
+            type: string
+            example: "札幌ビル"
+            description: "住所・通勤費変更申請 > 住民票住所 > 建物名・部屋番号"
+      commutings:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "住所・通勤費変更申請 > 通勤情報 > 通勤ID<br>既存の経路を編集する場合、従業員管理＞通勤で表示されるNo.（連番）を返却します。<br>経路を新たに登録する場合、空白を返却します。"
+            employee:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "JIN0001"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 社員番号"
+                last_name:
+                  type: string
+                  example: "神社"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 職場氏名（氏）"
+                first_name:
+                  type: string
+                  example: "一郎"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 職場氏名（名）"
+            change_type:
+              type: string
+              example: "1"
+              description: "住所・通勤費変更申請 > 通勤費変更有無<br>1:住所・通勤費変更<br>2:住所変更のみ<br>3:通勤費変更のみ"
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 利用交通機関ID<br>0:未選択<br>1:公共交通機関<br>2:車<br>3:その他"
+                name:
+                  type: string
+                  example: "公共交通機関"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 利用交通機関"
+            departure:
+              type: string
+              example: "東京"
+              description: "住所・通勤費変更申請 > 通勤情報 > 出発"
+            arrival:
+              type: string
+              example: "新宿"
+              description: "住所・通勤費変更申請 > 通勤情報 > 到着"
+            transit_1:
+              type: string
+              example: "四ツ谷"
+              description: "住所・通勤費変更申請 > 通勤情報 > 経由1"
+            transit_2:
+              type: string
+              example: "御茶ノ水"
+              description: "住所・通勤費変更申請 > 通勤情報 > 経由2"
+            path:
+              type: string
+              example: "東京 → ＪＲ中央線快速・立川行 → 四ツ谷 → ＪＲ中央線快速・東京行 → 御茶ノ水 → ＪＲ中央・青梅線快速・河辺行 → 新宿"
+              description: "住所・通勤費変更申請 > 通勤情報 > 経路"
+            path_type:
+              type: string
+              example: "手"
+              description: "住所・通勤費変更申請 > 通勤情報 > 入力区分"
+            one_way_distance:
+              type: string
+              example: "10.55"
+              description: "住所・通勤費変更申請 > 通勤情報 > 片道距離"
+            payment:
+              type: object
+              properties:
+                start_date:
+                  type: string
+                  format: date
+                  pattern: yyyy-MM
+                  example: "2024-04"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 支給開始年月"
+                interval:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                      description: "住所・通勤費変更申請 > 通勤情報 > 支給間隔ID<br>0:未選択<br>1:毎月<br>2:3ヶ月<br>3:6ヶ月<br>4:毎日"
+                    name:
+                      type: string
+                      example: "毎月"
+                      description: "住所・通勤費変更申請 > 通勤情報 > 支給間隔"
+                method:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                      description: "住所・通勤費変更申請 > 通勤情報 > 支給方法ID<br>0:未選択<br>1:一括<br>2:月割"
+                    name:
+                      type: string
+                      example: "一括"
+                      description: "住所・通勤費変更申請 > 通勤情報 > 支給方法"
+                total:
+                  type: string
+                  example: "123456"
+                  description: "住所・通勤費変更申請 > 通勤情報 > 支給金額"
+      custom_details:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+              description: "カスタム申請項目 > ID<br>マイナンバーに関する既存項目は返却されません。"
+            display_order:
+              type: string
+              example: "1"
+              description: "カスタム申請項目 > 表示順"
+            original_item_name:
+              type: string
+              example: "プルダウン項目"
+              description: "カスタム申請項目 > 項目名<br>管理者のための名称"
+            displayed_item_name:
+              type: string
+              example: "プルダウン項目"
+              description: "カスタム申請項目 > 表示名<br>申請/承認時に表示される名称"
+            value:
+              type: array or string
+              example: "10"
+              description: "カスタム申請項目 > 入力値"
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "1"
+                  description: "カスタム申請項目 > 入力形式ID<br>1:カレンダー（年月）<br>2:カレンダー（年月日）<br>3:カレンダー（日時指定）<br>4:従業員を選択<br>5:所属グループを選択<br>6:ファイル<br>7:プルダウン<br>8:チェックボックス<br>9:ラジオボタン<br>10:テキストフォーム<br>11:ロングテキストエリア<br>12:数値<br>13:英数字<br>14:郵便番号<br>15:電話番号<br>16:変更不可<br>17:金額<br>18:URL<br>20:計上部門を選択<br>21:見出し<br>22:時刻<br>23:計算式"
+                name:
+                  type: string
+                  example: "テキストフォーム"
+                  description: "カスタム申請項目 > 入力形式"
+            unit:
+              type: string
+              example: "km"
+              description: "カスタム申請項目 > 単位<br>入力形式がテキストフォーム、ロングテキストエリア、数字、英数字、金額の場合のみ出力されます。"
+            label:
+              type: array or string
+              example: "選択肢1"
+              description: "カスタム申請項目 > 選択肢<br>入力形式がプルダウン、ラジオボタン、チェックボックスなど選択型の場合のみ出力されます。"
+            files:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "file.jpg"
+                    description: "カスタム申請項目 > ファイル名<br>入力形式がファイルの場合のみ出力されます。"
+                  extension:
+                    type: string
+                    example: "jpg"
+                    description: "カスタム申請項目 > ファイル拡張子<br>入力形式がファイルの場合のみ出力されます。"
+                  temporary_url:
+                    type: string
+                    example: "https://example.com/file.jpg"
+                    description: "カスタム申請項目 > ファイルURL<br>入力形式がファイルの場合のみ出力されます。"

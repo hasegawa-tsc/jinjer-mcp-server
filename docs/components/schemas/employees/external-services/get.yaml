@@ -1,0 +1,45 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    description: "社員番号"
+    example: "1"
+  login_classification:
+    type: object
+    properties:
+      id:
+        description: "外部サービス連携時のログイン方法<br>企業ID・社員番号もしくはメールアドレス・パスワードによるログインを<br>1:許可する<br>2:許可しない"
+        type: integer
+        example: 1
+      name:
+        description: "外部サービス連携時のログイン方法"
+        type: string
+        example: "許可する"
+  google_workspace_account:
+    description: "サービス1またはGoogle Workspaceアカウント<br>外部サービス連携＞SSO認証のサービス1にGoogle Workspaceアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+    type: string
+    example: "jinjer_customer@jinjer.co.jp"
+  azure_active_directory_account:
+    description: "サービス2またはMicrosoft Entra IDアカウント<br>外部サービス連携＞SSO認証のサービス2にMicrosoft Entra IDアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+    type: string
+    example: "jinjer_customer@jinjer.co.jp"
+  hennge_one_account:
+    description: "サービス3またはHENNGE Oneアカウント<br>外部サービス連携＞SSO認証のサービス3にHENNGE Oneアカウント以外が設定されている場合、そのサービスのアカウントを扱います。"
+    type: string
+    example: "jinjer_customer@jinjer.co.jp"
+  docomo_account:
+    description: "ビジネスdアカウント"
+    type: string
+    example: "jinjer_customer@jinjer.co.jp"
+  created_at:
+    description: "作成日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2020-01-01 10:00:00"
+  updated_at:
+    description: "更新日時"
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2020-01-01 10:00:00"

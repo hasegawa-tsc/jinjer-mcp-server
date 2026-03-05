@@ -1,0 +1,43 @@
+type: object
+required:
+  - department_id
+properties:
+  department_id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    example: "JIN0001"
+    description: "所属グループID"
+  jinji_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "人事タグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが設定可能です。"
+  manager_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "マネージャータグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが設定可能です。"
+  business_tags:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 0
+          maxLength: 10
+          example: "1"
+          description: "経営タグに貼付けされた組織タグのID<br>人事設定＞タグ＞組織タグにて登録されているマスタのIDが設定可能です。"

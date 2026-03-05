@@ -1,0 +1,52 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "エクスポートID<br>システム上で自動で発番される一意のIDです。<br><br>`POST /v1/kintai-exports` で受け付けたエクスポート処理が、何らかの理由で失敗した等の理由により本エンドポイントでレスポンスされない場合があります。<br>出力処理の状況は、実行者に送信される通知メールまたは UI のデータ出力＞レポート処理結果一覧にてご確認ください。<br><br>エクスポート処理結果の保存期間は最大7日間です。"
+  name:
+    type: string
+    example: "ジンジャー会計フォーマット"
+    description: "エクスポート テンプレート名"
+  executor:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "エクスポート 実行者 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "エクスポート 実行者 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "エクスポート 実行者 職場氏名（名）"
+  output_file:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "仕訳データ_800080_20240924.csv"
+        description: "エクスポート ファイル名"
+  is_available:
+    type: boolean
+    example: true
+    description: "ファイル存在フラグ<br>true:存在する<br>false:存在しない<br><br>false の場合、エクスポート処理が何らかの理由で失敗した等の理由により、当該のファイルが `GET /v1/kintai-exports/{id}` で出力可能な状態にありません。その場合は UI または `POST /v1/kintai-exports` でエクスポート処理の実行から再試行してください。"
+  is_editable:
+    type: boolean
+    example: true
+    description: "操作可能フラグ<br>true:操作可能<br>false:操作不可<br><br>false の場合、エクスポート処理が何らかの理由で失敗した等の理由により、当該のファイルが `GET /v1/kintai-exports/{id}` で出力可能な状態にありません。その場合は UI または `POST /v1/kintai-exports` でエクスポート処理の実行から再試行してください。"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

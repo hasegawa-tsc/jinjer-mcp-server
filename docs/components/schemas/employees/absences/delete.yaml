@@ -1,0 +1,14 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  # 本来はabsencesですが公開済みのため単数形
+  absence:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "休職ID"

@@ -1,0 +1,134 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "給与テーブルID"
+  name:
+    type: string
+    example: "給与控除単価"
+    description: "給与テーブル名"
+  linked_unit:
+    type: object
+    properties:
+      classification:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "連携先単価種別ID<br>0:給与支給単価<br>1:給与控除単価"
+          name:
+            type: string
+            example: "給与控除単価"
+            description: "連携先単価種別名"
+      id:
+        type: string
+        example: "1"
+        description: "連携先単価ID<br>給与支給単価または給与控除単価のNo.（連番）です。"
+      name:
+        type: string
+        example: "給与控除単価"
+        description: "連携先単価名<br>給与支給単価または給与控除単価の名称です。"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  salary_table_details:
+    type: array
+    items:
+      type: object
+      properties:
+        revised_on:
+          type: string
+          format: date
+          pattern: yyyy-MM-dd
+          example: "2024-04-13"
+          description: "改定年月日"
+        x_axis:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "第一営業部グループ"
+              description: "X軸 項目名<br>給与設定＞給与テーブル＞X軸に設定された項目の名称です。<br>給与テーブルについてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/34884006531353 "
+        y_axis:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "雇用区分"
+              description: "Y軸 項目名<br>給与設定＞給与テーブル＞Y軸に設定された項目の名称です。<br>給与設定＞給与テーブル＞Y軸が設定されていない場合は空文字を返却します。"
+        z_axis:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "雇用区分"
+              description: "Z軸 項目名<br>給与設定＞給与テーブル＞Z軸に設定された項目の名称です。<br>給与設定＞給与テーブル＞Z軸が設定されていない場合は空文字を返却します。"
+        tables:
+          type: array
+          items:
+            type: object
+            properties:
+              x_axis:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "X軸ID<br>以下の場合はIDを返却できないため空文字を返却します。<br>- グレード1<br>- グレード2<br>- 家族扶養合計<br>- 扶養合計<br>- 年齢<br>- 勤続年数"
+                  name:
+                    type: string
+                    example: "正社員"
+                    description: "X軸名<br>給与設定＞給与テーブル＞X軸の名称または人数です。<br>給与テーブルについてはこちらをご確認ください。<br>https://jinjer-kyuyo.zendesk.com/hc/ja/articles/34884006531353  "
+              y_axis:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "Y軸ID<br>以下の場合はIDを返却できないため空文字を返却します。<br>- グレード1<br>- グレード2<br>- 年齢<br>- 勤続年数"
+                  name:
+                    type: string
+                    example: "正社員"
+                    description: "Y軸名<br>給与設定＞給与テーブル＞Y軸の名称です。<br>給与設定＞給与テーブル＞Y軸が設定されていない場合は空文字を返却します。"
+              z_axis:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                    description: "Z軸ID<br>以下の場合はIDを返却できないため空文字を返却します。<br>- グレード1<br>- グレード2<br>- 年齢<br>- 勤続年数"
+                  name:
+                    type: string
+                    example: "正社員"
+                    description: "Z軸名<br>給与設定＞給与テーブル＞Z軸の名称です。<br>給与設定＞給与テーブル＞Z軸が設定されていない場合は空文字を返却します。"
+              payroll:
+                type: string
+                example: "123,456"
+                description: "単価<br>X軸とY軸が交差している箇所に入る値です。"
+              created_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "作成日時"
+              updated_at:
+                type: string
+                format: datetime
+                pattern: yyyy-MM-dd hh:mm:ss
+                example: "2024-04-13 12:34:56"
+                description: "更新日時"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

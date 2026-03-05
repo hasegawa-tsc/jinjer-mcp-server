@@ -1,0 +1,58 @@
+type: object
+properties:
+  id:
+    description: 所属グループID
+    type: string
+    example: "JIN0001"
+  name:
+    description: 所属グループ名
+    type: string
+    example: "生姜営業部"
+  phonetic:
+    description: 所属グループ名（フリガナ）
+    type: string
+    example: "ショウガエイギョウブ"
+  abbreviation:
+    description: 略称
+    type: string
+    example: "生営"
+  date_of_establishment:
+    description: 設立年月日
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2018-08-09"
+  date_of_abolition:
+    description: 廃止年月日
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2019-01-01"
+  parent_department_id:
+    description: 親所属グループID
+    type: string
+    example: "abcd1234"
+  manager_employee_id:
+    description: 所属長の社員番号
+    type: string
+    example: "JIN0002"
+  accounting_department_id:
+    description: 計上部門ID<br>「ジンジャー経費」を契約していない場合は返却されません。
+    type: string
+    example: "1"
+  display_order:
+    description: 表示順
+    type: integer
+    example: 2222
+  created_at:
+    description: 作成日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2018-08-06 17:51:08"
+  updated_at:
+    description: 更新日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2018-08-60 17:54:08"

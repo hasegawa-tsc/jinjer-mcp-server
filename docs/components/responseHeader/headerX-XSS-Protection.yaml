@@ -1,0 +1,3 @@
+schema: 
+  type: string
+  const: 1; mode=block

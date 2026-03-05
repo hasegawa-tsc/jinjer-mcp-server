@@ -1,0 +1,43 @@
+get:
+  tags:
+    - 任意項目マスタ
+  summary: /v1/master/optional-classifications
+  description: "任意項目マスタを取得する。"
+  operationId: optional-classificationsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: number
+      in: query
+      schema:
+        type: number
+        example: 1
+        description: "任意項目番号を指定します。<br>任意項目1、任意項目2、任意項目3の数字の部分を渡し、それぞれのマスタの一覧を返却します。<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/status
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/master/optional-classifications/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

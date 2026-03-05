@@ -1,0 +1,49 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1234567"
+    description: "出力フォーマットID<br>システム上で自動で発番される一意のIDです。"
+  name:
+    type: string
+    example: "ジンジャー会計フォーマット"
+    description: "出力フォーマット名"
+  display_order:
+    type: number
+    example: 2
+    description: "表示順"
+  number_of_items:
+    type: number
+    example: 2
+    description: "出力項目数"
+  format_type:
+    type: string
+    example: "1"
+    description: "出力フォーマット種別<br>1:汎用データ"
+  creator:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "JIN0001"
+        description: "作成者 社員番号"
+      last_name:
+        type: string
+        example: "神社"
+        description: "作成者 職場氏名（氏）"
+      first_name:
+        type: string
+        example: "一郎"
+        description: "作成者 職場氏名（名）"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

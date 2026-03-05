@@ -1,0 +1,45 @@
+get:
+  tags:
+    - 給与 出力テンプレート
+  summary: /v1/master/salary-export-templates
+  description: "給与 出力テンプレートを取得する。"
+  operationId: get-salary-export-templates
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/has-since-changed-at-new
+    - name: template-type
+      in: query
+      required: true
+      schema:
+        type: string
+        example: "1"
+        description: "指定されたテンプレート種別のテンプレートを返却します。<br>テンプレート種別が指定されていない場合、エラーを返却します。<br><br>1:カスタムテンプレート<br>2:集計レポート"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/master/salary-export-templates/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

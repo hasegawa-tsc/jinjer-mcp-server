@@ -1,0 +1,134 @@
+type: object
+properties:
+  id:
+    description: "所属グループID"
+    type: string
+    example: "1"
+  name:
+    description: "所属グループ名"
+    type: string
+    example: "第一営業部"
+  phonetic:
+    description: "所属グループ名（フリガナ）"
+    type: string
+    example: "ダイイチエイギョウブ"
+  abbreviation:
+    description: "略称"
+    type: string
+    example: "一営"
+  date_of_establishment:
+    description: "設立年月日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+  date_of_abolition:
+    description: "廃止年月日"
+    type: string
+    format: date
+    pattern: "yyyy-MM-dd"
+    example: "2024-04-13"
+  phone_number:
+    type: string
+    example: "03-5908-8291"
+    description: "電話番号"
+  fax_number:
+    type: string
+    example: "050-3537-7813"
+    description: "FAX番号"
+  address:
+    type: object
+    properties:
+      zip_code:
+        type: string
+        example: "060-0001"
+        description: "郵便番号"
+      national_local_government_code:
+        type: string
+        example: "011011"
+        description: "都道府県/市区町村<br>全国地方公共団体コードを出力します。"
+      prefecture:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "1"
+            description: "都道府県ID"
+          name:
+            type: string
+            example: "北海道"
+            description: "都道府県"
+      municipality:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "101"
+            description: "市区町村ID"
+          name:
+            type: string
+            example: "札幌市中央区"
+            description: "市区町村"
+      street:
+        type: string
+        example: "北１条西２丁目"
+        description: "丁目・番地"
+      building:
+        type: string
+        example: "札幌ビル"
+        description: "建物名・部屋番号"
+      phonetic:
+        type: string
+        example: "ホッカイドウサッポロシチュウオウクキタイチジョウニシニチョウメ"
+        description: "住所（フリガナ）"
+  labor_insurance_number:
+    type: string
+    example: "12-3-45-678901-234"
+    description: "労働保険番号"
+  employment_insurance_office_number:
+    type: string
+    example: "1234-456789-0"
+    description: "雇用保険事業所番号"
+  parent_department_id:
+    description: 親所属グループID
+    type: string
+    example: "1"
+  hierarchy:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "階層ID"
+      level:
+        type: string
+        example: "2"
+        description: "階層<br>階層を表す数値（第一階層の場合1）を返却します。"
+      name:
+        type: string
+        example: "事業本部"
+        description: "階層名"
+  manager_employee_id:
+    description: 所属長の社員番号
+    type: string
+    example: "JIN0002"
+  accounting_department_id:
+    description: 計上部門<br>「ジンジャー経費」を契約していない場合は返却されません。
+    type: string
+    example: "1"
+  display_order:
+    description: 表示順
+    type: integer
+    example: 2
+  created_at:
+    description: 作成日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2024-04-13 12:34:56"
+  updated_at:
+    description: 更新日時
+    type: string
+    format: datetime
+    pattern: "yyyy-MM-dd hh:mm:ss"
+    example: "2024-04-13 12:34:56"

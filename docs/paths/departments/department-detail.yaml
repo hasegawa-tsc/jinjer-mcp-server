@@ -1,0 +1,41 @@
+get:
+  tags:
+    - 所属グループ
+  summary: /v1/departments/{id}
+  description: "所属グループ詳細を取得する。"
+  operationId: departmentGetDetail
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: string
+        example: 1
+        description: "所属グループIDを1つ指定できます。"
+      required: true
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeaderWithoutItemCount.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                $ref: ../../components/schemas/departments/department-detail/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

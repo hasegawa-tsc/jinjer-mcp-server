@@ -1,0 +1,105 @@
+type: object
+properties:
+  employee_id:
+    description: "社員番号"
+    type: string
+    example: "JIN0001"
+  commuting:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          description: "通勤ID"
+          type: string
+          example: "1234"
+        type:
+          type: object
+          properties:
+            id:
+              description: "利用交通機関ID<br>0:未選択<br>1:公共交通機関<br>2:車<br>3:その他"
+              type: string
+              example: "1234"
+            name:
+              description: "利用交通機関"
+              type: string
+              example: "公共交通機関"
+        departure:
+          description: "出発"
+          type: string
+          example: "東京"
+        arrival:
+          description: "到着"
+          type: string
+          example: "新宿"
+        transit_1:
+          description: "経由1"
+          type: string
+          example: "四ツ谷"
+        transit_2:
+          description: "経由2"
+          type: string
+          example: "御茶ノ水"
+        path:
+          description: "経路"
+          type: string
+          example: "東京 → ＪＲ中央線快速・立川行 → 四ツ谷 → ＪＲ中央線快速・東京行 → 御茶ノ水 → ＪＲ中央・青梅線快速・河辺行 → 新宿"
+        one_way_distance:
+          description: "片道距離（km）"
+          type: string
+          example: "10.55"
+        payment:
+          type: object
+          properties:
+            start_date:
+              description: "支給開始年月"
+              type: string
+              format: date
+              pattern: "yyyy-MM"
+              example: "2018-02"
+            interval:
+              type: object
+              properties:
+                id:
+                  description: "支給間隔ID<br>0:未選択<br>1:毎月<br>2:3ヶ月<br>3:6ヶ月<br>4:毎日"
+                  type: string
+                  example: "1"
+                name:
+                  description: "支給間隔"
+                  type: string
+                  example: "毎月"
+            method:
+              type: object
+              properties:
+                id:
+                  description: "支給方法ID<br>0:未選択<br>1:一括<br>2:月割"
+                  type: string
+                  example: "1"
+                name:
+                  description: "支給方法"
+                  type: string
+                  example: "一括"
+            total:
+              description: "支給金額"
+              type: string
+              example: "30000"
+            tax_exemption_amount:
+              description: "非課税通勤費"
+              type: string
+              example: "21300"
+            taxable_amount:
+              description: "課税通勤費"
+              type: string
+              example: "8700"
+        created_at:
+          description: 作成日時
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018-08-06 17:51:08"
+        updated_at:
+          description: 更新日時
+          type: string
+          format: date
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018-08-60 17:54:08"

@@ -1,0 +1,45 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  mfa_setting:
+    type: object
+    properties:
+      status:
+        type: string
+        example: "1"
+        description: "2段階認証<br>0:利用しない<br>1:利用する<br><br>2段階認証を利用するには、まず企業の2段階認証の利用（企業設定＞パスワードポリシー＞2段階認証）を有効にする必要があります。また、企業の2段階認証の利用を有効にした後、一度も個人の2段階認証の利用（従業員管理＞ログイン関連＞2段階認証）を有効にされていない従業員の情報は本エンドポイントでは取り扱いません。"
+      last_succeeded_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "'2024-04-13 12:34:56"
+        description: "2段階認証成功日時"
+      failed_times:
+        type: string
+        example: "2"
+        description: "2段階認証失敗回数"
+      locked_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "'2024-04-13 12:34:56"
+        description: "2段階認証アカウントロック日時"
+      minutes_until_unlocked:
+        type: string
+        example: "2"
+        description: "2段階認証アカウントロック解除残時間（分）"
+      created_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "'2024-04-13 12:34:56"
+        description: "作成日時"
+      updated_at:
+        type: string
+        format: datetime
+        pattern: yyyy-MM-dd hh:mm:ss
+        example: "'2024-04-13 12:34:56"
+        description: "更新日時"

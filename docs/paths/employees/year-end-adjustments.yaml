@@ -1,0 +1,54 @@
+get:
+  tags:
+    - 従業員 年調結果照会
+  summary: /v1/employees/year-end-adjustments
+  description: "従業員に紐づく年調結果照会を取得する。"
+  operationId: employees-year-end-adjustmentsGet
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/employee-ids
+    - name: year
+      in: query
+      schema:
+        type: string
+        format: year
+        pattern: yyyy
+        example: 2023
+        description: "指定された計算対象年のデータを返却します。<br>計算対象年が指定されていない場合、エラーを返却します。"
+      required: true
+    - name: process-status-id
+      in: query
+      schema:
+        type: integer
+        example: 1
+        description: "指定された年末調整ステータスのデータを返却します。<br>下記のいずれかを指定できます。<br>1:データ未作成<br>2:データ作成済<br>3:年調計算済<br>4:年調再計算対象<br>5:締め処理済<br>6:対象外<br>クエリパラメータが無い場合、条件に含めずデータを返却します。"
+      required: false
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/employees/year-end-adjustments/get.yaml
+    '400':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    '401':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    '403':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    '404':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    '405':
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405

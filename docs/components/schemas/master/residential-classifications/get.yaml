@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1"
+    description: "住居区分ID<br>マスタにて任意に登録されるIDです。"
+  name:
+    type: string
+    example: "持ち家（自己名義）"
+    description: "住居区分名"
+  active:
+    type: boolean
+    example: true
+    description: "有効ステータス"
+  is_default:
+    type: boolean
+    example: true
+    description: "既定値フラグ<br>true の場合、ID を変更できません。"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

@@ -1,0 +1,40 @@
+type: object
+properties:
+  employee_id:
+    type: string
+    example: "JIN0001"
+    description: "社員番号"
+  enrollment_classification:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "在籍区分ID<br>0:在籍<br>1:退職<br>2:休職"
+      name:
+        type: string
+        example: "退職"
+        description: "在籍区分"
+  employment_classification:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1"
+        description: "雇用区分ID<br>人事設定＞基本情報＞雇用区分にて登録されているマスタのIDが出力されます。"
+      name:
+        type: string
+        example: "正社員"
+        description: "雇用区分"
+  created_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "作成日時"
+  updated_at:
+    type: string
+    format: datetime
+    pattern: yyyy-MM-dd hh:mm:ss
+    example: "2024-04-13 12:34:56"
+    description: "更新日時"

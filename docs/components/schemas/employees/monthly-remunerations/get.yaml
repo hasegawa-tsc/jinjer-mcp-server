@@ -1,0 +1,76 @@
+type: object
+properties:
+  employee_id:
+    description: 社員番号
+    type: string
+    example: "JIN0001"
+  monthly_remunerations:
+    type: array
+    items:
+      type: object
+      properties:
+        year:
+          description: 基準年
+          type: string
+          format: date
+          pattern: "yyyy"
+          example: "2023"
+        month:
+          description: 基準月
+          type: string
+          format: date
+          pattern: "MM"
+          example: "12"
+        collection_month:
+          description: 徴収年月
+          type: string
+          format: date
+          pattern: "yyyy-MM"
+          example: "2024-01"
+        health_insurance:
+          type: object
+          properties:
+            fee:
+              description: 健康保険の標準報酬月額
+              type: string
+              example: "88000"
+        employee_pension:
+          type: object
+          properties:
+            fee:
+              description: 厚生年金の標準報酬月額
+              type: string
+              example: "88000"
+        last_update:
+          type: object
+          properties:
+            classification:
+              type: object
+              properties:
+                id:
+                  description: "最終更新種別ID<br>0:自動登録<br>1:管理者登録<br>2:随時改定<br>3:定時改定"
+                  type: string
+                  example: "1"
+                name:
+                  description: "最終更新種別"
+                  type: string
+                  example: "管理者登録"
+            updater:
+              type: object
+              properties:
+                id:
+                  description: "最終更新者の社員番号"
+                  type: string
+                  example: "1"
+        created_at:
+          description: "作成日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"
+        updated_at:
+          description: "更新日時"
+          type: string
+          format: datetime
+          pattern: "yyyy-MM-dd hh:mm:ss"
+          example: "2018–10–26 21:32:52"

@@ -1,0 +1,99 @@
+get:
+  tags:
+    - 経費 仕訳データ
+  summary: /v1/expense-journals
+  description: "経費 仕訳データを取得する。"
+  operationId: get-expense-journals
+  security:
+    - ApplicationJWT: []
+  parameters:
+    - $ref: ../../components/parameters/common.yaml#/components/parameters/page
+    - name: journal-type
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 1
+        description: "指定された仕訳区分のデータを返却します。<br>仕訳区分が指定されていない場合、エラーを返却します。<br>仕訳区分は以下の左のコードで指定してください。<br><br>1:計上仕訳<br>3:支払仕訳"
+    - name: export-status
+      in: query
+      required: true
+      schema:
+        type: string
+        example: 1
+        description: "指定されたステータスのデータを返却します。<br>ステータスが指定されていない場合、エラーを返却します。<br>ステータスを指定する場合、以下の左のコードで指定してください。<br><br>0:未出力<br>1:出力済"
+    - name: posted-at-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-01"
+        description: "指定された年月日以降に計上されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: posted-at-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-31"
+        description: "指定された年月日以前に計上されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: created-at-from
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-01"
+        description: "指定された年月日以降に作成されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: created-at-to
+      in: query
+      schema:
+        type: string
+        format: date
+        pattern: "yyyy-MM-dd"
+        example: "2023-07-31"
+        description: "指定された年月日以前に作成されたデータを返却します。<br>年月日が指定されていない場合、全データを返却します。"
+    - name: last-approved-at-from
+      in: query
+      schema:
+        type: string
+        format: datetime
+        pattern: "yyyy-MM-dd HH:ss"
+        example: "2023-08-01 12:34"
+        description: "指定された年月日時分以降に最終承認されたデータを返却します。<br>年月日時分が指定されていない場合、全データを返却します。"
+    - name: last-approved-at-to
+      in: query
+      schema:
+        type: string
+        format: datetime
+        pattern: "yyyy-MM-dd HH:ss"
+        example: "2023-08-01 23:56"
+        description: "指定された年月日時分以前に最終承認されたデータを返却します。<br>年月日時分が指定されていない場合、全データを返却します。"
+  responses:
+    "200":
+      description: OK
+      headers:
+        $ref: ../../components/responseHeader/responseHeader.yaml
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              results:
+                type: string
+                example: success
+              data:
+                type: array
+                items:
+                  $ref: ../../components/schemas/expense-journals/get.yaml
+    "400":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse400
+    "401":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse401
+    "403":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse403
+    "404":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse404
+    "405":
+      $ref: ../../components/responses/common.yaml#/components/responses/commonResponse405
