@@ -61,5 +61,23 @@ uv run server.py
 
 各ツールの詳細な引数については、MCPクライアントのツール説明、または `server.py` 内の docstring を参照してください。
 
+## トラブルシューティング
+
+### 日本語の文字化けについて
+Windows環境や特定のターミナルで実行した際、APIレスポンスの日本語が文字化けして表示されることがあります。
+これは表示上の問題であり、データ自体は正しく取得されています。
+
+正確な内容を確認したい場合は、以下のように `json.dumps` を使用してエンコーディングを明示的に指定して実行してください：
+
+```bash
+uv run python -c "import json; from server import get_client; client = get_client(); res = client.request('GET', '/v1/employees', params={'employee-last-name': '長谷川'}); print(json.dumps(res, ensure_ascii=False))"
+```
+
+### 動作確認済みデータ
+開発時のテストに使用できる確認済みのデータ例です：
+- **社員番号**: 30
+- **氏名**: 〇〇 〇〇 (〇〇〇〇 〇〇〇)
+- **所属**: 株式会社テック・エス・シー
+
 ## ライセンス
 MIT License

@@ -12,9 +12,6 @@ load_dotenv()
 JINJER_API_KEY = os.environ.get("JINJER_API_KEY")
 JINJER_SECRET_KEY = os.environ.get("JINJER_SECRET_KEY")
 
-if not JINJER_API_KEY or not JINJER_SECRET_KEY:
-    print("Warning: JINJER_API_KEY and JINJER_SECRET_KEY environment variables are required.")
-
 mcp = FastMCP("jinjer")
 
 class JinjerClient:
@@ -89,9 +86,13 @@ client = None
 def get_client() -> JinjerClient:
     global client
     if client is None:
-        if not JINJER_API_KEY or not JINJER_SECRET_KEY:
+        # 再度環境変数を読み込む（.envの変更を反映させるため）
+        load_dotenv()
+        api_key = os.environ.get("JINJER_API_KEY")
+        secret_key = os.environ.get("JINJER_SECRET_KEY")
+        if not api_key or not secret_key:
             raise ValueError("JINJER_API_KEY and JINJER_SECRET_KEY environment variables are not set")
-        client = JinjerClient(JINJER_API_KEY, JINJER_SECRET_KEY)
+        client = JinjerClient(api_key, secret_key)
     return client
 
 @mcp.tool()
