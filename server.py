@@ -473,5 +473,120 @@ def list_monthly_work_data(
         return str(result)
     except Exception as e:
         return f"Error: {str(e)}"
+@mcp.tool()
+def list_departments(
+    page: int = 1,
+    status: Optional[str] = "active",
+    has_since_changed_at: Optional[str] = None,
+    id: Optional[str] = None,
+    parent_department_id: Optional[str] = None,
+    manager_employee_id: Optional[str] = None
+) -> str:
+    """
+    所属グループ（組織）情報を取得します。
+
+    Args:
+        page: ページ番号。
+        status: ステータス (active: 有効なもののみ)。
+        has_since_changed_at: 指定された年月日以降に新規登録または更新されたデータを返却します (yyyy-MM-dd)。
+        id: 所属グループID。
+        parent_department_id: 親所属グループID。
+        manager_employee_id: 所属長の社員番号。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if status:
+            params["status"] = status
+        if has_since_changed_at:
+            params["has-since-changed-at"] = has_since_changed_at
+        if id:
+            params["id"] = id
+        if parent_department_id:
+            params["parent-department-id"] = parent_department_id
+        if manager_employee_id:
+            params["manager-employee-id"] = manager_employee_id
+
+        result = jinjer.request("GET", "/v1/departments", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_employment_classifications(
+    page: int = 1,
+    status: Optional[str] = "active"
+) -> str:
+    """
+    雇用区分マスタを取得します。
+
+    Args:
+        page: ページ番号。
+        status: ステータス (active: 有効なもののみ)。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if status:
+            params["status"] = status
+
+        result = jinjer.request("GET", "/v1/master/employment-classifications", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_employee_posts(
+    page: int = 1,
+    status: Optional[str] = "active"
+) -> str:
+    """
+    役職マスタを取得します。
+
+    Args:
+        page: ページ番号。
+        status: ステータス (active: 有効なもののみ)。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if status:
+            params["status"] = status
+
+        result = jinjer.request("GET", "/v1/master/employee-posts", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_employee_dependents(
+    page: int = 1,
+    employee_ids: Optional[str] = None,
+    has_since_changed_at: Optional[str] = None,
+    company_dependent_classification: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく被扶養者情報を取得します。
+
+    Args:
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます（最大100件）。
+        has_since_changed_at: 指定された年月日以降に新規登録または更新されたデータを返却します (yyyy-MM-dd)。
+        company_dependent_classification: 社保扶養区分 (0:未選択, 1:扶養対象, 2:扶養対象外)。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+        if has_since_changed_at:
+            params["has-since-changed-at"] = has_since_changed_at
+        if company_dependent_classification:
+            params["company-dependent-classification"] = company_dependent_classification
+
+        result = jinjer.request("GET", "/v1/employees/dependents", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
 if __name__ == "__main__":
     mcp.run()
