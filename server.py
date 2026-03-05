@@ -299,5 +299,179 @@ def list_requested_day_offs(
     except Exception as e:
         return f"Error: {str(e)}"
 
+@mcp.tool()
+def list_employee_addresses(
+    page: int = 1,
+    employee_ids: Optional[str] = None,
+    has_since_changed_at: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく住所情報を取得します。
+
+    Args:
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます。
+        has_since_changed_at: 指定された年月日以降に新規登録または更新されたデータを返却します (yyyy-MM-dd)。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+        if has_since_changed_at:
+            params["has-since-changed-at"] = has_since_changed_at
+
+        result = jinjer.request("GET", "/v1/employees/addresses", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_employee_bank_accounts(
+    page: int = 1,
+    employee_ids: Optional[str] = None,
+    has_since_changed_at: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく銀行口座を取得します。
+
+    Args:
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます。
+        has_since_changed_at: 指定された年月日以降に新規登録または更新されたデータを返却します (yyyy-MM-dd)。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+        if has_since_changed_at:
+            params["has-since-changed-at"] = has_since_changed_at
+
+        result = jinjer.request("GET", "/v1/employees/bank-accounts", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_employee_affiliations(
+    page: int = 1,
+    employee_ids: Optional[str] = None,
+    has_since_changed_at: Optional[str] = None,
+    date_of_issue_after_at: Optional[str] = None,
+    date_of_issue_before_at: Optional[str] = None,
+    attendance_group: Optional[str] = None,
+    employee_post: Optional[str] = None,
+    department: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく主務（所属・役職など）を取得します。
+
+    Args:
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます。
+        has_since_changed_at: 指定された年月日以降に新規登録または更新されたデータを返却します (yyyy-MM-dd)。
+        date_of_issue_after_at: 指定された年月日以降の発令年月日を持つデータを返却します (yyyy-MM-dd)。
+        date_of_issue_before_at: 指定された年月日以前の発令年月日を持つデータを返却します (yyyy-MM-dd)。
+        attendance_group: 指定された打刻グループIDのデータを返却します。
+        employee_post: 指定された役職IDのデータを返却します。
+        department: 指定された所属グループIDのデータを返却します。
+    """
+    try:
+        jinjer = get_client()
+        params = {"page": page}
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+        if has_since_changed_at:
+            params["has-since-changed-at"] = has_since_changed_at
+        if date_of_issue_after_at:
+            params["date-of-issue-after-at"] = date_of_issue_after_at
+        if date_of_issue_before_at:
+            params["date-of-issue-before-at"] = date_of_issue_before_at
+        if attendance_group:
+            params["attendance-group"] = attendance_group
+        if employee_post:
+            params["employee-post"] = employee_post
+        if department:
+            params["department"] = department
+
+        result = jinjer.request("GET", "/v1/employees/affiliations", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_daily_work_data(
+    date: str,
+    group_id: Optional[str] = None,
+    store_id: Optional[str] = None,
+    page: int = 1,
+    employee_ids: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく勤務データ（日締め）を取得します。
+    group_id または store_id のいずれかの指定が必須です。
+
+    Args:
+        date: 取得する勤務データの年月日 (yyyy-MM-dd)。必須。
+        group_id: 所属グループID。
+        store_id: 打刻グループID。
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます。
+    """
+    try:
+        if not group_id and not store_id:
+            return "Error: group_id or store_id is required."
+
+        jinjer = get_client()
+        params = {"date": date, "page": page}
+        if group_id:
+            params["group-id"] = group_id
+        if store_id:
+            params["store-id"] = store_id
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+
+        result = jinjer.request("GET", "/v1/employees/daily-work-data", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+def list_monthly_work_data(
+    month: str,
+    group_id: Optional[str] = None,
+    store_id: Optional[str] = None,
+    page: int = 1,
+    employee_ids: Optional[str] = None
+) -> str:
+    """
+    従業員に紐づく勤務データ（月締め）を取得します。
+    group_id または store_id のいずれかの指定が必須です。
+
+    Args:
+        month: 取得する勤務データの年月 (yyyy-MM)。必須。
+        group_id: 所属グループID。
+        store_id: 打刻グループID。
+        page: ページ番号。
+        employee_ids: 複数の社員番号をカンマ区切りで指定できます。
+    """
+    try:
+        if not group_id and not store_id:
+            return "Error: group_id or store_id is required."
+
+        jinjer = get_client()
+        params = {"month": month, "page": page}
+        if group_id:
+            params["group-id"] = group_id
+        if store_id:
+            params["store-id"] = store_id
+        if employee_ids:
+            params["employee-ids"] = employee_ids
+
+        result = jinjer.request("GET", "/v1/employees/monthly-work-data", params=params)
+        return str(result)
+    except Exception as e:
+        return f"Error: {str(e)}"
 if __name__ == "__main__":
     mcp.run()
