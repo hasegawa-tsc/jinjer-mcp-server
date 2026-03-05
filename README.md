@@ -52,12 +52,28 @@ uv run server.py
 
 ## 利用可能なツール
 
+### 従業員・人事情報
 - **`list_employee_ids`**: 従業員に紐づく社員番号を取得します。
 - **`list_employees`**: 従業員情報を詳細に取得します。
+- **`list_employee_addresses`**: 従業員の住所情報を取得します。
+- **`list_employee_bank_accounts`**: 従業員の銀行口座情報を取得します。
+- **`list_employee_affiliations`**: 従業員の主務（所属・役職など）を取得します。
+- **`list_employee_dependents`**: 従業員の被扶養者情報を取得します。
+
+### 勤怠・ワークフロー
 - **`list_labor_hour_settings`**: 従業員に紐づく勤怠設定情報を取得します。
 - **`list_attendances`**: 従業員に紐づく打刻データ（出退勤時刻など）を取得します。
-- **`list_salary_statements`**: 従業員に紐づく給与計算結果（明細情報）を取得します。
+- **`list_daily_work_data`**: 従業員の日次勤務データ（日締め）を取得します。
+- **`list_monthly_work_data`**: 従業員の月次勤務データ（月締め）を取得します。
 - **`list_requested_day_offs`**: 従業員に紐づく休日休暇申請データを取得します。
+
+### 給与
+- **`list_salary_statements`**: 従業員に紐づく給与計算結果（明細情報）を取得します。
+
+### マスタデータ
+- **`list_departments`**: 所属グループ（組織）情報を取得します。
+- **`list_employment_classifications`**: 雇用区分マスタを取得します。
+- **`list_employee_posts`**: 役職マスタを取得します。
 
 各ツールの詳細な引数については、MCPクライアントのツール説明、または `server.py` 内の docstring を参照してください。
 
